@@ -22,10 +22,10 @@
 
   <xsl:param name="always-use-left-right" select="'auto'"/><!-- yes|no|auto -->
 
-  <xsl:param name="texmap-uri" select="'../texmap/texmap.xml'" as="xs:string"/>
+<xsl:param name="texmap-uri" select="'https://raw.githubusercontent.com/samgabriel/mml2tex/master/texmap/texmap.xml'" as="xs:string"/>
   
-  <xsl:param name="texmap-upgreek-uri" select="'../texmap/texmap-upgreek.xml'" as="xs:string"/>
-  
+ <xsl:param name="texmap-upgreek-uri" select="'https://raw.githubusercontent.com/samgabriel/mml2tex/master/texmap/texmap-upgreek.xml'" as="xs:string"/>
+    
   <xsl:variable name="texmap" select="document($texmap-uri)/xml2tex:set/xml2tex:charmap/xml2tex:char" as="element(xml2tex:char)+"/>
   
   <xsl:variable name="texmap-upgreek" select="document($texmap-upgreek-uri)/xml2tex:set/xml2tex:charmap/xml2tex:char" as="element(xml2tex:char)+"/>
