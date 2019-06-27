@@ -5,6 +5,7 @@
   xmlns:xs="http://www.w3.org/2001/XMLSchema" 
   xmlns:tr="http://transpect.io"
   xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:mml2tex="http://transpect.io/mml2tex"
   exclude-result-prefixes="tr fn mml xs">
   
   <xsl:import href="mml2tex.xsl"/>
