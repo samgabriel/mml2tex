@@ -52,12 +52,12 @@
                       else if($notation eq 'radical')            then ('\sqrt{',       '}')
                       else                                            (concat('\', $notation, '{'), '}')"/>
   </xsl:function>
-  <xsl:function name="mml2tex:max-col-count" as="xs:integer">
+  <xsl:function name="max-col-count" as="xs:integer">
     <xsl:param name="mtable" as="element(mtable)"/>
     <xsl:value-of select="max(for $i in $mtable/mtr return count(($i/mtd, $i//malignmark)))"/>
   </xsl:function>
  
-  <xsl:function name="mml2tex:utf2tex" as="xs:string*">
+  <xsl:function name="utf2tex" as="xs:string*">
     <xsl:param name="string" as="xs:string"/>
     <!-- In order to avoid infinite recursion when mapping % → \% -->
     <xsl:param name="seen" as="xs:string*"/>
@@ -81,7 +81,7 @@
         <xsl:choose>
           <xsl:when test="matches($result, $texregex)
                           and not(($pattern = $seen) or matches($result, '^[-,\.\^a-z0-9A-Z\$\\%_&amp;\{{\}}\[\]#\|\s~&quot;]+$'))">
-            <xsl:value-of select="string-join(mml2tex:utf2texrec($result, ($seen, $pattern), $texmap), '')"/>
+            <xsl:value-of select="string-join(utf2texrec($result, ($seen, $pattern), $texmap), '')"/>
           </xsl:when>
           <xsl:otherwise>
             <xsl:value-of select="$result"/>
@@ -93,12 +93,12 @@
       </xsl:non-matching-substring>
     </xsl:analyze-string>
   </xsl:function>
-  <xsl:function name="mml2tex:utf2texrec" as="xs:string*">
+  <xsl:function name="utf2texrec" as="xs:string*">
     <xsl:param name="string" as="xs:string"/>
     <!-- In order to avoid infinite recursion when mapping % → \% -->
     <xsl:param name="seen" as="xs:string*"/>
     <xsl:param name="texmap" as="element(xml2tex:char)+"/>
-    <xsl:value-of select="string-join(mml2tex:utf2tex($string, $seen, $texmap), '')"/>
+    <xsl:value-of select="string-join(utf2tex($string, $seen, $texmap), '')"/>
   </xsl:function>
   
   <xsl:function name="functx:escape-for-regex" as="xs:string">
@@ -393,7 +393,7 @@
   </xsl:template>
 
   <xsl:template match="mtable" mode="mathml2tex">
-    <xsl:variable name="mcc" select="mml2tex:max-col-count(.)" as="xs:integer"/>
+    <xsl:variable name="mcc" select="max-col-count(.)" as="xs:integer"/>
     <xsl:variable name="columnlines" select="tokenize(@columnlines, '\s')" as="xs:string*"/>
     <xsl:variable name="col-aligns" select="for $i in mtr[count((mtd, .//malignmark)) &gt;= $mcc]
                                             return ($i/mtd/ancestor-or-self::*[@columnalign]/@columnalign, 
@@ -584,7 +584,7 @@
         <xsl:value-of select="concat('\', $pos, '\', $val)"/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="concat('\', $pos, string-join(mml2tex:utf2tex($val, (), $texmap), ''), '&#x20;')"/>
+        <xsl:value-of select="concat('\', $pos, string-join(utf2tex($val, (), $texmap), ''), '&#x20;')"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
@@ -592,7 +592,7 @@
   <xsl:template match="text()" mode="mathml2tex">
     <!-- normalize space and remove line breaks -->
     <xsl:variable name="text" select="replace(normalize-space(.), '&#xa;+', ' ')" as="xs:string"/>
-    <xsl:variable name="utf2tex" select="string-join(mml2tex:utf2tex($text, (), $texmap), '')" as="xs:string"/>
+    <xsl:variable name="utf2tex" select="string-join(utf2tex($text, (), $texmap), '')" as="xs:string"/>
     <xsl:choose>
       <!-- parenthesis, brackets, e.g. -->
       <xsl:when test="parent::mo and matches(., $parenthesis-regex) 
@@ -618,7 +618,7 @@
                                  [matches(normalize-space(.), $texregex-upgreek)]
                      |parent::mtext[matches(normalize-space(.), $texregex-upgreek)]">
         <xsl:variable name="utf2tex-upgreek" select="if(. = ' ') then '\ ' 
-                                                     else if(matches($text, $texregex-upgreek)) then string-join(mml2tex:utf2tex($text, (), $texmap-upgreek), '')
+                                                     else if(matches($text, $texregex-upgreek)) then string-join(utf2tex($text, (), $texmap-upgreek), '')
                                                      else $text" as="xs:string"/>
         <xsl:value-of select="$utf2tex-upgreek"/>
       </xsl:when>
@@ -633,7 +633,7 @@
            note that functions, variables or numbers are just treated as regular text. This is often caused 
            by an improper use of Math editors by authors. -->
       <xsl:when test="parent::mtext">
-        <xsl:value-of select="string-join(mml2tex:utf2tex(., (), $texmap), '')"/>
+        <xsl:value-of select="string-join(utf2tex(., (), $texmap), '')"/>
       </xsl:when>
       <!-- render whitespace as single space -->
       <xsl:when test="matches(., '^\s*$')">
@@ -645,7 +645,7 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:function name="mml2tex:text-atts" as="xs:string?">
+  <xsl:function name="text-atts" as="xs:string?">
     <xsl:param name="elt" as="element(*)"/>
     <xsl:param name="target" as="xs:string"/>
     <xsl:variable name="fontweight" select="$elt/@fontweight" as="attribute(fontweight)?"/>
@@ -664,7 +664,7 @@
     </xsl:choose>
   </xsl:function>
   
-  <xsl:function name="mml2tex:style-to-tex" as="item()*">
+  <xsl:function name="style-to-tex" as="item()*">
     <xsl:param name="elt" as="element()"/>
     <xsl:variable name="mathvariant" select="$elt/@mathvariant" as="attribute(mathvariant)?"/>
     <xsl:variable name="fontstyle"   select="$elt/@fontstyle"   as="attribute(fontstyle)?"/>
@@ -702,7 +702,7 @@
                       and normalize-space(string-join(($mathvariant, $fontstyle, $fontweight), '')) 
                       and not($mathvariant = 'normal')
                       and not(matches($elt, $texregex-upgreek))">
-        <xsl:sequence select="mml2tex:style-to-tex-insert($elt, $mathvariant, $style-map, 'text')"/>
+        <xsl:sequence select="style-to-tex-insert($elt, $mathvariant, $style-map, 'text')"/>
       </xsl:when>
       <xsl:when test="$elt/self::mtext">
         <xsl:text>\text{</xsl:text>
@@ -716,8 +716,8 @@
                       and normalize-space(string-join(($mathvariant, $fontstyle, $fontweight), '')) 
                       and not($elt/self::mi[not(@mathvariant or @mathvariant eq 'italic')] and string-length($elt) = 1)">
         <xsl:sequence select="if($elt/self::mi[matches(@mathvariant, 'italic') and string-length(.) = 1])
-                              then mml2tex:style-to-tex-insert($elt, 'mml2tex_bold-italic', $style-map, 'math')
-                              else mml2tex:style-to-tex-insert($elt, $mathvariant, $style-map, 'math')"/>
+                              then style-to-tex-insert($elt, 'mml2tex_bold-italic', $style-map, 'math')
+                              else style-to-tex-insert($elt, $mathvariant, $style-map, 'math')"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:apply-templates select="$elt/node()" mode="mathml2tex"/>
@@ -725,12 +725,12 @@
     </xsl:choose>
   </xsl:function>
   
-  <xsl:function name="mml2tex:style-to-tex-insert" as="item()*">
+  <xsl:function name="style-to-tex-insert" as="item()*">
     <xsl:param name="elt" as="element()"/>
     <xsl:param name="mathvariant" as="xs:string?"/>
     <xsl:param name="style-map" as="element(mml2tex:styles)"/>
     <xsl:param name="target" as="xs:string"/>
-    <xsl:value-of select="string-join((mml2tex:text-atts($elt, $target),
+    <xsl:value-of select="string-join((text-atts($elt, $target),
                                        for $i in tokenize($style-map/mml2tex:var[@mml eq $mathvariant]/@tex, '\s') 
                                        return ('\', 
                                                if($i = ('bm', 'boldsymbol')) then () else $target, $i, '{')
@@ -738,7 +738,7 @@
     <xsl:apply-templates select="$elt/node()" mode="mathml2tex"/>
     <xsl:value-of select="string-join((for $i in tokenize($style-map/mml2tex:var[@mml eq $mathvariant]/@tex, '\s') 
                                        return '}', 
-                                       if(mml2tex:text-atts($elt, $target)) then '}' else ()), 
+                                       if(text-atts($elt, $target)) then '}' else ()), 
                                        '')"/>
   </xsl:function>
 
@@ -750,7 +750,7 @@
   </xsl:template>
 
   <xsl:template match="mn|mi|ms|mo|mtext|mstyle" mode="mathml2tex">
-    <xsl:sequence select="mml2tex:style-to-tex(.)"/>
+    <xsl:sequence select="style-to-tex(.)"/>
   </xsl:template>
   
   <xsl:template match="processing-instruction()[local-name() eq 'latex']" mode="mathml2tex">
