@@ -61,7 +61,7 @@
     <!-- In order to avoid infinite recursion when mapping % → \% -->
     <xsl:param name="seen" as="xs:string*"/>
     <xsl:param name="texmap" as="element(xml2tex:char)+"/>
-    <xsl:value-of select="string-join(mml2tex:utf2tex($result, $seen, $texmap), '')"/>
+    <xsl:value-of select="string-join(mml2tex:utf2tex($string, $seen, $texmap), '')"/>
   </xsl:function>
   <xsl:function name="mml2tex:utf2tex" as="xs:string*">
     <xsl:param name="string" as="xs:string"/>
