@@ -26,10 +26,11 @@
 <xsl:param name="texmap-uri" select="'https://raw.githubusercontent.com/samgabriel/mml2tex/master/texmap/texmap.xml'" as="xs:string"/>
   
  <xsl:param name="texmap-upgreek-uri" select="'https://raw.githubusercontent.com/samgabriel/mml2tex/master/texmap/texmap-upgreek.xml'" as="xs:string"/>
-    
-  <xml2tex:set>
+ <!-- <xsl:import href="texmap.xsl"/> -->
+ <xsl:variable name="texmap" as="element(xml2tex:char)+">
+ <!--  <xml2tex:set>
   <xml2tex:charmap>
-  
+  --> 
     <!-- *
          * Unicode characters and corresponding LaTeX math mode commands
          * -->
@@ -59,9 +60,9 @@
     <!--LOW LINE, TeX subscript operator-->
     <xml2tex:char character="&#x5f;" string="\_"/>
     <!-- LEFT CURLY BRACKET -->
-    <xml2tex:char character="&#x7b;" string="\{"/>
+    <xml2tex:char character="{{" string="\{{"/>
     <!-- RIGHT CURLY BRACKET -->
-    <xml2tex:char character="&#x7d;" string="\}"/>
+    <xml2tex:char character="}}" string="\}}"/>
     <!--# \sim, TILDE-->
     <xml2tex:char character="&#x7e;" string="\sim"/>
   
@@ -84,19 +85,19 @@
     <!-- MACRON -->
     <xml2tex:char character="&#xaf;" string="\bar"/>
     <!-- DEGREE SIGN -->
-    <xml2tex:char character="&#xb0;" string="^{\circ}"/>
+    <xml2tex:char character="&#xb0;" string="^{{\circ}}"/>
     <!--plus-or-minus sign-->
     <xml2tex:char character="&#xb1;" string="\pm"/>    
     <!--SUPERSCRIPT TWO -->
-    <xml2tex:char character="&#xb2;" string="^{2}"/>
+    <xml2tex:char character="&#xb2;" string="^{{2}}"/>
     <!--SUPERSCRIPT THREE -->
-    <xml2tex:char character="&#xb3;" string="^{3}"/>
-    <!--= \tcmu (mathcomp), t \textmu (textcomp), # \mathrm{\mu} (omlmathrm), # \muup (kpfonts mathdesign), MICRO SIGN-->
-    <xml2tex:char character="&#xb5;" string="\mathrm{\mu}"/>
+    <xml2tex:char character="&#xb3;" string="^{{3}}"/>
+    <!--= \tcmu (mathcomp), t \textmu (textcomp), # \mathrm{{\mu}} (omlmathrm), # \muup (kpfonts mathdesign), MICRO SIGN-->
+    <xml2tex:char character="&#xb5;" string="\mathrm{{\mu}}"/>
     <!-- middle dot -->
     <xml2tex:char character="&#xb7;" string="\cdot"/>
     <!-- SUPERSCRIPT ONE -->
-    <xml2tex:char character="&#xb9;" string="^{1}"/>
+    <xml2tex:char character="&#xb9;" string="^{{1}}"/>
     <!--MULTIPLICATION SIGN, z notation Cartesian product-->
     <xml2tex:char character="&#xd7;" string="\times"/>
     <!--LATIN CAPITAL LETTER A WITH DIAERESIS-->
@@ -121,7 +122,7 @@
          * -->
     
     <!-- LATIN SMALL LETTER F WITH HOOK -->
-    <xml2tex:char character="&#x192;" string="\mathit{f}"/>
+    <xml2tex:char character="&#x192;" string="\mathit{{f}}"/>
     <!--jmath-->
     <xml2tex:char character="&#x237;" string="\jmath"/>
   
@@ -186,9 +187,9 @@
     <xml2tex:char character="&#x391;" string="A"/>
     <!-- GREEK CAPITAL LETTER BETA -->
     <xml2tex:char character="&#x392;" string="B"/>
-    <!--= \Gamma (-slantedGreek), = \mathrm{\Gamma}, capital gamma, greek-->   
+    <!--= \Gamma (-slantedGreek), = \mathrm{{\Gamma}}, capital gamma, greek-->   
     <xml2tex:char character="&#x393;" string="\Gamma"/>
-    <!--= \Delta (-slantedGreek), = \mathrm{\Delta}, capital delta, greek-->
+    <!--= \Delta (-slantedGreek), = \mathrm{{\Delta}}, capital delta, greek-->
     <xml2tex:char character="&#x394;" string="\Delta"/>
     <!-- GREEK CAPITAL LETTER EPSILON -->
     <xml2tex:char character="&#x395;" string="E"/>
@@ -196,13 +197,13 @@
     <xml2tex:char character="&#x396;" string="Z"/>
     <!-- GREEK CAPITAL LETTER ETA -->
     <xml2tex:char character="&#x397;" string="H"/>
-    <!--= \Theta (-slantedGreek), = \mathrm{\Theta}, capital theta, greek-->
+    <!--= \Theta (-slantedGreek), = \mathrm{{\Theta}}, capital theta, greek-->
     <xml2tex:char character="&#x398;" string="\Theta"/>
     <!-- GREEK CAPITAL LETTER IOTA -->
     <xml2tex:char character="&#x399;" string="I"/>
     <!-- GREEK CAPITAL LETTER KAPPA -->
     <xml2tex:char character="&#x39a;" string="K"/>
-    <!--= \Lambda (-slantedGreek), = \mathrm{\Lambda}, capital lambda, greek-->
+    <!--= \Lambda (-slantedGreek), = \mathrm{{\Lambda}}, capital lambda, greek-->
     <xml2tex:char character="&#x39b;" string="\Lambda"/>
     <!-- GREEK CAPITAL LETTER MU -->
     <xml2tex:char character="&#x39c;" string="M"/>
@@ -210,83 +211,83 @@
     <xml2tex:char character="&#x39d;" string="N"/>
     <!-- GREEK CAPITAL LETTER OMICRON -->
     <xml2tex:char character="&#x39f;" string="O"/>
-    <!--= \Xi (-slantedGreek), = \mathrm{\Xi}, capital xi, greek-->
+    <!--= \Xi (-slantedGreek), = \mathrm{{\Xi}}, capital xi, greek-->
     <xml2tex:char character="&#x39e;" string="\Xi"/>
-    <!--= \Pi (-slantedGreek), = \mathrm{\Pi}, capital pi, greek-->
+    <!--= \Pi (-slantedGreek), = \mathrm{{\Pi}}, capital pi, greek-->
     <xml2tex:char character="&#x3a0;" string="\Pi"/>
     <!-- GREEK CAPITAL LETTER RHO -->
     <xml2tex:char character="&#x3a1;" string="P"/>
-    <!--= \Sigma (-slantedGreek), = \mathrm{\Sigma}, capital sigma, greek-->
+    <!--= \Sigma (-slantedGreek), = \mathrm{{\Sigma}}, capital sigma, greek-->
     <xml2tex:char character="&#x3a3;" string="\Sigma"/>
     <!-- GREEK CAPITAL LETTER TAU -->
     <xml2tex:char character="&#x3a4;" string="T"/>
-    <!--= \Upsilon (-slantedGreek), = \mathrm{\Upsilon}, capital upsilon, greek-->
+    <!--= \Upsilon (-slantedGreek), = \mathrm{{\Upsilon}}, capital upsilon, greek-->
     <xml2tex:char character="&#x3a5;" string="\Upsilon"/>
-    <!--= \Phi (-slantedGreek), = \mathrm{\Phi}, capital phi, greek-->
+    <!--= \Phi (-slantedGreek), = \mathrm{{\Phi}}, capital phi, greek-->
     <xml2tex:char character="&#x3a6;" string="\Phi"/>
     <!-- GREEK CAPITAL LETTER CHI -->
     <xml2tex:char character="&#x3a7;" string="X"/>
-    <!--= \Psi (-slantedGreek), = \mathrm{\Psi}, capital psi, greek-->
+    <!--= \Psi (-slantedGreek), = \mathrm{{\Psi}}, capital psi, greek-->
     <xml2tex:char character="&#x3a8;" string="\Psi"/>
-    <!--= \Omega (-slantedGreek), = \mathrm{\Omega}, capital omega, greek-->
+    <!--= \Omega (-slantedGreek), = \mathrm{{\Omega}}, capital omega, greek-->
     <xml2tex:char character="&#x3a9;" string="\Omega"/>
-    <!--= \mathrm{\alpha} (omlmathrm), = \alphaup (kpfonts mathdesign), = \upalpha (upgreek),  alpha, greek-->
+    <!--= \mathrm{{\alpha}} (omlmathrm), = \alphaup (kpfonts mathdesign), = \upalpha (upgreek),  alpha, greek-->
     <xml2tex:char character="&#x3b1;" string="\alpha"/>
-    <!--= \mathrm{\beta} (omlmathrm), = \betaup (kpfonts mathdesign), = \upbeta (upgreek),  beta, greek-->
+    <!--= \mathrm{{\beta}} (omlmathrm), = \betaup (kpfonts mathdesign), = \upbeta (upgreek),  beta, greek-->
     <xml2tex:char character="&#x3b2;" string="\beta"/>
-    <!--= \mathrm{\gamma} (omlmathrm), = \gammaup (kpfonts mathdesign), = \upgamma (upgreek),  gamma, greek-->
+    <!--= \mathrm{{\gamma}} (omlmathrm), = \gammaup (kpfonts mathdesign), = \upgamma (upgreek),  gamma, greek-->
     <xml2tex:char character="&#x3b3;" string="\gamma"/>
-    <!--= \mathrm{\delta} (omlmathrm), = \deltaup (kpfonts mathdesign), = \updelta (upgreek),  delta, greek-->
+    <!--= \mathrm{{\delta}} (omlmathrm), = \deltaup (kpfonts mathdesign), = \updelta (upgreek),  delta, greek-->
     <xml2tex:char character="&#x3b4;" string="\delta"/>
-    <!--= \mathrm{\varepsilon} (omlmathrm), = \varepsilonup (kpfonts mathdesign), rounded = \upepsilon (upgreek),  epsilon, greek-->
+    <!--= \mathrm{{\varepsilon}} (omlmathrm), = \varepsilonup (kpfonts mathdesign), rounded = \upepsilon (upgreek),  epsilon, greek-->
     <xml2tex:char character="&#x3b5;" string="\varepsilon"/>
-    <!--= \mathrm{\zeta} (omlmathrm), = \zetaup (kpfonts mathdesign), = \upzeta (upgreek),  zeta, greek-->
+    <!--= \mathrm{{\zeta}} (omlmathrm), = \zetaup (kpfonts mathdesign), = \upzeta (upgreek),  zeta, greek-->
     <xml2tex:char character="&#x3b6;" string="\zeta"/>
-    <!--= \mathrm{\eta} (omlmathrm), = \etaup (kpfonts mathdesign), = \upeta (upgreek),  eta, greek-->
+    <!--= \mathrm{{\eta}} (omlmathrm), = \etaup (kpfonts mathdesign), = \upeta (upgreek),  eta, greek-->
     <xml2tex:char character="&#x3b7;" string="\eta"/>
-    <!--= \mathrm{\theta} (omlmathrm), = \thetaup (kpfonts mathdesign), straight theta, = \uptheta (upgreek),  theta, greek-->
+    <!--= \mathrm{{\theta}} (omlmathrm), = \thetaup (kpfonts mathdesign), straight theta, = \uptheta (upgreek),  theta, greek-->
     <xml2tex:char character="&#x3b8;" string="\theta"/>
-    <!--= \mathrm{\iota} (omlmathrm), = \iotaup (kpfonts mathdesign), = \upiota (upgreek),  iota, greek-->
+    <!--= \mathrm{{\iota}} (omlmathrm), = \iotaup (kpfonts mathdesign), = \upiota (upgreek),  iota, greek-->
     <xml2tex:char character="&#x3b9;" string="\iota"/>
-    <!--= \mathrm{\kappa} (omlmathrm), = \kappaup (kpfonts mathdesign), = \upkappa (upgreek),  kappa, greek-->
+    <!--= \mathrm{{\kappa}} (omlmathrm), = \kappaup (kpfonts mathdesign), = \upkappa (upgreek),  kappa, greek-->
     <xml2tex:char character="&#x3ba;" string="\kappa"/>
-    <!--= \mathrm{\lambda} (omlmathrm), = \lambdaup (kpfonts mathdesign), = \uplambda (upgreek),  lambda, greek-->
+    <!--= \mathrm{{\lambda}} (omlmathrm), = \lambdaup (kpfonts mathdesign), = \uplambda (upgreek),  lambda, greek-->
     <xml2tex:char character="&#x3bb;" string="\lambda"/>
-    <!--= \mathrm{\mu} (omlmathrm), = \muup (kpfonts mathdesign), = \upmu (upgreek),  mu, greek-->
+    <!--= \mathrm{{\mu}} (omlmathrm), = \muup (kpfonts mathdesign), = \upmu (upgreek),  mu, greek-->
     <xml2tex:char character="&#x3bc;" string="\mu"/>
-    <!--= \mathrm{\nu} (omlmathrm), = \nuup (kpfonts mathdesign), = \upnu (upgreek),  nu, greek-->
+    <!--= \mathrm{{\nu}} (omlmathrm), = \nuup (kpfonts mathdesign), = \upnu (upgreek),  nu, greek-->
     <xml2tex:char character="&#x3bd;" string="\nu"/>
-    <!--= \mathrm{\xi} (omlmathrm), = \xiup (kpfonts mathdesign), = \upxi (upgreek),  xi, greek-->
+    <!--= \mathrm{{\xi}} (omlmathrm), = \xiup (kpfonts mathdesign), = \upxi (upgreek),  xi, greek-->
     <xml2tex:char character="&#x3be;" string="\xi"/>
     <!-- omicron, greek -->
     <xml2tex:char character="&#x3bf;" string="o"/>
-    <!--= \mathrm{\pi} (omlmathrm), = \piup (kpfonts mathdesign), = \uppi (upgreek),  pi, greek-->
+    <!--= \mathrm{{\pi}} (omlmathrm), = \piup (kpfonts mathdesign), = \uppi (upgreek),  pi, greek-->
     <xml2tex:char character="&#x3c0;" string="\pi"/>
-    <!--= \mathrm{\rho} (omlmathrm), = \rhoup (kpfonts mathdesign), = \uprho (upgreek),  rho, greek-->
+    <!--= \mathrm{{\rho}} (omlmathrm), = \rhoup (kpfonts mathdesign), = \uprho (upgreek),  rho, greek-->
     <xml2tex:char character="&#x3c1;" string="\rho"/>
-    <!--= \mathrm{\varsigma} (omlmathrm), = \varsigmaup (kpfonts mathdesign), terminal sigma, greek-->
+    <!--= \mathrm{{\varsigma}} (omlmathrm), = \varsigmaup (kpfonts mathdesign), terminal sigma, greek-->
     <xml2tex:char character="&#x3c2;" string="\varsigma"/>
-    <!--= \mathrm{\sigma} (omlmathrm), = \sigmaup (kpfonts mathdesign), = \upsigma (upgreek),  sigma, greek-->
+    <!--= \mathrm{{\sigma}} (omlmathrm), = \sigmaup (kpfonts mathdesign), = \upsigma (upgreek),  sigma, greek-->
     <xml2tex:char character="&#x3c3;" string="\sigma"/>
-    <!--= \mathrm{\tau} (omlmathrm), = \tauup (kpfonts mathdesign), = \uptau (upgreek),  tau, greek-->
+    <!--= \mathrm{{\tau}} (omlmathrm), = \tauup (kpfonts mathdesign), = \uptau (upgreek),  tau, greek-->
     <xml2tex:char character="&#x3c4;" string="\tau"/>
-    <!--= \mathrm{\upsilon} (omlmathrm), = \upsilonup (kpfonts mathdesign), = \upupsilon (upgreek),  upsilon, greek-->
+    <!--= \mathrm{{\upsilon}} (omlmathrm), = \upsilonup (kpfonts mathdesign), = \upupsilon (upgreek),  upsilon, greek-->
     <xml2tex:char character="&#x3c5;" string="\upsilon"/>
-    <!--= \mathrm{\varphi} (omlmathrm), = \varphiup (kpfonts mathdesign), curly or open = \upvarphi (upgreek),  phi, greek-->
+    <!--= \mathrm{{\varphi}} (omlmathrm), = \varphiup (kpfonts mathdesign), curly or open = \upvarphi (upgreek),  phi, greek-->
     <xml2tex:char character="&#x3c6;" string="\varphi"/>
-    <!--= \mathrm{\chi} (omlmathrm), = \chiup (kpfonts mathdesign), = \upchi (upgreek),  chi, greek-->
+    <!--= \mathrm{{\chi}} (omlmathrm), = \chiup (kpfonts mathdesign), = \upchi (upgreek),  chi, greek-->
     <xml2tex:char character="&#x3c7;" string="\chi"/>
-    <!--= \mathrm{\psi} (omlmathrm), = \psiup (kpfonts mathdesign), = \uppsi (upgreek),  psi, greek-->
+    <!--= \mathrm{{\psi}} (omlmathrm), = \psiup (kpfonts mathdesign), = \uppsi (upgreek),  psi, greek-->
     <xml2tex:char character="&#x3c8;" string="\psi"/>
-    <!--= \mathrm{\omega} (omlmathrm), = \omegaup (kpfonts mathdesign), = \upomega (upgreek),  omega, greek-->
+    <!--= \mathrm{{\omega}} (omlmathrm), = \omegaup (kpfonts mathdesign), = \upomega (upgreek),  omega, greek-->
     <xml2tex:char character="&#x3c9;" string="\omega"/>
     <!--rounded = \upvarbeta (upgreek),  beta, greek-->
     <xml2tex:char character="&#x3d0;" string="\upvarbeta"/>
-    <!--= \mathrm{\vartheta} (omlmathrm), = \varthetaup (kpfonts mathdesign), curly or open theta-->
+    <!--= \mathrm{{\vartheta}} (omlmathrm), = \varthetaup (kpfonts mathdesign), curly or open theta-->
     <xml2tex:char character="&#x3d1;" string="\vartheta"/>
-    <!--= \mathrm{\phi} (omlmathrm), = \phiup (kpfonts mathdesign), GREEK PHI SYMBOL (straight)-->
+    <!--= \mathrm{{\phi}} (omlmathrm), = \phiup (kpfonts mathdesign), GREEK PHI SYMBOL (straight)-->
     <xml2tex:char character="&#x3d5;" string="\phi"/>
-    <!--= \mathrm{\varpi} (omlmathrm), = \varpiup (kpfonts mathdesign), GREEK PI SYMBOL (pomega)-->
+    <!--= \mathrm{{\varpi}} (omlmathrm), = \varpiup (kpfonts mathdesign), GREEK PI SYMBOL (pomega)-->
     <xml2tex:char character="&#x3d6;" string="\varpi"/>
     <!--= \Koppa (wrisym), t \Qoppa (LGR), GREEK LETTER ARCHAIC KOPPA-->
     <xml2tex:char character="&#x3d8;" string="\Qoppa"/>
@@ -308,9 +309,9 @@
     <xml2tex:char character="&#x3e0;" string="\Sampi"/>
     <!--# \sampi (wrisym), GREEK SMALL LETTER SAMPI-->
     <xml2tex:char character="&#x3e1;" string="\sampi"/>
-    <!--= \mathrm{\varrho} (omlmathrm), = \varrhoup (kpfonts mathdesign), GREEK RHO SYMBOL (round)-->
+    <!--= \mathrm{{\varrho}} (omlmathrm), = \varrhoup (kpfonts mathdesign), GREEK RHO SYMBOL (round)-->
     <xml2tex:char character="&#x3f1;" string="\varrho"/>
-    <!--= \mathrm{\epsilon} (omlmathrm), = \epsilonup (kpfonts mathdesign), GREEK LUNATE EPSILON SYMBOL-->
+    <!--= \mathrm{{\epsilon}} (omlmathrm), = \epsilonup (kpfonts mathdesign), GREEK LUNATE EPSILON SYMBOL-->
     <xml2tex:char character="&#x3f5;" string="\epsilon"/>
     <!--GREEK REVERSED LUNATE EPSILON SYMBOL-->
     <xml2tex:char character="&#x3f6;" string="\backepsilon"/>
@@ -344,17 +345,17 @@
     <!--HAIR SPACE -->
     <xml2tex:char character="&#x200a;" string="\,"/>
     <!--ZERO WIDTH SPACE -->
-    <xml2tex:char character="&#x200b;" string="\hspace{0pt}"/>
+    <xml2tex:char character="&#x200b;" string="\hspace{{0pt}}"/>
     <!--NON-BREAKING HYPHEN -->
-    <xml2tex:char character="&#x2011;" string="\hbox{-}"/>
+    <xml2tex:char character="&#x2011;" string="\hbox{{-}}"/>
     <!--MINUS SIGN -->
     <xml2tex:char character="&#x2012;" string="-"/>
     <!--EN DASH -->
-    <xml2tex:char character="&#x2013;" string="\hbox{--}"/>
+    <xml2tex:char character="&#x2013;" string="\hbox{{--}}"/>
     <!--EM DASH -->
-    <xml2tex:char character="&#x2014;" string="\hbox{---}"/>
+    <xml2tex:char character="&#x2014;" string="\hbox{{---}}"/>
     <!--HORIZONTAL BAR -->
-    <xml2tex:char character="&#x2015;" string="\hbox{---}"/>
+    <xml2tex:char character="&#x2015;" string="\hbox{{---}}"/>
     <!--= \Vert, double vertical bar-->
     <xml2tex:char character="&#x2016;" string="\|"/>
     <!-- LEFT SINGLE QUOTATION MARK -->
@@ -429,91 +430,91 @@
           * -->
     
     <!-- SUPERSCRIPT FOUR -->
-    <xml2tex:char character="&#x2074;" string="$^{4}$"/>
+    <xml2tex:char character="&#x2074;" string="$^{{4}}$"/>
     <!-- SUPERSCRIPT FIVE -->
-    <xml2tex:char character="&#x2075;" string="$^{5}$"/>
+    <xml2tex:char character="&#x2075;" string="$^{{5}}$"/>
     <!-- SUPERSCRIPT SIX -->
-    <xml2tex:char character="&#x2076;" string="$^{6}$"/>
+    <xml2tex:char character="&#x2076;" string="$^{{6}}$"/>
     <!-- SUPERSCRIPT SEVEN -->
-    <xml2tex:char character="&#x2077;" string="$^{7}$"/>
+    <xml2tex:char character="&#x2077;" string="$^{{7}}$"/>
     <!-- SUPERSCRIPT EIGHT -->
-    <xml2tex:char character="&#x2078;" string="$^{8}$"/>
+    <xml2tex:char character="&#x2078;" string="$^{{8}}$"/>
     <!-- SUPERSCRIPT NINE -->
-    <xml2tex:char character="&#x2079;" string="$^{9}$"/>
+    <xml2tex:char character="&#x2079;" string="$^{{9}}$"/>
     <!-- SUPERSCRIPT PLUS SIGN -->
-    <xml2tex:char character="&#x207a;" string="$^{+}$"/>
+    <xml2tex:char character="&#x207a;" string="$^{{+}}$"/>
     <!-- SUPERSCRIPT MINUS SIGN -->
-    <xml2tex:char character="&#x207b;" string="$^{-}$"/>
+    <xml2tex:char character="&#x207b;" string="$^{{-}}$"/>
     <!-- SUPERSCRIPT EQUALS SIGN -->
-    <xml2tex:char character="&#x207c;" string="$^{=}$"/>
+    <xml2tex:char character="&#x207c;" string="$^{{=}}$"/>
     <!-- SUPERSCRIPT LEFT PARENTHESIS -->
-    <xml2tex:char character="&#x207d;" string="$^{(}$"/>
+    <xml2tex:char character="&#x207d;" string="$^{{(}}$"/>
     <!-- SUPERSCRIPT RIGHT PARENTHESIS  -->
-    <xml2tex:char character="&#x207e;" string="$^{)}$"/>
+    <xml2tex:char character="&#x207e;" string="$^{{)}}$"/>
     <!-- SUPERSCRIPT LATIN SMALL LETTER N -->
-    <xml2tex:char character="&#x207f;" string="$^{n}$"/>
+    <xml2tex:char character="&#x207f;" string="$^{{n}}$"/>
     <!-- SUBSCRIPT ZERO -->
-    <xml2tex:char character="&#x2080;" string="$_{0}$"/>
+    <xml2tex:char character="&#x2080;" string="$_{{0}}$"/>
     <!-- SUBSCRIPT ONE -->
-    <xml2tex:char character="&#x2081;" string="$_{1}$"/>
+    <xml2tex:char character="&#x2081;" string="$_{{1}}$"/>
     <!-- SUBSCRIPT TWO -->
-    <xml2tex:char character="&#x2082;" string="$_{2}$"/>
+    <xml2tex:char character="&#x2082;" string="$_{{2}}$"/>
     <!-- SUBSCRIPT THREE -->
-    <xml2tex:char character="&#x2083;" string="$_{3}$"/>
+    <xml2tex:char character="&#x2083;" string="$_{{3}}$"/>
     <!-- SUBSCRIPT FOUR -->
-    <xml2tex:char character="&#x2084;" string="$_{4}$"/>
+    <xml2tex:char character="&#x2084;" string="$_{{4}}$"/>
     <!-- SUBSCRIPT FIVE -->
-    <xml2tex:char character="&#x2085;" string="$_{5}$"/>
+    <xml2tex:char character="&#x2085;" string="$_{{5}}$"/>
     <!-- SUBSCRIPT SIX -->
-    <xml2tex:char character="&#x2086;" string="$_{6}$"/>
+    <xml2tex:char character="&#x2086;" string="$_{{6}}$"/>
     <!-- SUBSCRIPT SEVEN -->
-    <xml2tex:char character="&#x2087;" string="$_{7}$"/>
+    <xml2tex:char character="&#x2087;" string="$_{{7}}$"/>
     <!-- SUBSCRIPT EIGHT -->
-    <xml2tex:char character="&#x2088;" string="$_{8}$"/>
+    <xml2tex:char character="&#x2088;" string="$_{{8}}$"/>
     <!-- SUBSCRIPT NINE -->
-    <xml2tex:char character="&#x2089;" string="$_{9}$"/>
+    <xml2tex:char character="&#x2089;" string="$_{{9}}$"/>
     <!-- SUBSCRIPT PLUS SIGN -->
-    <xml2tex:char character="&#x208a;" string="$_{+}$"/>
+    <xml2tex:char character="&#x208a;" string="$_{{+}}$"/>
     <!-- SUBSCRIPT MINUS SIGN -->
-    <xml2tex:char character="&#x208b;" string="$_{-}$"/>
+    <xml2tex:char character="&#x208b;" string="$_{{-}}$"/>
     <!-- SUBSCRIPT EQUALS SIGN -->
-    <xml2tex:char character="&#x208c;" string="$_{=}$"/>
+    <xml2tex:char character="&#x208c;" string="$_{{=}}$"/>
     <!-- SUBSCRIPT LEFT PARENTHESIS -->
-    <xml2tex:char character="&#x208d;" string="$_{(}$"/>
+    <xml2tex:char character="&#x208d;" string="$_{{(}}$"/>
     <!-- SUBSCRIPT RIGHT PARENTHESIS  -->
-    <xml2tex:char character="&#x208e;" string="$_{)}$"/>
+    <xml2tex:char character="&#x208e;" string="$_{{)}}$"/>
     <!-- LATIN SUBSCRIPT SMALL LETTER A -->
-    <xml2tex:char character="&#x2090;" string="$_{a}$"/>
+    <xml2tex:char character="&#x2090;" string="$_{{a}}$"/>
     <!-- LATIN SUBSCRIPT SMALL LETTER E -->
-    <xml2tex:char character="&#x2091;" string="$_{e}$"/>
+    <xml2tex:char character="&#x2091;" string="$_{{e}}$"/>
     <!-- LATIN SUBSCRIPT SMALL LETTER O -->
-    <xml2tex:char character="&#x2092;" string="$_{o}$"/>
+    <xml2tex:char character="&#x2092;" string="$_{{o}}$"/>
     <!-- LATIN SUBSCRIPT SMALL LETTER X -->
-    <xml2tex:char character="&#x2093;" string="$_{x}$"/>
+    <xml2tex:char character="&#x2093;" string="$_{{x}}$"/>
     <!-- LATIN SUBSCRIPT SMALL LETTER SCHWA -->
-    <xml2tex:char character="&#x2094;" string="$_{\text{\textschwa}}$"/>
+    <xml2tex:char character="&#x2094;" string="$_{{\text{{\textschwa}}}}$"/>
     <!-- LATIN SUBSCRIPT SMALL LETTER H -->
-    <xml2tex:char character="&#x2095;" string="$_{h}$"/>
+    <xml2tex:char character="&#x2095;" string="$_{{h}}$"/>
     <!-- LATIN SUBSCRIPT SMALL LETTER K -->
-    <xml2tex:char character="&#x2096;" string="$_{k}$"/>
+    <xml2tex:char character="&#x2096;" string="$_{{k}}$"/>
     <!-- LATIN SUBSCRIPT SMALL LETTER L -->
-    <xml2tex:char character="&#x2097;" string="$_{l}$"/>
+    <xml2tex:char character="&#x2097;" string="$_{{l}}$"/>
     <!-- LATIN SUBSCRIPT SMALL LETTER M -->
-    <xml2tex:char character="&#x2098;" string="$_{m}$"/>
+    <xml2tex:char character="&#x2098;" string="$_{{m}}$"/>
     <!-- LATIN SUBSCRIPT SMALL LETTER N -->
-    <xml2tex:char character="&#x2099;" string="$_{n}$"/>
+    <xml2tex:char character="&#x2099;" string="$_{{n}}$"/>
     <!-- LATIN SUBSCRIPT SMALL LETTER p -->
-    <xml2tex:char character="&#x209a;" string="$_{p}$"/>
+    <xml2tex:char character="&#x209a;" string="$_{{p}}$"/>
     <!-- LATIN SUBSCRIPT SMALL LETTER S -->
-    <xml2tex:char character="&#x209b;" string="$_{s}$"/>
+    <xml2tex:char character="&#x209b;" string="$_{{s}}$"/>
     <!-- LATIN SUBSCRIPT SMALL LETTER T -->
-    <xml2tex:char character="&#x209c;" string="$_{t}$"/>
+    <xml2tex:char character="&#x209c;" string="$_{{t}}$"/>
   
     <!-- *
          * Currency Symbols
          * -->
     
-    <xml2tex:char character="&#x20ac;" string="\euro{}"/>
+    <xml2tex:char character="&#x20ac;" string="\euro{{}}"/>
   
     <!-- *
          * Combining Diacritical Marks for Symbols
@@ -550,70 +551,70 @@
           * Letterlike Symbols
           * -->
   
-    <!--= \mathds{C} (dsfont), open face C-->
-    <xml2tex:char character="&#x2102;" string="\mathbb{C}"/>
+    <!--= \mathds{{C}} (dsfont), open face C-->
+    <xml2tex:char character="&#x2102;" string="\mathbb{{C}}"/>
     <!--EULER CONSTANT-->
     <xml2tex:char character="&#x2107;" string="\Euler"/>
     <!--/scr g, script small letter g-->
-    <xml2tex:char character="&#x210a;" string="\mathcal{g}"/>
+    <xml2tex:char character="&#x210a;" string="\mathcal{{g}}"/>
     <!--hamiltonian (script capital H)-->
-    <xml2tex:char character="&#x210b;" string="\mathcal{H}"/>
+    <xml2tex:char character="&#x210b;" string="\mathcal{{H}}"/>
     <!--/frak H, black-letter capital H-->
-    <xml2tex:char character="&#x210c;" string="\mathfrak{H}"/>
-    <!--= \mathds{H} (dsfont), open face capital H-->
-    <xml2tex:char character="&#x210d;" string="\mathbb{H}"/>
+    <xml2tex:char character="&#x210c;" string="\mathfrak{{H}}"/>
+    <!--= \mathds{{H}} (dsfont), open face capital H-->
+    <xml2tex:char character="&#x210d;" string="\mathbb{{H}}"/>
     <!--PLANCK CONSTANT-->
-    <xml2tex:char character="&#x210e;" string="\mathit{h}"/>
+    <xml2tex:char character="&#x210e;" string="\mathit{{h}}"/>
     <!--=\HBar (wrisym), Planck's h over 2pi-->
     <xml2tex:char character="&#x210f;" string="\hslash"/>
     <!--/scr I, script capital I-->
-    <xml2tex:char character="&#x2110;" string="\mathcal{I}"/>
-    <!--= \mathfrak{I} (eufrak), imaginary part-->
+    <xml2tex:char character="&#x2110;" string="\mathcal{{I}}"/>
+    <!--= \mathfrak{{I}} (eufrak), imaginary part-->
     <xml2tex:char character="&#x2111;" string="\Im"/>
     <!--lagrangian (script capital L)-->
-    <xml2tex:char character="&#x2112;" string="\mathcal{L}"/>
+    <xml2tex:char character="&#x2112;" string="\mathcal{{L}}"/>
     <!--cursive small l-->
     <xml2tex:char character="&#x2113;" string="\ell"/>
-    <!--= \mathds{N} (dsfont), open face N-->
-    <xml2tex:char character="&#x2115;" string="\mathbb{N}"/>
+    <!--= \mathds{{N}} (dsfont), open face N-->
+    <xml2tex:char character="&#x2115;" string="\mathbb{{N}}"/>
     <!--weierstrass p-->
     <xml2tex:char character="&#x2118;" string="\wp"/>
-    <!--= \mathds{P} (dsfont), open face P-->
-    <xml2tex:char character="&#x2119;" string="\mathbb{P}"/>
-    <!--= \mathds{Q} (dsfont), open face Q-->
-    <xml2tex:char character="&#x211a;" string="\mathbb{Q}"/>
+    <!--= \mathds{{P}} (dsfont), open face P-->
+    <xml2tex:char character="&#x2119;" string="\mathbb{{P}}"/>
+    <!--= \mathds{{Q}} (dsfont), open face Q-->
+    <xml2tex:char character="&#x211a;" string="\mathbb{{Q}}"/>
     <!--/scr R, script capital R-->
-    <xml2tex:char character="&#x211b;" string="\mathcal{R}"/>
-    <!--= \mathfrak{R} (eufrak), real part-->
+    <xml2tex:char character="&#x211b;" string="\mathcal{{R}}"/>
+    <!--= \mathfrak{{R}} (eufrak), real part-->
     <xml2tex:char character="&#x211c;" string="\Re"/>
-    <!--= \mathds{R} (dsfont), open face R-->
-    <xml2tex:char character="&#x211d;" string="\mathbb{R}"/>
-    <!--= \mathds{Z} (dsfont), open face Z-->
-    <xml2tex:char character="&#x2124;" string="\mathbb{Z}"/>
-    <!--# \mathrm{\Omega}, ohm (deprecated in math, use greek letter)-->
+    <!--= \mathds{{R}} (dsfont), open face R-->
+    <xml2tex:char character="&#x211d;" string="\mathbb{{R}}"/>
+    <!--= \mathds{{Z}} (dsfont), open face Z-->
+    <xml2tex:char character="&#x2124;" string="\mathbb{{Z}}"/>
+    <!--# \mathrm{{\Omega}}, ohm (deprecated in math, use greek letter)-->
     <xml2tex:char character="&#x2126;" string="\tcohm"/>
     <!--= \Mho (wrisym), t \agemO (wasysym), conductance-->
     <xml2tex:char character="&#x2127;" string="\mho"/>
     <!--/frak Z, black-letter capital Z-->
-    <xml2tex:char character="&#x2128;" string="\mathfrak{Z}"/>
-    <!--# \mathring{\mathrm{A}}, Ångström capital A with ring-->
+    <xml2tex:char character="&#x2128;" string="\mathfrak{{Z}}"/>
+    <!--# \mathring{{\mathrm{{A}}}}, Ångström capital A with ring-->
     <xml2tex:char character="&#x212b;" string="\Angstroem"/>
     <!--bernoulli function (script capital B)-->
-    <xml2tex:char character="&#x212c;" string="\mathcal{B}"/>
+    <xml2tex:char character="&#x212c;" string="\mathcal{{B}}"/>
     <!--black-letter capital C-->
-    <xml2tex:char character="&#x212d;" string="\mathfrak{C}"/>
+    <xml2tex:char character="&#x212d;" string="\mathfrak{{C}}"/>
     <!--/scr e, script small letter e-->
-    <xml2tex:char character="&#x212f;" string="\mathcal{e}"/>
+    <xml2tex:char character="&#x212f;" string="\mathcal{{e}}"/>
     <!--/scr E, script capital E-->
-    <xml2tex:char character="&#x2130;" string="\mathcal{E}"/>
+    <xml2tex:char character="&#x2130;" string="\mathcal{{E}}"/>
     <!--/scr F, script capital F-->
-    <xml2tex:char character="&#x2131;" string="\mathcal{F}"/>
+    <xml2tex:char character="&#x2131;" string="\mathcal{{F}}"/>
     <!--TURNED CAPITAL F-->
     <xml2tex:char character="&#x2132;" string="\Finv"/>
     <!--physics m-matrix (SCRIPT CAPITAL M)-->
-    <xml2tex:char character="&#x2133;" string="\mathcal{M}"/>
+    <xml2tex:char character="&#x2133;" string="\mathcal{{M}}"/>
     <!--order of (SCRIPT SMALL O)-->
-    <xml2tex:char character="&#x2134;" string="\mathcal{o}"/>
+    <xml2tex:char character="&#x2134;" string="\mathcal{{o}}"/>
     <!--aleph, hebrew-->
     <xml2tex:char character="&#x2135;" string="\aleph"/>
     <!--beth, hebrew-->
@@ -623,15 +624,15 @@
     <!--daleth, hebrew-->
     <xml2tex:char character="&#x2138;" string="\daleth"/>
     <!--\DoublePi (wrisym), DOUBLE-STRUCK SMALL PI-->
-    <xml2tex:char character="&#x213c;" string="\mathbb{pi}"/>
+    <xml2tex:char character="&#x213c;" string="\mathbb{{pi}}"/>
     <!--\EulerGamma (wrisym), DOUBLE-STRUCK SMALL GAMMA-->
-    <xml2tex:char character="&#x213d;" string="\mathbb{gamma}"/>
+    <xml2tex:char character="&#x213d;" string="\mathbb{{gamma}}"/>
     <!--DOUBLE-STRUCK CAPITAL GAMMA-->
-    <xml2tex:char character="&#x213e;" string="\mathbb{Gamma}"/>
+    <xml2tex:char character="&#x213e;" string="\mathbb{{Gamma}}"/>
     <!--DOUBLE-STRUCK CAPITAL PI-->
-    <xml2tex:char character="&#x213f;" string="\mathbb{Pi}"/>
+    <xml2tex:char character="&#x213f;" string="\mathbb{{Pi}}"/>
     <!--DOUBLE-STRUCK N-ARY SUMMATION-->
-    <xml2tex:char character="&#x2140;" string="\mathbb{Sigma}"/>
+    <xml2tex:char character="&#x2140;" string="\mathbb{{Sigma}}"/>
     <!--TURNED SANS-SERIF CAPITAL G-->
     <xml2tex:char character="&#x2141;" string="\Game"/>
     <!--TURNED SANS-SERIF CAPITAL L-->
@@ -935,7 +936,7 @@
     <!--# ::, two colons-->
     <xml2tex:char character="&#x2237;" string="::"/>
     <!-- DOT MINUS -->
-    <xml2tex:char character="&#x2238;" string="\dot{-}"/>
+    <xml2tex:char character="&#x2238;" string="\dot{{-}}"/>
     <!--# -: ,EXCESS-->
     <xml2tex:char character="&#x2239;" string="\eqcolon"/>
     <!--similar to, TILDE OPERATOR-->
@@ -1946,1621 +1947,1625 @@
          * -->
   
     <!--MATHEMATICAL BOLD CAPITAL A-->
-    <xml2tex:char character="&#x1d400;" string="\mathbf{A}"/>
+    <xml2tex:char character="&#x1d400;" string="\mathbf{{A}}"/>
     <!--MATHEMATICAL BOLD CAPITAL B-->
-    <xml2tex:char character="&#x1d401;" string="\mathbf{B}"/>
+    <xml2tex:char character="&#x1d401;" string="\mathbf{{B}}"/>
     <!--MATHEMATICAL BOLD CAPITAL C-->
-    <xml2tex:char character="&#x1d402;" string="\mathbf{C}"/>
+    <xml2tex:char character="&#x1d402;" string="\mathbf{{C}}"/>
     <!--MATHEMATICAL BOLD CAPITAL D-->
-    <xml2tex:char character="&#x1d403;" string="\mathbf{D}"/>
+    <xml2tex:char character="&#x1d403;" string="\mathbf{{D}}"/>
     <!--MATHEMATICAL BOLD CAPITAL E-->
-    <xml2tex:char character="&#x1d404;" string="\mathbf{E}"/>
+    <xml2tex:char character="&#x1d404;" string="\mathbf{{E}}"/>
     <!--MATHEMATICAL BOLD CAPITAL F-->
-    <xml2tex:char character="&#x1d405;" string="\mathbf{F}"/>
+    <xml2tex:char character="&#x1d405;" string="\mathbf{{F}}"/>
     <!--MATHEMATICAL BOLD CAPITAL G-->
-    <xml2tex:char character="&#x1d406;" string="\mathbf{G}"/>
+    <xml2tex:char character="&#x1d406;" string="\mathbf{{G}}"/>
     <!--MATHEMATICAL BOLD CAPITAL H-->
-    <xml2tex:char character="&#x1d407;" string="\mathbf{H}"/>
+    <xml2tex:char character="&#x1d407;" string="\mathbf{{H}}"/>
     <!--MATHEMATICAL BOLD CAPITAL I-->
-    <xml2tex:char character="&#x1d408;" string="\mathbf{I}"/>
+    <xml2tex:char character="&#x1d408;" string="\mathbf{{I}}"/>
     <!--MATHEMATICAL BOLD CAPITAL J-->
-    <xml2tex:char character="&#x1d409;" string="\mathbf{J}"/>
+    <xml2tex:char character="&#x1d409;" string="\mathbf{{J}}"/>
     <!--MATHEMATICAL BOLD CAPITAL K-->
-    <xml2tex:char character="&#x1d40a;" string="\mathbf{K}"/>
+    <xml2tex:char character="&#x1d40a;" string="\mathbf{{K}}"/>
     <!--MATHEMATICAL BOLD CAPITAL L-->
-    <xml2tex:char character="&#x1d40b;" string="\mathbf{L}"/>
+    <xml2tex:char character="&#x1d40b;" string="\mathbf{{L}}"/>
     <!--MATHEMATICAL BOLD CAPITAL M-->
-    <xml2tex:char character="&#x1d40c;" string="\mathbf{M}"/>
+    <xml2tex:char character="&#x1d40c;" string="\mathbf{{M}}"/>
     <!--MATHEMATICAL BOLD CAPITAL N-->
-    <xml2tex:char character="&#x1d40d;" string="\mathbf{N}"/>
+    <xml2tex:char character="&#x1d40d;" string="\mathbf{{N}}"/>
     <!--MATHEMATICAL BOLD CAPITAL O-->
-    <xml2tex:char character="&#x1d40e;" string="\mathbf{O}"/>
+    <xml2tex:char character="&#x1d40e;" string="\mathbf{{O}}"/>
     <!--MATHEMATICAL BOLD CAPITAL P-->
-    <xml2tex:char character="&#x1d40f;" string="\mathbf{P}"/>
+    <xml2tex:char character="&#x1d40f;" string="\mathbf{{P}}"/>
     <!--MATHEMATICAL BOLD CAPITAL Q-->
-    <xml2tex:char character="&#x1d410;" string="\mathbf{Q}"/>
+    <xml2tex:char character="&#x1d410;" string="\mathbf{{Q}}"/>
     <!--MATHEMATICAL BOLD CAPITAL R-->
-    <xml2tex:char character="&#x1d411;" string="\mathbf{R}"/>
+    <xml2tex:char character="&#x1d411;" string="\mathbf{{R}}"/>
     <!--MATHEMATICAL BOLD CAPITAL S-->
-    <xml2tex:char character="&#x1d412;" string="\mathbf{S}"/>
+    <xml2tex:char character="&#x1d412;" string="\mathbf{{S}}"/>
     <!--MATHEMATICAL BOLD CAPITAL T-->
-    <xml2tex:char character="&#x1d413;" string="\mathbf{T}"/>
+    <xml2tex:char character="&#x1d413;" string="\mathbf{{T}}"/>
     <!--MATHEMATICAL BOLD CAPITAL U-->
-    <xml2tex:char character="&#x1d414;" string="\mathbf{U}"/>
+    <xml2tex:char character="&#x1d414;" string="\mathbf{{U}}"/>
     <!--MATHEMATICAL BOLD CAPITAL V-->
-    <xml2tex:char character="&#x1d415;" string="\mathbf{V}"/>
+    <xml2tex:char character="&#x1d415;" string="\mathbf{{V}}"/>
     <!--MATHEMATICAL BOLD CAPITAL W-->
-    <xml2tex:char character="&#x1d416;" string="\mathbf{W}"/>
+    <xml2tex:char character="&#x1d416;" string="\mathbf{{W}}"/>
     <!--MATHEMATICAL BOLD CAPITAL X-->
-    <xml2tex:char character="&#x1d417;" string="\mathbf{X}"/>
+    <xml2tex:char character="&#x1d417;" string="\mathbf{{X}}"/>
     <!--MATHEMATICAL BOLD CAPITAL Y-->
-    <xml2tex:char character="&#x1d418;" string="\mathbf{Y}"/>
+    <xml2tex:char character="&#x1d418;" string="\mathbf{{Y}}"/>
     <!--MATHEMATICAL BOLD CAPITAL Z-->
-    <xml2tex:char character="&#x1d419;" string="\mathbf{Z}"/>
+    <xml2tex:char character="&#x1d419;" string="\mathbf{{Z}}"/>
     <!--MATHEMATICAL BOLD SMALL A-->
-    <xml2tex:char character="&#x1d41a;" string="\mathbf{a}"/>
+    <xml2tex:char character="&#x1d41a;" string="\mathbf{{a}}"/>
     <!--MATHEMATICAL BOLD SMALL B-->
-    <xml2tex:char character="&#x1d41b;" string="\mathbf{b}"/>
+    <xml2tex:char character="&#x1d41b;" string="\mathbf{{b}}"/>
     <!--MATHEMATICAL BOLD SMALL C-->
-    <xml2tex:char character="&#x1d41c;" string="\mathbf{c}"/>
+    <xml2tex:char character="&#x1d41c;" string="\mathbf{{c}}"/>
     <!--MATHEMATICAL BOLD SMALL D-->
-    <xml2tex:char character="&#x1d41d;" string="\mathbf{d}"/>
+    <xml2tex:char character="&#x1d41d;" string="\mathbf{{d}}"/>
     <!--MATHEMATICAL BOLD SMALL E-->
-    <xml2tex:char character="&#x1d41e;" string="\mathbf{e}"/>
+    <xml2tex:char character="&#x1d41e;" string="\mathbf{{e}}"/>
     <!--MATHEMATICAL BOLD SMALL F-->
-    <xml2tex:char character="&#x1d41f;" string="\mathbf{f}"/>
+    <xml2tex:char character="&#x1d41f;" string="\mathbf{{f}}"/>
     <!--MATHEMATICAL BOLD SMALL G-->
-    <xml2tex:char character="&#x1d420;" string="\mathbf{g}"/>
+    <xml2tex:char character="&#x1d420;" string="\mathbf{{g}}"/>
     <!--MATHEMATICAL BOLD SMALL H-->
-    <xml2tex:char character="&#x1d421;" string="\mathbf{h}"/>
+    <xml2tex:char character="&#x1d421;" string="\mathbf{{h}}"/>
     <!--MATHEMATICAL BOLD SMALL I-->
-    <xml2tex:char character="&#x1d422;" string="\mathbf{i}"/>
+    <xml2tex:char character="&#x1d422;" string="\mathbf{{i}}"/>
     <!--MATHEMATICAL BOLD SMALL J-->
-    <xml2tex:char character="&#x1d423;" string="\mathbf{j}"/>
+    <xml2tex:char character="&#x1d423;" string="\mathbf{{j}}"/>
     <!--MATHEMATICAL BOLD SMALL K-->
-    <xml2tex:char character="&#x1d424;" string="\mathbf{k}"/>
+    <xml2tex:char character="&#x1d424;" string="\mathbf{{k}}"/>
     <!--MATHEMATICAL BOLD SMALL L-->
-    <xml2tex:char character="&#x1d425;" string="\mathbf{l}"/>
+    <xml2tex:char character="&#x1d425;" string="\mathbf{{l}}"/>
     <!--MATHEMATICAL BOLD SMALL M-->
-    <xml2tex:char character="&#x1d426;" string="\mathbf{m}"/>
+    <xml2tex:char character="&#x1d426;" string="\mathbf{{m}}"/>
     <!--MATHEMATICAL BOLD SMALL N-->
-    <xml2tex:char character="&#x1d427;" string="\mathbf{n}"/>
+    <xml2tex:char character="&#x1d427;" string="\mathbf{{n}}"/>
     <!--MATHEMATICAL BOLD SMALL O-->
-    <xml2tex:char character="&#x1d428;" string="\mathbf{o}"/>
+    <xml2tex:char character="&#x1d428;" string="\mathbf{{o}}"/>
     <!--MATHEMATICAL BOLD SMALL P-->
-    <xml2tex:char character="&#x1d429;" string="\mathbf{p}"/>
+    <xml2tex:char character="&#x1d429;" string="\mathbf{{p}}"/>
     <!--MATHEMATICAL BOLD SMALL Q-->
-    <xml2tex:char character="&#x1d42a;" string="\mathbf{q}"/>
+    <xml2tex:char character="&#x1d42a;" string="\mathbf{{q}}"/>
     <!--MATHEMATICAL BOLD SMALL R-->
-    <xml2tex:char character="&#x1d42b;" string="\mathbf{r}"/>
+    <xml2tex:char character="&#x1d42b;" string="\mathbf{{r}}"/>
     <!--MATHEMATICAL BOLD SMALL S-->
-    <xml2tex:char character="&#x1d42c;" string="\mathbf{s}"/>
+    <xml2tex:char character="&#x1d42c;" string="\mathbf{{s}}"/>
     <!--MATHEMATICAL BOLD SMALL T-->
-    <xml2tex:char character="&#x1d42d;" string="\mathbf{t}"/>
+    <xml2tex:char character="&#x1d42d;" string="\mathbf{{t}}"/>
     <!--MATHEMATICAL BOLD SMALL U-->
-    <xml2tex:char character="&#x1d42e;" string="\mathbf{u}"/>
+    <xml2tex:char character="&#x1d42e;" string="\mathbf{{u}}"/>
     <!--MATHEMATICAL BOLD SMALL V-->
-    <xml2tex:char character="&#x1d42f;" string="\mathbf{v}"/>
+    <xml2tex:char character="&#x1d42f;" string="\mathbf{{v}}"/>
     <!--MATHEMATICAL BOLD SMALL W-->
-    <xml2tex:char character="&#x1d430;" string="\mathbf{w}"/>
+    <xml2tex:char character="&#x1d430;" string="\mathbf{{w}}"/>
     <!--MATHEMATICAL BOLD SMALL X-->
-    <xml2tex:char character="&#x1d431;" string="\mathbf{x}"/>
+    <xml2tex:char character="&#x1d431;" string="\mathbf{{x}}"/>
     <!--MATHEMATICAL BOLD SMALL Y-->
-    <xml2tex:char character="&#x1d432;" string="\mathbf{y}"/>
+    <xml2tex:char character="&#x1d432;" string="\mathbf{{y}}"/>
     <!--MATHEMATICAL BOLD SMALL Z-->
-    <xml2tex:char character="&#x1d433;" string="\mathbf{z}"/>
-    <!--= \mathit{A}, MATHEMATICAL ITALIC CAPITAL A-->
+    <xml2tex:char character="&#x1d433;" string="\mathbf{{z}}"/>
+    <!--= \mathit{{A}}, MATHEMATICAL ITALIC CAPITAL A-->
     <xml2tex:char character="&#x1d434;" string="A"/>
-    <!--= \mathit{B}, MATHEMATICAL ITALIC CAPITAL B-->
+    <!--= \mathit{{B}}, MATHEMATICAL ITALIC CAPITAL B-->
     <xml2tex:char character="&#x1d435;" string="B"/>
-    <!--= \mathit{C}, MATHEMATICAL ITALIC CAPITAL C-->
+    <!--= \mathit{{C}}, MATHEMATICAL ITALIC CAPITAL C-->
     <xml2tex:char character="&#x1d436;" string="C"/>
-    <!--= \mathit{D}, MATHEMATICAL ITALIC CAPITAL D-->
+    <!--= \mathit{{D}}, MATHEMATICAL ITALIC CAPITAL D-->
     <xml2tex:char character="&#x1d437;" string="D"/>
-    <!--= \mathit{E}, MATHEMATICAL ITALIC CAPITAL E-->
+    <!--= \mathit{{E}}, MATHEMATICAL ITALIC CAPITAL E-->
     <xml2tex:char character="&#x1d438;" string="E"/>
-    <!--= \mathit{F}, MATHEMATICAL ITALIC CAPITAL F-->
+    <!--= \mathit{{F}}, MATHEMATICAL ITALIC CAPITAL F-->
     <xml2tex:char character="&#x1d439;" string="F"/>
-    <!--= \mathit{G}, MATHEMATICAL ITALIC CAPITAL G-->
+    <!--= \mathit{{G}}, MATHEMATICAL ITALIC CAPITAL G-->
     <xml2tex:char character="&#x1d43a;" string="G"/>
-    <!--= \mathit{H}, MATHEMATICAL ITALIC CAPITAL H-->
+    <!--= \mathit{{H}}, MATHEMATICAL ITALIC CAPITAL H-->
     <xml2tex:char character="&#x1d43b;" string="H"/>
-    <!--= \mathit{I}, MATHEMATICAL ITALIC CAPITAL I-->
+    <!--= \mathit{{I}}, MATHEMATICAL ITALIC CAPITAL I-->
     <xml2tex:char character="&#x1d43c;" string="I"/>
-    <!--= \mathit{J}, MATHEMATICAL ITALIC CAPITAL J-->
+    <!--= \mathit{{J}}, MATHEMATICAL ITALIC CAPITAL J-->
     <xml2tex:char character="&#x1d43d;" string="J"/>
-    <!--= \mathit{K}, MATHEMATICAL ITALIC CAPITAL K-->
+    <!--= \mathit{{K}}, MATHEMATICAL ITALIC CAPITAL K-->
     <xml2tex:char character="&#x1d43e;" string="K"/>
-    <!--= \mathit{L}, MATHEMATICAL ITALIC CAPITAL L-->
+    <!--= \mathit{{L}}, MATHEMATICAL ITALIC CAPITAL L-->
     <xml2tex:char character="&#x1d43f;" string="L"/>
-    <!--= \mathit{M}, MATHEMATICAL ITALIC CAPITAL M-->
+    <!--= \mathit{{M}}, MATHEMATICAL ITALIC CAPITAL M-->
     <xml2tex:char character="&#x1d440;" string="M"/>
-    <!--= \mathit{N}, MATHEMATICAL ITALIC CAPITAL N-->
+    <!--= \mathit{{N}}, MATHEMATICAL ITALIC CAPITAL N-->
     <xml2tex:char character="&#x1d441;" string="N"/>
-    <!--= \mathit{O}, MATHEMATICAL ITALIC CAPITAL O-->
+    <!--= \mathit{{O}}, MATHEMATICAL ITALIC CAPITAL O-->
     <xml2tex:char character="&#x1d442;" string="O"/>
-    <!--= \mathit{P}, MATHEMATICAL ITALIC CAPITAL P-->
+    <!--= \mathit{{P}}, MATHEMATICAL ITALIC CAPITAL P-->
     <xml2tex:char character="&#x1d443;" string="P"/>
-    <!--= \mathit{Q}, MATHEMATICAL ITALIC CAPITAL Q-->
+    <!--= \mathit{{Q}}, MATHEMATICAL ITALIC CAPITAL Q-->
     <xml2tex:char character="&#x1d444;" string="Q"/>
-    <!--= \mathit{R}, MATHEMATICAL ITALIC CAPITAL R-->
+    <!--= \mathit{{R}}, MATHEMATICAL ITALIC CAPITAL R-->
     <xml2tex:char character="&#x1d445;" string="R"/>
-    <!--= \mathit{S}, MATHEMATICAL ITALIC CAPITAL S-->
+    <!--= \mathit{{S}}, MATHEMATICAL ITALIC CAPITAL S-->
     <xml2tex:char character="&#x1d446;" string="S"/>
-    <!--= \mathit{T}, MATHEMATICAL ITALIC CAPITAL T-->
+    <!--= \mathit{{T}}, MATHEMATICAL ITALIC CAPITAL T-->
     <xml2tex:char character="&#x1d447;" string="T"/>
-    <!--= \mathit{U}, MATHEMATICAL ITALIC CAPITAL U-->
+    <!--= \mathit{{U}}, MATHEMATICAL ITALIC CAPITAL U-->
     <xml2tex:char character="&#x1d448;" string="U"/>
-    <!--= \mathit{V}, MATHEMATICAL ITALIC CAPITAL V-->
+    <!--= \mathit{{V}}, MATHEMATICAL ITALIC CAPITAL V-->
     <xml2tex:char character="&#x1d449;" string="V"/>
-    <!--= \mathit{W}, MATHEMATICAL ITALIC CAPITAL W-->
+    <!--= \mathit{{W}}, MATHEMATICAL ITALIC CAPITAL W-->
     <xml2tex:char character="&#x1d44a;" string="W"/>
-    <!--= \mathit{X}, MATHEMATICAL ITALIC CAPITAL X-->
+    <!--= \mathit{{X}}, MATHEMATICAL ITALIC CAPITAL X-->
     <xml2tex:char character="&#x1d44b;" string="X"/>
-    <!--= \mathit{Y}, MATHEMATICAL ITALIC CAPITAL Y-->
+    <!--= \mathit{{Y}}, MATHEMATICAL ITALIC CAPITAL Y-->
     <xml2tex:char character="&#x1d44c;" string="Y"/>
-    <!--= \mathit{Z}, MATHEMATICAL ITALIC CAPITAL Z-->
+    <!--= \mathit{{Z}}, MATHEMATICAL ITALIC CAPITAL Z-->
     <xml2tex:char character="&#x1d44d;" string="Z"/>
-    <!--= \mathit{a}, MATHEMATICAL ITALIC SMALL A-->
+    <!--= \mathit{{a}}, MATHEMATICAL ITALIC SMALL A-->
     <xml2tex:char character="&#x1d44e;" string="a"/>
-    <!--= \mathit{b}, MATHEMATICAL ITALIC SMALL B-->
+    <!--= \mathit{{b}}, MATHEMATICAL ITALIC SMALL B-->
     <xml2tex:char character="&#x1d44f;" string="b"/>
-    <!--= \mathit{c}, MATHEMATICAL ITALIC SMALL C-->
+    <!--= \mathit{{c}}, MATHEMATICAL ITALIC SMALL C-->
     <xml2tex:char character="&#x1d450;" string="c"/>
-    <!--= \mathit{d}, MATHEMATICAL ITALIC SMALL D-->
+    <!--= \mathit{{d}}, MATHEMATICAL ITALIC SMALL D-->
     <xml2tex:char character="&#x1d451;" string="d"/>
-    <!--= \mathit{e}, MATHEMATICAL ITALIC SMALL E-->
+    <!--= \mathit{{e}}, MATHEMATICAL ITALIC SMALL E-->
     <xml2tex:char character="&#x1d452;" string="e"/>
-    <!--= \mathit{f}, MATHEMATICAL ITALIC SMALL F-->
+    <!--= \mathit{{f}}, MATHEMATICAL ITALIC SMALL F-->
     <xml2tex:char character="&#x1d453;" string="f"/>
-    <!--= \mathit{g}, MATHEMATICAL ITALIC SMALL G-->
+    <!--= \mathit{{g}}, MATHEMATICAL ITALIC SMALL G-->
     <xml2tex:char character="&#x1d454;" string="g"/>
-    <!--= \mathit{i}, MATHEMATICAL ITALIC SMALL I-->
+    <!--= \mathit{{i}}, MATHEMATICAL ITALIC SMALL I-->
     <xml2tex:char character="&#x1d456;" string="i"/>
-    <!--= \mathit{j}, MATHEMATICAL ITALIC SMALL J-->
+    <!--= \mathit{{j}}, MATHEMATICAL ITALIC SMALL J-->
     <xml2tex:char character="&#x1d457;" string="j"/>
-    <!--= \mathit{k}, MATHEMATICAL ITALIC SMALL K-->
+    <!--= \mathit{{k}}, MATHEMATICAL ITALIC SMALL K-->
     <xml2tex:char character="&#x1d458;" string="k"/>
-    <!--= \mathit{l}, MATHEMATICAL ITALIC SMALL L-->
+    <!--= \mathit{{l}}, MATHEMATICAL ITALIC SMALL L-->
     <xml2tex:char character="&#x1d459;" string="l"/>
-    <!--= \mathit{m}, MATHEMATICAL ITALIC SMALL M-->
+    <!--= \mathit{{m}}, MATHEMATICAL ITALIC SMALL M-->
     <xml2tex:char character="&#x1d45a;" string="m"/>
-    <!--= \mathit{n}, MATHEMATICAL ITALIC SMALL N-->
+    <!--= \mathit{{n}}, MATHEMATICAL ITALIC SMALL N-->
     <xml2tex:char character="&#x1d45b;" string="n"/>
-    <!--= \mathit{o}, MATHEMATICAL ITALIC SMALL O-->
+    <!--= \mathit{{o}}, MATHEMATICAL ITALIC SMALL O-->
     <xml2tex:char character="&#x1d45c;" string="o"/>
-    <!--= \mathit{p}, MATHEMATICAL ITALIC SMALL P-->
+    <!--= \mathit{{p}}, MATHEMATICAL ITALIC SMALL P-->
     <xml2tex:char character="&#x1d45d;" string="p"/>
-    <!--= \mathit{q}, MATHEMATICAL ITALIC SMALL Q-->
+    <!--= \mathit{{q}}, MATHEMATICAL ITALIC SMALL Q-->
     <xml2tex:char character="&#x1d45e;" string="q"/>
-    <!--= \mathit{r}, MATHEMATICAL ITALIC SMALL R-->
+    <!--= \mathit{{r}}, MATHEMATICAL ITALIC SMALL R-->
     <xml2tex:char character="&#x1d45f;" string="r"/>
-    <!--= \mathit{s}, MATHEMATICAL ITALIC SMALL S-->
+    <!--= \mathit{{s}}, MATHEMATICAL ITALIC SMALL S-->
     <xml2tex:char character="&#x1d460;" string="s"/>
-    <!--= \mathit{t}, MATHEMATICAL ITALIC SMALL T-->
+    <!--= \mathit{{t}}, MATHEMATICAL ITALIC SMALL T-->
     <xml2tex:char character="&#x1d461;" string="t"/>
-    <!--= \mathit{u}, MATHEMATICAL ITALIC SMALL U-->
+    <!--= \mathit{{u}}, MATHEMATICAL ITALIC SMALL U-->
     <xml2tex:char character="&#x1d462;" string="u"/>
-    <!--= \mathit{v}, MATHEMATICAL ITALIC SMALL V-->
+    <!--= \mathit{{v}}, MATHEMATICAL ITALIC SMALL V-->
     <xml2tex:char character="&#x1d463;" string="v"/>
-    <!--= \mathit{w}, MATHEMATICAL ITALIC SMALL W-->
+    <!--= \mathit{{w}}, MATHEMATICAL ITALIC SMALL W-->
     <xml2tex:char character="&#x1d464;" string="w"/>
-    <!--= \mathit{x}, MATHEMATICAL ITALIC SMALL X-->
+    <!--= \mathit{{x}}, MATHEMATICAL ITALIC SMALL X-->
     <xml2tex:char character="&#x1d465;" string="x"/>
-    <!--= \mathit{y}, MATHEMATICAL ITALIC SMALL Y-->
+    <!--= \mathit{{y}}, MATHEMATICAL ITALIC SMALL Y-->
     <xml2tex:char character="&#x1d466;" string="y"/>
-    <!--= \mathit{z}, MATHEMATICAL ITALIC SMALL Z-->
+    <!--= \mathit{{z}}, MATHEMATICAL ITALIC SMALL Z-->
     <xml2tex:char character="&#x1d467;" string="z"/>
-    <!--= \mathbold{A} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL A-->
-    <xml2tex:char character="&#x1d468;" string="\mathbfit{A}"/>
-    <!--= \mathbold{B} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL B-->
-    <xml2tex:char character="&#x1d469;" string="\mathbfit{B}"/>
-    <!--= \mathbold{C} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL C-->
-    <xml2tex:char character="&#x1d46a;" string="\mathbfit{C}"/>
-    <!--= \mathbold{D} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL D-->
-    <xml2tex:char character="&#x1d46b;" string="\mathbfit{D}"/>
-    <!--= \mathbold{E} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL E-->
-    <xml2tex:char character="&#x1d46c;" string="\mathbfit{E}"/>
-    <!--= \mathbold{F} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL F-->
-    <xml2tex:char character="&#x1d46d;" string="\mathbfit{F}"/>
-    <!--= \mathbold{G} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL G-->
-    <xml2tex:char character="&#x1d46e;" string="\mathbfit{G}"/>
-    <!--= \mathbold{H} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL H-->
-    <xml2tex:char character="&#x1d46f;" string="\mathbfit{H}"/>
-    <!--= \mathbold{I} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL I-->
-    <xml2tex:char character="&#x1d470;" string="\mathbfit{I}"/>
-    <!--= \mathbold{J} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL J-->
-    <xml2tex:char character="&#x1d471;" string="\mathbfit{J}"/>
-    <!--= \mathbold{K} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL K-->
-    <xml2tex:char character="&#x1d472;" string="\mathbfit{K}"/>
-    <!--= \mathbold{L} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL L-->
-    <xml2tex:char character="&#x1d473;" string="\mathbfit{L}"/>
-    <!--= \mathbold{M} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL M-->
-    <xml2tex:char character="&#x1d474;" string="\mathbfit{M}"/>
-    <!--= \mathbold{N} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL N-->
-    <xml2tex:char character="&#x1d475;" string="\mathbfit{N}"/>
-    <!--= \mathbold{O} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL O-->
-    <xml2tex:char character="&#x1d476;" string="\mathbfit{O}"/>
-    <!--= \mathbold{P} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL P-->
-    <xml2tex:char character="&#x1d477;" string="\mathbfit{P}"/>
-    <!--= \mathbold{Q} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL Q-->
-    <xml2tex:char character="&#x1d478;" string="\mathbfit{Q}"/>
-    <!--= \mathbold{R} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL R-->
-    <xml2tex:char character="&#x1d479;" string="\mathbfit{R}"/>
-    <!--= \mathbold{S} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL S-->
-    <xml2tex:char character="&#x1d47a;" string="\mathbfit{S}"/>
-    <!--= \mathbold{T} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL T-->
-    <xml2tex:char character="&#x1d47b;" string="\mathbfit{T}"/>
-    <!--= \mathbold{U} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL U-->
-    <xml2tex:char character="&#x1d47c;" string="\mathbfit{U}"/>
-    <!--= \mathbold{V} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL V-->
-    <xml2tex:char character="&#x1d47d;" string="\mathbfit{V}"/>
-    <!--= \mathbold{W} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL W-->
-    <xml2tex:char character="&#x1d47e;" string="\mathbfit{W}"/>
-    <!--= \mathbold{X} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL X-->
-    <xml2tex:char character="&#x1d47f;" string="\mathbfit{X}"/>
-    <!--= \mathbold{Y} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL Y-->
-    <xml2tex:char character="&#x1d480;" string="\mathbfit{Y}"/>
-    <!--= \mathbold{Z} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL Z-->
-    <xml2tex:char character="&#x1d481;" string="\mathbfit{Z}"/>
-    <!--= \mathbold{a} (fixmath), MATHEMATICAL BOLD ITALIC SMALL A-->
-    <xml2tex:char character="&#x1d482;" string="\mathbfit{a}"/>
-    <!--= \mathbold{b} (fixmath), MATHEMATICAL BOLD ITALIC SMALL B-->
-    <xml2tex:char character="&#x1d483;" string="\mathbfit{b}"/>
-    <!--= \mathbold{c} (fixmath), MATHEMATICAL BOLD ITALIC SMALL C-->
-    <xml2tex:char character="&#x1d484;" string="\mathbfit{c}"/>
-    <!--= \mathbold{d} (fixmath), MATHEMATICAL BOLD ITALIC SMALL D-->
-    <xml2tex:char character="&#x1d485;" string="\mathbfit{d}"/>
-    <!--= \mathbold{e} (fixmath), MATHEMATICAL BOLD ITALIC SMALL E-->
-    <xml2tex:char character="&#x1d486;" string="\mathbfit{e}"/>
-    <!--= \mathbold{f} (fixmath), MATHEMATICAL BOLD ITALIC SMALL F-->
-    <xml2tex:char character="&#x1d487;" string="\mathbfit{f}"/>
-    <!--= \mathbold{g} (fixmath), MATHEMATICAL BOLD ITALIC SMALL G-->
-    <xml2tex:char character="&#x1d488;" string="\mathbfit{g}"/>
-    <!--= \mathbold{h} (fixmath), MATHEMATICAL BOLD ITALIC SMALL H-->
-    <xml2tex:char character="&#x1d489;" string="\mathbfit{h}"/>
-    <!--= \mathbold{i} (fixmath), MATHEMATICAL BOLD ITALIC SMALL I-->
-    <xml2tex:char character="&#x1d48a;" string="\mathbfit{i}"/>
-    <!--= \mathbold{j} (fixmath), MATHEMATICAL BOLD ITALIC SMALL J-->
-    <xml2tex:char character="&#x1d48b;" string="\mathbfit{j}"/>
-    <!--= \mathbold{k} (fixmath), MATHEMATICAL BOLD ITALIC SMALL K-->
-    <xml2tex:char character="&#x1d48c;" string="\mathbfit{k}"/>
-    <!--= \mathbold{l} (fixmath), MATHEMATICAL BOLD ITALIC SMALL L-->
-    <xml2tex:char character="&#x1d48d;" string="\mathbfit{l}"/>
-    <!--= \mathbold{m} (fixmath), MATHEMATICAL BOLD ITALIC SMALL M-->
-    <xml2tex:char character="&#x1d48e;" string="\mathbfit{m}"/>
-    <!--= \mathbold{n} (fixmath), MATHEMATICAL BOLD ITALIC SMALL N-->
-    <xml2tex:char character="&#x1d48f;" string="\mathbfit{n}"/>
-    <!--= \mathbold{o} (fixmath), MATHEMATICAL BOLD ITALIC SMALL O-->
-    <xml2tex:char character="&#x1d490;" string="\mathbfit{o}"/>
-    <!--= \mathbold{p} (fixmath), MATHEMATICAL BOLD ITALIC SMALL P-->
-    <xml2tex:char character="&#x1d491;" string="\mathbfit{p}"/>
-    <!--= \mathbold{q} (fixmath), MATHEMATICAL BOLD ITALIC SMALL Q-->
-    <xml2tex:char character="&#x1d492;" string="\mathbfit{q}"/>
-    <!--= \mathbold{r} (fixmath), MATHEMATICAL BOLD ITALIC SMALL R-->
-    <xml2tex:char character="&#x1d493;" string="\mathbfit{r}"/>
-    <!--= \mathbold{s} (fixmath), MATHEMATICAL BOLD ITALIC SMALL S-->
-    <xml2tex:char character="&#x1d494;" string="\mathbfit{s}"/>
-    <!--= \mathbold{t} (fixmath), MATHEMATICAL BOLD ITALIC SMALL T-->
-    <xml2tex:char character="&#x1d495;" string="\mathbfit{t}"/>
-    <!--= \mathbold{u} (fixmath), MATHEMATICAL BOLD ITALIC SMALL U-->
-    <xml2tex:char character="&#x1d496;" string="\mathbfit{u}"/>
-    <!--= \mathbold{v} (fixmath), MATHEMATICAL BOLD ITALIC SMALL V-->
-    <xml2tex:char character="&#x1d497;" string="\mathbfit{v}"/>
-    <!--= \mathbold{w} (fixmath), MATHEMATICAL BOLD ITALIC SMALL W-->
-    <xml2tex:char character="&#x1d498;" string="\mathbfit{w}"/>
-    <!--= \mathbold{x} (fixmath), MATHEMATICAL BOLD ITALIC SMALL X-->
-    <xml2tex:char character="&#x1d499;" string="\mathbfit{x}"/>
-    <!--= \mathbold{y} (fixmath), MATHEMATICAL BOLD ITALIC SMALL Y-->
-    <xml2tex:char character="&#x1d49a;" string="\mathbfit{y}"/>
-    <!--= \mathbold{z} (fixmath), MATHEMATICAL BOLD ITALIC SMALL Z-->
-    <xml2tex:char character="&#x1d49b;" string="\mathbfit{z}"/>
+    <!--= \mathbold{{A}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL A-->
+    <xml2tex:char character="&#x1d468;" string="\mathbfit{{A}}"/>
+    <!--= \mathbold{{B}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL B-->
+    <xml2tex:char character="&#x1d469;" string="\mathbfit{{B}}"/>
+    <!--= \mathbold{{C}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL C-->
+    <xml2tex:char character="&#x1d46a;" string="\mathbfit{{C}}"/>
+    <!--= \mathbold{{D}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL D-->
+    <xml2tex:char character="&#x1d46b;" string="\mathbfit{{D}}"/>
+    <!--= \mathbold{{E}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL E-->
+    <xml2tex:char character="&#x1d46c;" string="\mathbfit{{E}}"/>
+    <!--= \mathbold{{F}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL F-->
+    <xml2tex:char character="&#x1d46d;" string="\mathbfit{{F}}"/>
+    <!--= \mathbold{{G}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL G-->
+    <xml2tex:char character="&#x1d46e;" string="\mathbfit{{G}}"/>
+    <!--= \mathbold{{H}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL H-->
+    <xml2tex:char character="&#x1d46f;" string="\mathbfit{{H}}"/>
+    <!--= \mathbold{{I}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL I-->
+    <xml2tex:char character="&#x1d470;" string="\mathbfit{{I}}"/>
+    <!--= \mathbold{{J}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL J-->
+    <xml2tex:char character="&#x1d471;" string="\mathbfit{{J}}"/>
+    <!--= \mathbold{{K}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL K-->
+    <xml2tex:char character="&#x1d472;" string="\mathbfit{{K}}"/>
+    <!--= \mathbold{{L}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL L-->
+    <xml2tex:char character="&#x1d473;" string="\mathbfit{{L}}"/>
+    <!--= \mathbold{{M}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL M-->
+    <xml2tex:char character="&#x1d474;" string="\mathbfit{{M}}"/>
+    <!--= \mathbold{{N}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL N-->
+    <xml2tex:char character="&#x1d475;" string="\mathbfit{{N}}"/>
+    <!--= \mathbold{{O}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL O-->
+    <xml2tex:char character="&#x1d476;" string="\mathbfit{{O}}"/>
+    <!--= \mathbold{{P}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL P-->
+    <xml2tex:char character="&#x1d477;" string="\mathbfit{{P}}"/>
+    <!--= \mathbold{{Q}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL Q-->
+    <xml2tex:char character="&#x1d478;" string="\mathbfit{{Q}}"/>
+    <!--= \mathbold{{R}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL R-->
+    <xml2tex:char character="&#x1d479;" string="\mathbfit{{R}}"/>
+    <!--= \mathbold{{S}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL S-->
+    <xml2tex:char character="&#x1d47a;" string="\mathbfit{{S}}"/>
+    <!--= \mathbold{{T}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL T-->
+    <xml2tex:char character="&#x1d47b;" string="\mathbfit{{T}}"/>
+    <!--= \mathbold{{U}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL U-->
+    <xml2tex:char character="&#x1d47c;" string="\mathbfit{{U}}"/>
+    <!--= \mathbold{{V}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL V-->
+    <xml2tex:char character="&#x1d47d;" string="\mathbfit{{V}}"/>
+    <!--= \mathbold{{W}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL W-->
+    <xml2tex:char character="&#x1d47e;" string="\mathbfit{{W}}"/>
+    <!--= \mathbold{{X}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL X-->
+    <xml2tex:char character="&#x1d47f;" string="\mathbfit{{X}}"/>
+    <!--= \mathbold{{Y}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL Y-->
+    <xml2tex:char character="&#x1d480;" string="\mathbfit{{Y}}"/>
+    <!--= \mathbold{{Z}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL Z-->
+    <xml2tex:char character="&#x1d481;" string="\mathbfit{{Z}}"/>
+    <!--= \mathbold{{a}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL A-->
+    <xml2tex:char character="&#x1d482;" string="\mathbfit{{a}}"/>
+    <!--= \mathbold{{b}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL B-->
+    <xml2tex:char character="&#x1d483;" string="\mathbfit{{b}}"/>
+    <!--= \mathbold{{c}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL C-->
+    <xml2tex:char character="&#x1d484;" string="\mathbfit{{c}}"/>
+    <!--= \mathbold{{d}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL D-->
+    <xml2tex:char character="&#x1d485;" string="\mathbfit{{d}}"/>
+    <!--= \mathbold{{e}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL E-->
+    <xml2tex:char character="&#x1d486;" string="\mathbfit{{e}}"/>
+    <!--= \mathbold{{f}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL F-->
+    <xml2tex:char character="&#x1d487;" string="\mathbfit{{f}}"/>
+    <!--= \mathbold{{g}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL G-->
+    <xml2tex:char character="&#x1d488;" string="\mathbfit{{g}}"/>
+    <!--= \mathbold{{h}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL H-->
+    <xml2tex:char character="&#x1d489;" string="\mathbfit{{h}}"/>
+    <!--= \mathbold{{i}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL I-->
+    <xml2tex:char character="&#x1d48a;" string="\mathbfit{{i}}"/>
+    <!--= \mathbold{{j}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL J-->
+    <xml2tex:char character="&#x1d48b;" string="\mathbfit{{j}}"/>
+    <!--= \mathbold{{k}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL K-->
+    <xml2tex:char character="&#x1d48c;" string="\mathbfit{{k}}"/>
+    <!--= \mathbold{{l}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL L-->
+    <xml2tex:char character="&#x1d48d;" string="\mathbfit{{l}}"/>
+    <!--= \mathbold{{m}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL M-->
+    <xml2tex:char character="&#x1d48e;" string="\mathbfit{{m}}"/>
+    <!--= \mathbold{{n}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL N-->
+    <xml2tex:char character="&#x1d48f;" string="\mathbfit{{n}}"/>
+    <!--= \mathbold{{o}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL O-->
+    <xml2tex:char character="&#x1d490;" string="\mathbfit{{o}}"/>
+    <!--= \mathbold{{p}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL P-->
+    <xml2tex:char character="&#x1d491;" string="\mathbfit{{p}}"/>
+    <!--= \mathbold{{q}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL Q-->
+    <xml2tex:char character="&#x1d492;" string="\mathbfit{{q}}"/>
+    <!--= \mathbold{{r}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL R-->
+    <xml2tex:char character="&#x1d493;" string="\mathbfit{{r}}"/>
+    <!--= \mathbold{{s}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL S-->
+    <xml2tex:char character="&#x1d494;" string="\mathbfit{{s}}"/>
+    <!--= \mathbold{{t}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL T-->
+    <xml2tex:char character="&#x1d495;" string="\mathbfit{{t}}"/>
+    <!--= \mathbold{{u}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL U-->
+    <xml2tex:char character="&#x1d496;" string="\mathbfit{{u}}"/>
+    <!--= \mathbold{{v}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL V-->
+    <xml2tex:char character="&#x1d497;" string="\mathbfit{{v}}"/>
+    <!--= \mathbold{{w}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL W-->
+    <xml2tex:char character="&#x1d498;" string="\mathbfit{{w}}"/>
+    <!--= \mathbold{{x}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL X-->
+    <xml2tex:char character="&#x1d499;" string="\mathbfit{{x}}"/>
+    <!--= \mathbold{{y}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL Y-->
+    <xml2tex:char character="&#x1d49a;" string="\mathbfit{{y}}"/>
+    <!--= \mathbold{{z}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL Z-->
+    <xml2tex:char character="&#x1d49b;" string="\mathbfit{{z}}"/>
     <!--MATHEMATICAL SCRIPT CAPITAL A-->
-    <xml2tex:char character="&#x1d49c;" string="\mathcal{A}"/>
+    <xml2tex:char character="&#x1d49c;" string="\mathcal{{A}}"/>
     <!--MATHEMATICAL SCRIPT CAPITAL C-->
-    <xml2tex:char character="&#x1d49e;" string="\mathcal{C}"/>
+    <xml2tex:char character="&#x1d49e;" string="\mathcal{{C}}"/>
     <!--MATHEMATICAL SCRIPT CAPITAL D-->
-    <xml2tex:char character="&#x1d49f;" string="\mathcal{D}"/>
+    <xml2tex:char character="&#x1d49f;" string="\mathcal{{D}}"/>
     <!--MATHEMATICAL SCRIPT CAPITAL G-->
-    <xml2tex:char character="&#x1d4a2;" string="\mathcal{G}"/>
+    <xml2tex:char character="&#x1d4a2;" string="\mathcal{{G}}"/>
     <!--MATHEMATICAL SCRIPT CAPITAL J-->
-    <xml2tex:char character="&#x1d4a5;" string="\mathcal{J}"/>
+    <xml2tex:char character="&#x1d4a5;" string="\mathcal{{J}}"/>
     <!--MATHEMATICAL SCRIPT CAPITAL K-->
-    <xml2tex:char character="&#x1d4a6;" string="\mathcal{K}"/>
+    <xml2tex:char character="&#x1d4a6;" string="\mathcal{{K}}"/>
     <!--MATHEMATICAL SCRIPT CAPITAL N-->
-    <xml2tex:char character="&#x1d4a9;" string="\mathcal{N}"/>
+    <xml2tex:char character="&#x1d4a9;" string="\mathcal{{N}}"/>
     <!--MATHEMATICAL SCRIPT CAPITAL O-->
-    <xml2tex:char character="&#x1d4aa;" string="\mathcal{O}"/>
+    <xml2tex:char character="&#x1d4aa;" string="\mathcal{{O}}"/>
     <!--MATHEMATICAL SCRIPT CAPITAL P-->
-    <xml2tex:char character="&#x1d4ab;" string="\mathcal{P}"/>
+    <xml2tex:char character="&#x1d4ab;" string="\mathcal{{P}}"/>
     <!--MATHEMATICAL SCRIPT CAPITAL Q-->
-    <xml2tex:char character="&#x1d4ac;" string="\mathcal{Q}"/>
+    <xml2tex:char character="&#x1d4ac;" string="\mathcal{{Q}}"/>
     <!--MATHEMATICAL SCRIPT CAPITAL S-->
-    <xml2tex:char character="&#x1d4ae;" string="\mathcal{S}"/>
+    <xml2tex:char character="&#x1d4ae;" string="\mathcal{{S}}"/>
     <!--MATHEMATICAL SCRIPT CAPITAL T-->
-    <xml2tex:char character="&#x1d4af;" string="\mathcal{T}"/>
+    <xml2tex:char character="&#x1d4af;" string="\mathcal{{T}}"/>
     <!--MATHEMATICAL SCRIPT CAPITAL U-->
-    <xml2tex:char character="&#x1d4b0;" string="\mathcal{U}"/>
+    <xml2tex:char character="&#x1d4b0;" string="\mathcal{{U}}"/>
     <!--MATHEMATICAL SCRIPT CAPITAL V-->
-    <xml2tex:char character="&#x1d4b1;" string="\mathcal{V}"/>
+    <xml2tex:char character="&#x1d4b1;" string="\mathcal{{V}}"/>
     <!--MATHEMATICAL SCRIPT CAPITAL W-->
-    <xml2tex:char character="&#x1d4b2;" string="\mathcal{W}"/>
+    <xml2tex:char character="&#x1d4b2;" string="\mathcal{{W}}"/>
     <!--MATHEMATICAL SCRIPT CAPITAL X-->
-    <xml2tex:char character="&#x1d4b3;" string="\mathcal{X}"/>
+    <xml2tex:char character="&#x1d4b3;" string="\mathcal{{X}}"/>
     <!--MATHEMATICAL SCRIPT CAPITAL Y-->
-    <xml2tex:char character="&#x1d4b4;" string="\mathcal{Y}"/>
+    <xml2tex:char character="&#x1d4b4;" string="\mathcal{{Y}}"/>
     <!--MATHEMATICAL SCRIPT CAPITAL Z-->
-    <xml2tex:char character="&#x1d4b5;" string="\mathcal{Z}"/>
+    <xml2tex:char character="&#x1d4b5;" string="\mathcal{{Z}}"/>
     <!--MATHEMATICAL SCRIPT SMALL A-->
-    <xml2tex:char character="&#x1d4b6;" string="\mathcal{a}"/>
+    <xml2tex:char character="&#x1d4b6;" string="\mathcal{{a}}"/>
     <!--MATHEMATICAL SCRIPT SMALL B-->
-    <xml2tex:char character="&#x1d4b7;" string="\mathcal{b}"/>
+    <xml2tex:char character="&#x1d4b7;" string="\mathcal{{b}}"/>
     <!--MATHEMATICAL SCRIPT SMALL C-->
-    <xml2tex:char character="&#x1d4b8;" string="\mathcal{c}"/>
+    <xml2tex:char character="&#x1d4b8;" string="\mathcal{{c}}"/>
     <!--MATHEMATICAL SCRIPT SMALL D-->
-    <xml2tex:char character="&#x1d4b9;" string="\mathcal{d}"/>
+    <xml2tex:char character="&#x1d4b9;" string="\mathcal{{d}}"/>
     <!--MATHEMATICAL SCRIPT SMALL F-->
-    <xml2tex:char character="&#x1d4bb;" string="\mathcal{f}"/>
+    <xml2tex:char character="&#x1d4bb;" string="\mathcal{{f}}"/>
     <!--MATHEMATICAL SCRIPT SMALL H-->
-    <xml2tex:char character="&#x1d4bd;" string="\mathcal{h}"/>
+    <xml2tex:char character="&#x1d4bd;" string="\mathcal{{h}}"/>
     <!--MATHEMATICAL SCRIPT SMALL I-->
-    <xml2tex:char character="&#x1d4be;" string="\mathcal{i}"/>
+    <xml2tex:char character="&#x1d4be;" string="\mathcal{{i}}"/>
     <!--MATHEMATICAL SCRIPT SMALL J-->
-    <xml2tex:char character="&#x1d4bf;" string="\mathcal{j}"/>
+    <xml2tex:char character="&#x1d4bf;" string="\mathcal{{j}}"/>
     <!--MATHEMATICAL SCRIPT SMALL K-->
-    <xml2tex:char character="&#x1d4c0;" string="\mathcal{k}"/>
+    <xml2tex:char character="&#x1d4c0;" string="\mathcal{{k}}"/>
     <!--MATHEMATICAL SCRIPT SMALL L-->
-    <xml2tex:char character="&#x1d4c1;" string="\mathcal{l}"/>
+    <xml2tex:char character="&#x1d4c1;" string="\mathcal{{l}}"/>
     <!--MATHEMATICAL SCRIPT SMALL M-->
-    <xml2tex:char character="&#x1d4c2;" string="\mathcal{m}"/>
+    <xml2tex:char character="&#x1d4c2;" string="\mathcal{{m}}"/>
     <!--MATHEMATICAL SCRIPT SMALL N-->
-    <xml2tex:char character="&#x1d4c3;" string="\mathcal{n}"/>
+    <xml2tex:char character="&#x1d4c3;" string="\mathcal{{n}}"/>
     <!--MATHEMATICAL SCRIPT SMALL P-->
-    <xml2tex:char character="&#x1d4c5;" string="\mathcal{p}"/>
+    <xml2tex:char character="&#x1d4c5;" string="\mathcal{{p}}"/>
     <!--MATHEMATICAL SCRIPT SMALL Q-->
-    <xml2tex:char character="&#x1d4c6;" string="\mathcal{q}"/>
+    <xml2tex:char character="&#x1d4c6;" string="\mathcal{{q}}"/>
     <!--MATHEMATICAL SCRIPT SMALL R-->
-    <xml2tex:char character="&#x1d4c7;" string="\mathcal{r}"/>
+    <xml2tex:char character="&#x1d4c7;" string="\mathcal{{r}}"/>
     <!--MATHEMATICAL SCRIPT SMALL S-->
-    <xml2tex:char character="&#x1d4c8;" string="\mathcal{s}"/>
+    <xml2tex:char character="&#x1d4c8;" string="\mathcal{{s}}"/>
     <!--MATHEMATICAL SCRIPT SMALL T-->
-    <xml2tex:char character="&#x1d4c9;" string="\mathcal{t}"/>
+    <xml2tex:char character="&#x1d4c9;" string="\mathcal{{t}}"/>
     <!--MATHEMATICAL SCRIPT SMALL U-->
-    <xml2tex:char character="&#x1d4ca;" string="\mathcal{u}"/>
+    <xml2tex:char character="&#x1d4ca;" string="\mathcal{{u}}"/>
     <!--MATHEMATICAL SCRIPT SMALL V-->
-    <xml2tex:char character="&#x1d4cb;" string="\mathcal{v}"/>
+    <xml2tex:char character="&#x1d4cb;" string="\mathcal{{v}}"/>
     <!--MATHEMATICAL SCRIPT SMALL W-->
-    <xml2tex:char character="&#x1d4cc;" string="\mathcal{w}"/>
+    <xml2tex:char character="&#x1d4cc;" string="\mathcal{{w}}"/>
     <!--MATHEMATICAL SCRIPT SMALL X-->
-    <xml2tex:char character="&#x1d4cd;" string="\mathcal{x}"/>
+    <xml2tex:char character="&#x1d4cd;" string="\mathcal{{x}}"/>
     <!--MATHEMATICAL SCRIPT SMALL Y-->
-    <xml2tex:char character="&#x1d4ce;" string="\mathcal{y}"/>
+    <xml2tex:char character="&#x1d4ce;" string="\mathcal{{y}}"/>
     <!--MATHEMATICAL SCRIPT SMALL Z-->
-    <xml2tex:char character="&#x1d4cf;" string="\mathcal{z}"/>
+    <xml2tex:char character="&#x1d4cf;" string="\mathcal{{z}}"/>
     <!--MATHEMATICAL FRAKTUR CAPITAL A-->
-    <xml2tex:char character="&#x1d504;" string="\mathfrak{A}"/>
+    <xml2tex:char character="&#x1d504;" string="\mathfrak{{A}}"/>
     <!--MATHEMATICAL FRAKTUR CAPITAL B-->
-    <xml2tex:char character="&#x1d505;" string="\mathfrak{B}"/>
+    <xml2tex:char character="&#x1d505;" string="\mathfrak{{B}}"/>
     <!--MATHEMATICAL FRAKTUR CAPITAL D-->
-    <xml2tex:char character="&#x1d507;" string="\mathfrak{D}"/>
+    <xml2tex:char character="&#x1d507;" string="\mathfrak{{D}}"/>
     <!--MATHEMATICAL FRAKTUR CAPITAL E-->
-    <xml2tex:char character="&#x1d508;" string="\mathfrak{E}"/>
+    <xml2tex:char character="&#x1d508;" string="\mathfrak{{E}}"/>
     <!--MATHEMATICAL FRAKTUR CAPITAL F-->
-    <xml2tex:char character="&#x1d509;" string="\mathfrak{F}"/>
+    <xml2tex:char character="&#x1d509;" string="\mathfrak{{F}}"/>
     <!--MATHEMATICAL FRAKTUR CAPITAL G-->
-    <xml2tex:char character="&#x1d50a;" string="\mathfrak{G}"/>
+    <xml2tex:char character="&#x1d50a;" string="\mathfrak{{G}}"/>
     <!--MATHEMATICAL FRAKTUR CAPITAL J-->
-    <xml2tex:char character="&#x1d50d;" string="\mathfrak{J}"/>
+    <xml2tex:char character="&#x1d50d;" string="\mathfrak{{J}}"/>
     <!--MATHEMATICAL FRAKTUR CAPITAL K-->
-    <xml2tex:char character="&#x1d50e;" string="\mathfrak{K}"/>
+    <xml2tex:char character="&#x1d50e;" string="\mathfrak{{K}}"/>
     <!--MATHEMATICAL FRAKTUR CAPITAL L-->
-    <xml2tex:char character="&#x1d50f;" string="\mathfrak{L}"/>
+    <xml2tex:char character="&#x1d50f;" string="\mathfrak{{L}}"/>
     <!--MATHEMATICAL FRAKTUR CAPITAL M-->
-    <xml2tex:char character="&#x1d510;" string="\mathfrak{M}"/>
+    <xml2tex:char character="&#x1d510;" string="\mathfrak{{M}}"/>
     <!--MATHEMATICAL FRAKTUR CAPITAL N-->
-    <xml2tex:char character="&#x1d511;" string="\mathfrak{N}"/>
+    <xml2tex:char character="&#x1d511;" string="\mathfrak{{N}}"/>
     <!--MATHEMATICAL FRAKTUR CAPITAL O-->
-    <xml2tex:char character="&#x1d512;" string="\mathfrak{O}"/>
+    <xml2tex:char character="&#x1d512;" string="\mathfrak{{O}}"/>
     <!--MATHEMATICAL FRAKTUR CAPITAL P-->
-    <xml2tex:char character="&#x1d513;" string="\mathfrak{P}"/>
+    <xml2tex:char character="&#x1d513;" string="\mathfrak{{P}}"/>
     <!--MATHEMATICAL FRAKTUR CAPITAL Q-->
-    <xml2tex:char character="&#x1d514;" string="\mathfrak{Q}"/>
+    <xml2tex:char character="&#x1d514;" string="\mathfrak{{Q}}"/>
     <!--MATHEMATICAL FRAKTUR CAPITAL S-->
-    <xml2tex:char character="&#x1d516;" string="\mathfrak{S}"/>
+    <xml2tex:char character="&#x1d516;" string="\mathfrak{{S}}"/>
     <!--MATHEMATICAL FRAKTUR CAPITAL T-->
-    <xml2tex:char character="&#x1d517;" string="\mathfrak{T}"/>
+    <xml2tex:char character="&#x1d517;" string="\mathfrak{{T}}"/>
     <!--MATHEMATICAL FRAKTUR CAPITAL U-->
-    <xml2tex:char character="&#x1d518;" string="\mathfrak{U}"/>
+    <xml2tex:char character="&#x1d518;" string="\mathfrak{{U}}"/>
     <!--MATHEMATICAL FRAKTUR CAPITAL V-->
-    <xml2tex:char character="&#x1d519;" string="\mathfrak{V}"/>
+    <xml2tex:char character="&#x1d519;" string="\mathfrak{{V}}"/>
     <!--MATHEMATICAL FRAKTUR CAPITAL W-->
-    <xml2tex:char character="&#x1d51a;" string="\mathfrak{W}"/>
+    <xml2tex:char character="&#x1d51a;" string="\mathfrak{{W}}"/>
     <!--MATHEMATICAL FRAKTUR CAPITAL X-->
-    <xml2tex:char character="&#x1d51b;" string="\mathfrak{X}"/>
+    <xml2tex:char character="&#x1d51b;" string="\mathfrak{{X}}"/>
     <!--MATHEMATICAL FRAKTUR CAPITAL Y-->
-    <xml2tex:char character="&#x1d51c;" string="\mathfrak{Y}"/>
+    <xml2tex:char character="&#x1d51c;" string="\mathfrak{{Y}}"/>
     <!--MATHEMATICAL FRAKTUR SMALL A-->
-    <xml2tex:char character="&#x1d51e;" string="\mathfrak{a}"/>
+    <xml2tex:char character="&#x1d51e;" string="\mathfrak{{a}}"/>
     <!--MATHEMATICAL FRAKTUR SMALL B-->
-    <xml2tex:char character="&#x1d51f;" string="\mathfrak{b}"/>
+    <xml2tex:char character="&#x1d51f;" string="\mathfrak{{b}}"/>
     <!--MATHEMATICAL FRAKTUR SMALL C-->
-    <xml2tex:char character="&#x1d520;" string="\mathfrak{c}"/>
+    <xml2tex:char character="&#x1d520;" string="\mathfrak{{c}}"/>
     <!--MATHEMATICAL FRAKTUR SMALL D-->
-    <xml2tex:char character="&#x1d521;" string="\mathfrak{d}"/>
+    <xml2tex:char character="&#x1d521;" string="\mathfrak{{d}}"/>
     <!--MATHEMATICAL FRAKTUR SMALL E-->
-    <xml2tex:char character="&#x1d522;" string="\mathfrak{e}"/>
+    <xml2tex:char character="&#x1d522;" string="\mathfrak{{e}}"/>
     <!--MATHEMATICAL FRAKTUR SMALL F-->
-    <xml2tex:char character="&#x1d523;" string="\mathfrak{f}"/>
+    <xml2tex:char character="&#x1d523;" string="\mathfrak{{f}}"/>
     <!--MATHEMATICAL FRAKTUR SMALL G-->
-    <xml2tex:char character="&#x1d524;" string="\mathfrak{g}"/>
+    <xml2tex:char character="&#x1d524;" string="\mathfrak{{g}}"/>
     <!--MATHEMATICAL FRAKTUR SMALL H-->
-    <xml2tex:char character="&#x1d525;" string="\mathfrak{h}"/>
+    <xml2tex:char character="&#x1d525;" string="\mathfrak{{h}}"/>
     <!--MATHEMATICAL FRAKTUR SMALL I-->
-    <xml2tex:char character="&#x1d526;" string="\mathfrak{i}"/>
+    <xml2tex:char character="&#x1d526;" string="\mathfrak{{i}}"/>
     <!--MATHEMATICAL FRAKTUR SMALL J-->
-    <xml2tex:char character="&#x1d527;" string="\mathfrak{j}"/>
+    <xml2tex:char character="&#x1d527;" string="\mathfrak{{j}}"/>
     <!--MATHEMATICAL FRAKTUR SMALL K-->
-    <xml2tex:char character="&#x1d528;" string="\mathfrak{k}"/>
+    <xml2tex:char character="&#x1d528;" string="\mathfrak{{k}}"/>
     <!--MATHEMATICAL FRAKTUR SMALL L-->
-    <xml2tex:char character="&#x1d529;" string="\mathfrak{l}"/>
+    <xml2tex:char character="&#x1d529;" string="\mathfrak{{l}}"/>
     <!--MATHEMATICAL FRAKTUR SMALL M-->
-    <xml2tex:char character="&#x1d52a;" string="\mathfrak{m}"/>
+    <xml2tex:char character="&#x1d52a;" string="\mathfrak{{m}}"/>
     <!--MATHEMATICAL FRAKTUR SMALL N-->
-    <xml2tex:char character="&#x1d52b;" string="\mathfrak{n}"/>
+    <xml2tex:char character="&#x1d52b;" string="\mathfrak{{n}}"/>
     <!--MATHEMATICAL FRAKTUR SMALL O-->
-    <xml2tex:char character="&#x1d52c;" string="\mathfrak{o}"/>
+    <xml2tex:char character="&#x1d52c;" string="\mathfrak{{o}}"/>
     <!--MATHEMATICAL FRAKTUR SMALL P-->
-    <xml2tex:char character="&#x1d52d;" string="\mathfrak{p}"/>
+    <xml2tex:char character="&#x1d52d;" string="\mathfrak{{p}}"/>
     <!--MATHEMATICAL FRAKTUR SMALL Q-->
-    <xml2tex:char character="&#x1d52e;" string="\mathfrak{q}"/>
+    <xml2tex:char character="&#x1d52e;" string="\mathfrak{{q}}"/>
     <!--MATHEMATICAL FRAKTUR SMALL R-->
-    <xml2tex:char character="&#x1d52f;" string="\mathfrak{r}"/>
+    <xml2tex:char character="&#x1d52f;" string="\mathfrak{{r}}"/>
     <!--MATHEMATICAL FRAKTUR SMALL S-->
-    <xml2tex:char character="&#x1d530;" string="\mathfrak{s}"/>
+    <xml2tex:char character="&#x1d530;" string="\mathfrak{{s}}"/>
     <!--MATHEMATICAL FRAKTUR SMALL T-->
-    <xml2tex:char character="&#x1d531;" string="\mathfrak{t}"/>
+    <xml2tex:char character="&#x1d531;" string="\mathfrak{{t}}"/>
     <!--MATHEMATICAL FRAKTUR SMALL U-->
-    <xml2tex:char character="&#x1d532;" string="\mathfrak{u}"/>
+    <xml2tex:char character="&#x1d532;" string="\mathfrak{{u}}"/>
     <!--MATHEMATICAL FRAKTUR SMALL V-->
-    <xml2tex:char character="&#x1d533;" string="\mathfrak{v}"/>
+    <xml2tex:char character="&#x1d533;" string="\mathfrak{{v}}"/>
     <!--MATHEMATICAL FRAKTUR SMALL W-->
-    <xml2tex:char character="&#x1d534;" string="\mathfrak{w}"/>
+    <xml2tex:char character="&#x1d534;" string="\mathfrak{{w}}"/>
     <!--MATHEMATICAL FRAKTUR SMALL X-->
-    <xml2tex:char character="&#x1d535;" string="\mathfrak{x}"/>
+    <xml2tex:char character="&#x1d535;" string="\mathfrak{{x}}"/>
     <!--MATHEMATICAL FRAKTUR SMALL Y-->
-    <xml2tex:char character="&#x1d536;" string="\mathfrak{y}"/>
+    <xml2tex:char character="&#x1d536;" string="\mathfrak{{y}}"/>
     <!--MATHEMATICAL FRAKTUR SMALL Z-->
-    <xml2tex:char character="&#x1d537;" string="\mathfrak{z}"/>
-    <!--= \mathds{A} (dsfont), MATHEMATICAL DOUBLE-STRUCK CAPITAL A-->
-    <xml2tex:char character="&#x1d538;" string="\mathbb{A}"/>
-    <!--= \mathds{B} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL B-->
-    <xml2tex:char character="&#x1d539;" string="\mathbb{B}"/>
-    <!--= \mathds{D} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL D-->
-    <xml2tex:char character="&#x1d53b;" string="\mathbb{D}"/>
-    <!--= \mathds{E} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL E-->
-    <xml2tex:char character="&#x1d53c;" string="\mathbb{E}"/>
-    <!--= \mathds{F} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL F-->
-    <xml2tex:char character="&#x1d53d;" string="\mathbb{F}"/>
-    <!--= \mathds{G} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL G-->
-    <xml2tex:char character="&#x1d53e;" string="\mathbb{G}"/>
-    <!--= \mathds{I} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL I-->
-    <xml2tex:char character="&#x1d540;" string="\mathbb{I}"/>
-    <!--= \mathds{J} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL J-->
-    <xml2tex:char character="&#x1d541;" string="\mathbb{J}"/>
-    <!--= \mathds{K} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL K-->
-    <xml2tex:char character="&#x1d542;" string="\mathbb{K}"/>
-    <!--= \mathds{L} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL L-->
-    <xml2tex:char character="&#x1d543;" string="\mathbb{L}"/>
-    <!--= \mathds{M} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL M-->
-    <xml2tex:char character="&#x1d544;" string="\mathbb{M}"/>
-    <!--= \mathds{O} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL O-->
-    <xml2tex:char character="&#x1d546;" string="\mathbb{O}"/>
-    <!--= \mathds{S} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL S-->
-    <xml2tex:char character="&#x1d54a;" string="\mathbb{S}"/>
-    <!--= \mathds{T} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL T-->
-    <xml2tex:char character="&#x1d54b;" string="\mathbb{T}"/>
-    <!--= \mathds{U} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL U-->
-    <xml2tex:char character="&#x1d54c;" string="\mathbb{U}"/>
-    <!--= \mathds{V} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL V-->
-    <xml2tex:char character="&#x1d54d;" string="\mathbb{V}"/>
-    <!--= \mathds{W} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL W-->
-    <xml2tex:char character="&#x1d54e;" string="\mathbb{W}"/>
-    <!--= \mathds{X} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL X-->
-    <xml2tex:char character="&#x1d54f;" string="\mathbb{X}"/>
-    <!--= \mathds{Y} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL Y-->
-    <xml2tex:char character="&#x1d550;" string="\mathbb{Y}"/>
+    <xml2tex:char character="&#x1d537;" string="\mathfrak{{z}}"/>
+    <!--= \mathds{{A}} (dsfont), MATHEMATICAL DOUBLE-STRUCK CAPITAL A-->
+    <xml2tex:char character="&#x1d538;" string="\mathbb{{A}}"/>
+    <!--= \mathds{{B}} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL B-->
+    <xml2tex:char character="&#x1d539;" string="\mathbb{{B}}"/>
+    <!--= \mathds{{D}} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL D-->
+    <xml2tex:char character="&#x1d53b;" string="\mathbb{{D}}"/>
+    <!--= \mathds{{E}} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL E-->
+    <xml2tex:char character="&#x1d53c;" string="\mathbb{{E}}"/>
+    <!--= \mathds{{F}} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL F-->
+    <xml2tex:char character="&#x1d53d;" string="\mathbb{{F}}"/>
+    <!--= \mathds{{G}} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL G-->
+    <xml2tex:char character="&#x1d53e;" string="\mathbb{{G}}"/>
+    <!--= \mathds{{I}} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL I-->
+    <xml2tex:char character="&#x1d540;" string="\mathbb{{I}}"/>
+    <!--= \mathds{{J}} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL J-->
+    <xml2tex:char character="&#x1d541;" string="\mathbb{{J}}"/>
+    <!--= \mathds{{K}} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL K-->
+    <xml2tex:char character="&#x1d542;" string="\mathbb{{K}}"/>
+    <!--= \mathds{{L}} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL L-->
+    <xml2tex:char character="&#x1d543;" string="\mathbb{{L}}"/>
+    <!--= \mathds{{M}} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL M-->
+    <xml2tex:char character="&#x1d544;" string="\mathbb{{M}}"/>
+    <!--= \mathds{{O}} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL O-->
+    <xml2tex:char character="&#x1d546;" string="\mathbb{{O}}"/>
+    <!--= \mathds{{S}} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL S-->
+    <xml2tex:char character="&#x1d54a;" string="\mathbb{{S}}"/>
+    <!--= \mathds{{T}} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL T-->
+    <xml2tex:char character="&#x1d54b;" string="\mathbb{{T}}"/>
+    <!--= \mathds{{U}} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL U-->
+    <xml2tex:char character="&#x1d54c;" string="\mathbb{{U}}"/>
+    <!--= \mathds{{V}} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL V-->
+    <xml2tex:char character="&#x1d54d;" string="\mathbb{{V}}"/>
+    <!--= \mathds{{W}} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL W-->
+    <xml2tex:char character="&#x1d54e;" string="\mathbb{{W}}"/>
+    <!--= \mathds{{X}} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL X-->
+    <xml2tex:char character="&#x1d54f;" string="\mathbb{{X}}"/>
+    <!--= \mathds{{Y}} (dsfont), matMATHEMATICAL DOUBLE-STRUCK CAPITAL Y-->
+    <xml2tex:char character="&#x1d550;" string="\mathbb{{Y}}"/>
     <!--MATHEMATICAL DOUBLE-STRUCK SMALL A-->
-    <xml2tex:char character="&#x1d552;" string="\mathbb{a}"/>
+    <xml2tex:char character="&#x1d552;" string="\mathbb{{a}}"/>
     <!--MATHEMATICAL DOUBLE-STRUCK SMALL B-->
-    <xml2tex:char character="&#x1d553;" string="\mathbb{b}"/>
+    <xml2tex:char character="&#x1d553;" string="\mathbb{{b}}"/>
     <!--MATHEMATICAL DOUBLE-STRUCK SMALL C-->
-    <xml2tex:char character="&#x1d554;" string="\mathbb{c}"/>
+    <xml2tex:char character="&#x1d554;" string="\mathbb{{c}}"/>
     <!--MATHEMATICAL DOUBLE-STRUCK SMALL D-->
-    <xml2tex:char character="&#x1d555;" string="\mathbb{d}"/>
+    <xml2tex:char character="&#x1d555;" string="\mathbb{{d}}"/>
     <!--MATHEMATICAL DOUBLE-STRUCK SMALL E-->
-    <xml2tex:char character="&#x1d556;" string="\mathbb{e}"/>
+    <xml2tex:char character="&#x1d556;" string="\mathbb{{e}}"/>
     <!--MATHEMATICAL DOUBLE-STRUCK SMALL F-->
-    <xml2tex:char character="&#x1d557;" string="\mathbb{f}"/>
+    <xml2tex:char character="&#x1d557;" string="\mathbb{{f}}"/>
     <!--MATHEMATICAL DOUBLE-STRUCK SMALL G-->
-    <xml2tex:char character="&#x1d558;" string="\mathbb{g}"/>
+    <xml2tex:char character="&#x1d558;" string="\mathbb{{g}}"/>
     <!--MATHEMATICAL DOUBLE-STRUCK SMALL H-->
-    <xml2tex:char character="&#x1d559;" string="\mathbb{h}"/>
+    <xml2tex:char character="&#x1d559;" string="\mathbb{{h}}"/>
     <!--MATHEMATICAL DOUBLE-STRUCK SMALL I-->
-    <xml2tex:char character="&#x1d55a;" string="\mathbb{i}"/>
+    <xml2tex:char character="&#x1d55a;" string="\mathbb{{i}}"/>
     <!--MATHEMATICAL DOUBLE-STRUCK SMALL J-->
-    <xml2tex:char character="&#x1d55b;" string="\mathbb{j}"/>
+    <xml2tex:char character="&#x1d55b;" string="\mathbb{{j}}"/>
     <!--= \Bbbk (amssymb), MATHEMATICAL DOUBLE-STRUCK SMALL K-->
-    <xml2tex:char character="&#x1d55c;" string="\mathbb{k}"/>
+    <xml2tex:char character="&#x1d55c;" string="\mathbb{{k}}"/>
     <!--MATHEMATICAL DOUBLE-STRUCK SMALL L-->
-    <xml2tex:char character="&#x1d55d;" string="\mathbb{l}"/>
+    <xml2tex:char character="&#x1d55d;" string="\mathbb{{l}}"/>
     <!--MATHEMATICAL DOUBLE-STRUCK SMALL M-->
-    <xml2tex:char character="&#x1d55e;" string="\mathbb{m}"/>
+    <xml2tex:char character="&#x1d55e;" string="\mathbb{{m}}"/>
     <!--MATHEMATICAL DOUBLE-STRUCK SMALL N-->
-    <xml2tex:char character="&#x1d55f;" string="\mathbb{n}"/>
+    <xml2tex:char character="&#x1d55f;" string="\mathbb{{n}}"/>
     <!--MATHEMATICAL DOUBLE-STRUCK SMALL O-->
-    <xml2tex:char character="&#x1d560;" string="\mathbb{o}"/>
+    <xml2tex:char character="&#x1d560;" string="\mathbb{{o}}"/>
     <!--MATHEMATICAL DOUBLE-STRUCK SMALL P-->
-    <xml2tex:char character="&#x1d561;" string="\mathbb{p}"/>
+    <xml2tex:char character="&#x1d561;" string="\mathbb{{p}}"/>
     <!--MATHEMATICAL DOUBLE-STRUCK SMALL Q-->
-    <xml2tex:char character="&#x1d562;" string="\mathbb{q}"/>
+    <xml2tex:char character="&#x1d562;" string="\mathbb{{q}}"/>
     <!--MATHEMATICAL DOUBLE-STRUCK SMALL R-->
-    <xml2tex:char character="&#x1d563;" string="\mathbb{r}"/>
+    <xml2tex:char character="&#x1d563;" string="\mathbb{{r}}"/>
     <!--MATHEMATICAL DOUBLE-STRUCK SMALL S-->
-    <xml2tex:char character="&#x1d564;" string="\mathbb{s}"/>
+    <xml2tex:char character="&#x1d564;" string="\mathbb{{s}}"/>
     <!--MATHEMATICAL DOUBLE-STRUCK SMALL T-->
-    <xml2tex:char character="&#x1d565;" string="\mathbb{t}"/>
+    <xml2tex:char character="&#x1d565;" string="\mathbb{{t}}"/>
     <!--MATHEMATICAL DOUBLE-STRUCK SMALL U-->
-    <xml2tex:char character="&#x1d566;" string="\mathbb{u}"/>
+    <xml2tex:char character="&#x1d566;" string="\mathbb{{u}}"/>
     <!--MATHEMATICAL DOUBLE-STRUCK SMALL V-->
-    <xml2tex:char character="&#x1d567;" string="\mathbb{v}"/>
+    <xml2tex:char character="&#x1d567;" string="\mathbb{{v}}"/>
     <!--MATHEMATICAL DOUBLE-STRUCK SMALL W-->
-    <xml2tex:char character="&#x1d568;" string="\mathbb{w}"/>
+    <xml2tex:char character="&#x1d568;" string="\mathbb{{w}}"/>
     <!--MATHEMATICAL DOUBLE-STRUCK SMALL X-->
-    <xml2tex:char character="&#x1d569;" string="\mathbb{x}"/>
+    <xml2tex:char character="&#x1d569;" string="\mathbb{{x}}"/>
     <!--MATHEMATICAL DOUBLE-STRUCK SMALL Y-->
-    <xml2tex:char character="&#x1d56a;" string="\mathbb{y}"/>
+    <xml2tex:char character="&#x1d56a;" string="\mathbb{{y}}"/>
     <!--MATHEMATICAL DOUBLE-STRUCK SMALL Z-->
-    <xml2tex:char character="&#x1d56b;" string="\mathbb{z}"/>
+    <xml2tex:char character="&#x1d56b;" string="\mathbb{{z}}"/>
     <!--MATHEMATICAL SANS-SERIF CAPITAL A-->
-    <xml2tex:char character="&#x1d5a0;" string="\mathsf{A}"/>
+    <xml2tex:char character="&#x1d5a0;" string="\mathsf{{A}}"/>
     <!--MATHEMATICAL SANS-SERIF CAPITAL B-->
-    <xml2tex:char character="&#x1d5a1;" string="\mathsf{B}"/>
+    <xml2tex:char character="&#x1d5a1;" string="\mathsf{{B}}"/>
     <!--MATHEMATICAL SANS-SERIF CAPITAL C-->
-    <xml2tex:char character="&#x1d5a2;" string="\mathsf{C}"/>
+    <xml2tex:char character="&#x1d5a2;" string="\mathsf{{C}}"/>
     <!--MATHEMATICAL SANS-SERIF CAPITAL D-->
-    <xml2tex:char character="&#x1d5a3;" string="\mathsf{D}"/>
+    <xml2tex:char character="&#x1d5a3;" string="\mathsf{{D}}"/>
     <!--MATHEMATICAL SANS-SERIF CAPITAL E-->
-    <xml2tex:char character="&#x1d5a4;" string="\mathsf{E}"/>
+    <xml2tex:char character="&#x1d5a4;" string="\mathsf{{E}}"/>
     <!--MATHEMATICAL SANS-SERIF CAPITAL F-->
-    <xml2tex:char character="&#x1d5a5;" string="\mathsf{F}"/>
+    <xml2tex:char character="&#x1d5a5;" string="\mathsf{{F}}"/>
     <!--MATHEMATICAL SANS-SERIF CAPITAL G-->
-    <xml2tex:char character="&#x1d5a6;" string="\mathsf{G}"/>
+    <xml2tex:char character="&#x1d5a6;" string="\mathsf{{G}}"/>
     <!--MATHEMATICAL SANS-SERIF CAPITAL H-->
-    <xml2tex:char character="&#x1d5a7;" string="\mathsf{H}"/>
+    <xml2tex:char character="&#x1d5a7;" string="\mathsf{{H}}"/>
     <!--MATHEMATICAL SANS-SERIF CAPITAL I-->
-    <xml2tex:char character="&#x1d5a8;" string="\mathsf{I}"/>
+    <xml2tex:char character="&#x1d5a8;" string="\mathsf{{I}}"/>
     <!--MATHEMATICAL SANS-SERIF CAPITAL J-->
-    <xml2tex:char character="&#x1d5a9;" string="\mathsf{J}"/>
+    <xml2tex:char character="&#x1d5a9;" string="\mathsf{{J}}"/>
     <!--MATHEMATICAL SANS-SERIF CAPITAL K-->
-    <xml2tex:char character="&#x1d5aa;" string="\mathsf{K}"/>
+    <xml2tex:char character="&#x1d5aa;" string="\mathsf{{K}}"/>
     <!--MATHEMATICAL SANS-SERIF CAPITAL L-->
-    <xml2tex:char character="&#x1d5ab;" string="\mathsf{L}"/>
+    <xml2tex:char character="&#x1d5ab;" string="\mathsf{{L}}"/>
     <!--MATHEMATICAL SANS-SERIF CAPITAL M-->
-    <xml2tex:char character="&#x1d5ac;" string="\mathsf{M}"/>
+    <xml2tex:char character="&#x1d5ac;" string="\mathsf{{M}}"/>
     <!--MATHEMATICAL SANS-SERIF CAPITAL N-->
-    <xml2tex:char character="&#x1d5ad;" string="\mathsf{N}"/>
+    <xml2tex:char character="&#x1d5ad;" string="\mathsf{{N}}"/>
     <!--MATHEMATICAL SANS-SERIF CAPITAL O-->
-    <xml2tex:char character="&#x1d5ae;" string="\mathsf{O}"/>
+    <xml2tex:char character="&#x1d5ae;" string="\mathsf{{O}}"/>
     <!--MATHEMATICAL SANS-SERIF CAPITAL P-->
-    <xml2tex:char character="&#x1d5af;" string="\mathsf{P}"/>
+    <xml2tex:char character="&#x1d5af;" string="\mathsf{{P}}"/>
     <!--MATHEMATICAL SANS-SERIF CAPITAL Q-->
-    <xml2tex:char character="&#x1d5b0;" string="\mathsf{Q}"/>
+    <xml2tex:char character="&#x1d5b0;" string="\mathsf{{Q}}"/>
     <!--MATHEMATICAL SANS-SERIF CAPITAL R-->
-    <xml2tex:char character="&#x1d5b1;" string="\mathsf{R}"/>
+    <xml2tex:char character="&#x1d5b1;" string="\mathsf{{R}}"/>
     <!--MATHEMATICAL SANS-SERIF CAPITAL S-->
-    <xml2tex:char character="&#x1d5b2;" string="\mathsf{S}"/>
+    <xml2tex:char character="&#x1d5b2;" string="\mathsf{{S}}"/>
     <!--MATHEMATICAL SANS-SERIF CAPITAL T-->
-    <xml2tex:char character="&#x1d5b3;" string="\mathsf{T}"/>
+    <xml2tex:char character="&#x1d5b3;" string="\mathsf{{T}}"/>
     <!--MATHEMATICAL SANS-SERIF CAPITAL U-->
-    <xml2tex:char character="&#x1d5b4;" string="\mathsf{U}"/>
+    <xml2tex:char character="&#x1d5b4;" string="\mathsf{{U}}"/>
     <!--MATHEMATICAL SANS-SERIF CAPITAL V-->
-    <xml2tex:char character="&#x1d5b5;" string="\mathsf{V}"/>
+    <xml2tex:char character="&#x1d5b5;" string="\mathsf{{V}}"/>
     <!--MATHEMATICAL SANS-SERIF CAPITAL W-->
-    <xml2tex:char character="&#x1d5b6;" string="\mathsf{W}"/>
+    <xml2tex:char character="&#x1d5b6;" string="\mathsf{{W}}"/>
     <!--MATHEMATICAL SANS-SERIF CAPITAL X-->
-    <xml2tex:char character="&#x1d5b7;" string="\mathsf{X}"/>
+    <xml2tex:char character="&#x1d5b7;" string="\mathsf{{X}}"/>
     <!--MATHEMATICAL SANS-SERIF CAPITAL Y-->
-    <xml2tex:char character="&#x1d5b8;" string="\mathsf{Y}"/>
+    <xml2tex:char character="&#x1d5b8;" string="\mathsf{{Y}}"/>
     <!--MATHEMATICAL SANS-SERIF CAPITAL Z-->
-    <xml2tex:char character="&#x1d5b9;" string="\mathsf{Z}"/>
+    <xml2tex:char character="&#x1d5b9;" string="\mathsf{{Z}}"/>
     <!--MATHEMATICAL SANS-SERIF SMALL A-->
-    <xml2tex:char character="&#x1d5ba;" string="\mathsf{a}"/>
+    <xml2tex:char character="&#x1d5ba;" string="\mathsf{{a}}"/>
     <!--MATHEMATICAL SANS-SERIF SMALL B-->
-    <xml2tex:char character="&#x1d5bb;" string="\mathsf{b}"/>
+    <xml2tex:char character="&#x1d5bb;" string="\mathsf{{b}}"/>
     <!--MATHEMATICAL SANS-SERIF SMALL C-->
-    <xml2tex:char character="&#x1d5bc;" string="\mathsf{c}"/>
+    <xml2tex:char character="&#x1d5bc;" string="\mathsf{{c}}"/>
     <!--MATHEMATICAL SANS-SERIF SMALL D-->
-    <xml2tex:char character="&#x1d5bd;" string="\mathsf{d}"/>
+    <xml2tex:char character="&#x1d5bd;" string="\mathsf{{d}}"/>
     <!--MATHEMATICAL SANS-SERIF SMALL E-->
-    <xml2tex:char character="&#x1d5be;" string="\mathsf{e}"/>
+    <xml2tex:char character="&#x1d5be;" string="\mathsf{{e}}"/>
     <!--MATHEMATICAL SANS-SERIF SMALL F-->
-    <xml2tex:char character="&#x1d5bf;" string="\mathsf{f}"/>
+    <xml2tex:char character="&#x1d5bf;" string="\mathsf{{f}}"/>
     <!--MATHEMATICAL SANS-SERIF SMALL G-->
-    <xml2tex:char character="&#x1d5c0;" string="\mathsf{g}"/>
+    <xml2tex:char character="&#x1d5c0;" string="\mathsf{{g}}"/>
     <!--MATHEMATICAL SANS-SERIF SMALL H-->
-    <xml2tex:char character="&#x1d5c1;" string="\mathsf{h}"/>
+    <xml2tex:char character="&#x1d5c1;" string="\mathsf{{h}}"/>
     <!--MATHEMATICAL SANS-SERIF SMALL I-->
-    <xml2tex:char character="&#x1d5c2;" string="\mathsf{i}"/>
+    <xml2tex:char character="&#x1d5c2;" string="\mathsf{{i}}"/>
     <!--MATHEMATICAL SANS-SERIF SMALL J-->
-    <xml2tex:char character="&#x1d5c3;" string="\mathsf{j}"/>
+    <xml2tex:char character="&#x1d5c3;" string="\mathsf{{j}}"/>
     <!--MATHEMATICAL SANS-SERIF SMALL K-->
-    <xml2tex:char character="&#x1d5c4;" string="\mathsf{k}"/>
+    <xml2tex:char character="&#x1d5c4;" string="\mathsf{{k}}"/>
     <!--MATHEMATICAL SANS-SERIF SMALL L-->
-    <xml2tex:char character="&#x1d5c5;" string="\mathsf{l}"/>
+    <xml2tex:char character="&#x1d5c5;" string="\mathsf{{l}}"/>
     <!--MATHEMATICAL SANS-SERIF SMALL M-->
-    <xml2tex:char character="&#x1d5c6;" string="\mathsf{m}"/>
+    <xml2tex:char character="&#x1d5c6;" string="\mathsf{{m}}"/>
     <!--MATHEMATICAL SANS-SERIF SMALL N-->
-    <xml2tex:char character="&#x1d5c7;" string="\mathsf{n}"/>
+    <xml2tex:char character="&#x1d5c7;" string="\mathsf{{n}}"/>
     <!--MATHEMATICAL SANS-SERIF SMALL O-->
-    <xml2tex:char character="&#x1d5c8;" string="\mathsf{o}"/>
+    <xml2tex:char character="&#x1d5c8;" string="\mathsf{{o}}"/>
     <!--MATHEMATICAL SANS-SERIF SMALL P-->
-    <xml2tex:char character="&#x1d5c9;" string="\mathsf{p}"/>
+    <xml2tex:char character="&#x1d5c9;" string="\mathsf{{p}}"/>
     <!--MATHEMATICAL SANS-SERIF SMALL Q-->
-    <xml2tex:char character="&#x1d5ca;" string="\mathsf{q}"/>
+    <xml2tex:char character="&#x1d5ca;" string="\mathsf{{q}}"/>
     <!--MATHEMATICAL SANS-SERIF SMALL R-->
-    <xml2tex:char character="&#x1d5cb;" string="\mathsf{r}"/>
+    <xml2tex:char character="&#x1d5cb;" string="\mathsf{{r}}"/>
     <!--MATHEMATICAL SANS-SERIF SMALL S-->
-    <xml2tex:char character="&#x1d5cc;" string="\mathsf{s}"/>
+    <xml2tex:char character="&#x1d5cc;" string="\mathsf{{s}}"/>
     <!--MATHEMATICAL SANS-SERIF SMALL T-->
-    <xml2tex:char character="&#x1d5cd;" string="\mathsf{t}"/>
+    <xml2tex:char character="&#x1d5cd;" string="\mathsf{{t}}"/>
     <!--MATHEMATICAL SANS-SERIF SMALL U-->
-    <xml2tex:char character="&#x1d5ce;" string="\mathsf{u}"/>
+    <xml2tex:char character="&#x1d5ce;" string="\mathsf{{u}}"/>
     <!--MATHEMATICAL SANS-SERIF SMALL V-->
-    <xml2tex:char character="&#x1d5cf;" string="\mathsf{v}"/>
+    <xml2tex:char character="&#x1d5cf;" string="\mathsf{{v}}"/>
     <!--MATHEMATICAL SANS-SERIF SMALL W-->
-    <xml2tex:char character="&#x1d5d0;" string="\mathsf{w}"/>
+    <xml2tex:char character="&#x1d5d0;" string="\mathsf{{w}}"/>
     <!--MATHEMATICAL SANS-SERIF SMALL X-->
-    <xml2tex:char character="&#x1d5d1;" string="\mathsf{x}"/>
+    <xml2tex:char character="&#x1d5d1;" string="\mathsf{{x}}"/>
     <!--MATHEMATICAL SANS-SERIF SMALL Y-->
-    <xml2tex:char character="&#x1d5d2;" string="\mathsf{y}"/>
+    <xml2tex:char character="&#x1d5d2;" string="\mathsf{{y}}"/>
     <!--MATHEMATICAL SANS-SERIF SMALL Z-->
-    <xml2tex:char character="&#x1d5d3;" string="\mathsf{z}"/>
+    <xml2tex:char character="&#x1d5d3;" string="\mathsf{{z}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL A-->
-    <xml2tex:char character="&#x1d5d4;" string="\mathsfbf{A}"/>
+    <xml2tex:char character="&#x1d5d4;" string="\mathsfbf{{A}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL B-->
-    <xml2tex:char character="&#x1d5d5;" string="\mathsfbf{B}"/>
+    <xml2tex:char character="&#x1d5d5;" string="\mathsfbf{{B}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL C-->
-    <xml2tex:char character="&#x1d5d6;" string="\mathsfbf{C}"/>
+    <xml2tex:char character="&#x1d5d6;" string="\mathsfbf{{C}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL D-->
-    <xml2tex:char character="&#x1d5d7;" string="\mathsfbf{D}"/>
+    <xml2tex:char character="&#x1d5d7;" string="\mathsfbf{{D}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL E-->
-    <xml2tex:char character="&#x1d5d8;" string="\mathsfbf{E}"/>
+    <xml2tex:char character="&#x1d5d8;" string="\mathsfbf{{E}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL F-->
-    <xml2tex:char character="&#x1d5d9;" string="\mathsfbf{F}"/>
+    <xml2tex:char character="&#x1d5d9;" string="\mathsfbf{{F}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL G-->
-    <xml2tex:char character="&#x1d5da;" string="\mathsfbf{G}"/>
+    <xml2tex:char character="&#x1d5da;" string="\mathsfbf{{G}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL H-->
-    <xml2tex:char character="&#x1d5db;" string="\mathsfbf{H}"/>
+    <xml2tex:char character="&#x1d5db;" string="\mathsfbf{{H}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL I-->
-    <xml2tex:char character="&#x1d5dc;" string="\mathsfbf{I}"/>
+    <xml2tex:char character="&#x1d5dc;" string="\mathsfbf{{I}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL J-->
-    <xml2tex:char character="&#x1d5dd;" string="\mathsfbf{J}"/>
+    <xml2tex:char character="&#x1d5dd;" string="\mathsfbf{{J}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL K-->
-    <xml2tex:char character="&#x1d5de;" string="\mathsfbf{K}"/>
+    <xml2tex:char character="&#x1d5de;" string="\mathsfbf{{K}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL L-->
-    <xml2tex:char character="&#x1d5df;" string="\mathsfbf{L}"/>
+    <xml2tex:char character="&#x1d5df;" string="\mathsfbf{{L}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL M-->
-    <xml2tex:char character="&#x1d5e0;" string="\mathsfbf{M}"/>
+    <xml2tex:char character="&#x1d5e0;" string="\mathsfbf{{M}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL N-->
-    <xml2tex:char character="&#x1d5e1;" string="\mathsfbf{N}"/>
+    <xml2tex:char character="&#x1d5e1;" string="\mathsfbf{{N}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL O-->
-    <xml2tex:char character="&#x1d5e2;" string="\mathsfbf{O}"/>
+    <xml2tex:char character="&#x1d5e2;" string="\mathsfbf{{O}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL P-->
-    <xml2tex:char character="&#x1d5e3;" string="\mathsfbf{P}"/>
+    <xml2tex:char character="&#x1d5e3;" string="\mathsfbf{{P}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL Q-->
-    <xml2tex:char character="&#x1d5e4;" string="\mathsfbf{Q}"/>
+    <xml2tex:char character="&#x1d5e4;" string="\mathsfbf{{Q}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL R-->
-    <xml2tex:char character="&#x1d5e5;" string="\mathsfbf{R}"/>
+    <xml2tex:char character="&#x1d5e5;" string="\mathsfbf{{R}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL S-->
-    <xml2tex:char character="&#x1d5e6;" string="\mathsfbf{S}"/>
+    <xml2tex:char character="&#x1d5e6;" string="\mathsfbf{{S}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL T-->
-    <xml2tex:char character="&#x1d5e7;" string="\mathsfbf{T}"/>
+    <xml2tex:char character="&#x1d5e7;" string="\mathsfbf{{T}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL U-->
-    <xml2tex:char character="&#x1d5e8;" string="\mathsfbf{U}"/>
+    <xml2tex:char character="&#x1d5e8;" string="\mathsfbf{{U}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL V-->
-    <xml2tex:char character="&#x1d5e9;" string="\mathsfbf{V}"/>
+    <xml2tex:char character="&#x1d5e9;" string="\mathsfbf{{V}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL W-->
-    <xml2tex:char character="&#x1d5ea;" string="\mathsfbf{W}"/>
+    <xml2tex:char character="&#x1d5ea;" string="\mathsfbf{{W}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL X-->
-    <xml2tex:char character="&#x1d5eb;" string="\mathsfbf{X}"/>
+    <xml2tex:char character="&#x1d5eb;" string="\mathsfbf{{X}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL Y-->
-    <xml2tex:char character="&#x1d5ec;" string="\mathsfbf{Y}"/>
+    <xml2tex:char character="&#x1d5ec;" string="\mathsfbf{{Y}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL Z-->
-    <xml2tex:char character="&#x1d5ed;" string="\mathsfbf{Z}"/>
+    <xml2tex:char character="&#x1d5ed;" string="\mathsfbf{{Z}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL A-->
-    <xml2tex:char character="&#x1d5ee;" string="\mathsfbf{a}"/>
+    <xml2tex:char character="&#x1d5ee;" string="\mathsfbf{{a}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL B-->
-    <xml2tex:char character="&#x1d5ef;" string="\mathsfbf{b}"/>
+    <xml2tex:char character="&#x1d5ef;" string="\mathsfbf{{b}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL C-->
-    <xml2tex:char character="&#x1d5f0;" string="\mathsfbf{c}"/>
+    <xml2tex:char character="&#x1d5f0;" string="\mathsfbf{{c}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL D-->
-    <xml2tex:char character="&#x1d5f1;" string="\mathsfbf{d}"/>
+    <xml2tex:char character="&#x1d5f1;" string="\mathsfbf{{d}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL E-->
-    <xml2tex:char character="&#x1d5f2;" string="\mathsfbf{e}"/>
+    <xml2tex:char character="&#x1d5f2;" string="\mathsfbf{{e}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL F-->
-    <xml2tex:char character="&#x1d5f3;" string="\mathsfbf{f}"/>
+    <xml2tex:char character="&#x1d5f3;" string="\mathsfbf{{f}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL G-->
-    <xml2tex:char character="&#x1d5f4;" string="\mathsfbf{g}"/>
+    <xml2tex:char character="&#x1d5f4;" string="\mathsfbf{{g}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL H-->
-    <xml2tex:char character="&#x1d5f5;" string="\mathsfbf{h}"/>
+    <xml2tex:char character="&#x1d5f5;" string="\mathsfbf{{h}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL I-->
-    <xml2tex:char character="&#x1d5f6;" string="\mathsfbf{i}"/>
+    <xml2tex:char character="&#x1d5f6;" string="\mathsfbf{{i}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL J-->
-    <xml2tex:char character="&#x1d5f7;" string="\mathsfbf{j}"/>
+    <xml2tex:char character="&#x1d5f7;" string="\mathsfbf{{j}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL K-->
-    <xml2tex:char character="&#x1d5f8;" string="\mathsfbf{k}"/>
+    <xml2tex:char character="&#x1d5f8;" string="\mathsfbf{{k}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL L-->
-    <xml2tex:char character="&#x1d5f9;" string="\mathsfbf{l}"/>
+    <xml2tex:char character="&#x1d5f9;" string="\mathsfbf{{l}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL M-->
-    <xml2tex:char character="&#x1d5fa;" string="\mathsfbf{m}"/>
+    <xml2tex:char character="&#x1d5fa;" string="\mathsfbf{{m}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL N-->
-    <xml2tex:char character="&#x1d5fb;" string="\mathsfbf{n}"/>
+    <xml2tex:char character="&#x1d5fb;" string="\mathsfbf{{n}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL O-->
-    <xml2tex:char character="&#x1d5fc;" string="\mathsfbf{o}"/>
+    <xml2tex:char character="&#x1d5fc;" string="\mathsfbf{{o}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL P-->
-    <xml2tex:char character="&#x1d5fd;" string="\mathsfbf{p}"/>
+    <xml2tex:char character="&#x1d5fd;" string="\mathsfbf{{p}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL Q-->
-    <xml2tex:char character="&#x1d5fe;" string="\mathsfbf{q}"/>
+    <xml2tex:char character="&#x1d5fe;" string="\mathsfbf{{q}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL R-->
-    <xml2tex:char character="&#x1d5ff;" string="\mathsfbf{r}"/>
+    <xml2tex:char character="&#x1d5ff;" string="\mathsfbf{{r}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL S-->
-    <xml2tex:char character="&#x1d600;" string="\mathsfbf{s}"/>
+    <xml2tex:char character="&#x1d600;" string="\mathsfbf{{s}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL T-->
-    <xml2tex:char character="&#x1d601;" string="\mathsfbf{t}"/>
+    <xml2tex:char character="&#x1d601;" string="\mathsfbf{{t}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL U-->
-    <xml2tex:char character="&#x1d602;" string="\mathsfbf{u}"/>
+    <xml2tex:char character="&#x1d602;" string="\mathsfbf{{u}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL V-->
-    <xml2tex:char character="&#x1d603;" string="\mathsfbf{v}"/>
+    <xml2tex:char character="&#x1d603;" string="\mathsfbf{{v}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL W-->
-    <xml2tex:char character="&#x1d604;" string="\mathsfbf{w}"/>
+    <xml2tex:char character="&#x1d604;" string="\mathsfbf{{w}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL X-->
-    <xml2tex:char character="&#x1d605;" string="\mathsfbf{x}"/>
+    <xml2tex:char character="&#x1d605;" string="\mathsfbf{{x}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL Y-->
-    <xml2tex:char character="&#x1d606;" string="\mathsfbf{y}"/>
+    <xml2tex:char character="&#x1d606;" string="\mathsfbf{{y}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL Z-->
-    <xml2tex:char character="&#x1d607;" string="\mathsfbf{z}"/>
+    <xml2tex:char character="&#x1d607;" string="\mathsfbf{{z}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC CAPITAL A-->
-    <xml2tex:char character="&#x1d608;" string="\mathsfit{A}"/>
+    <xml2tex:char character="&#x1d608;" string="\mathsfit{{A}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC CAPITAL B-->
-    <xml2tex:char character="&#x1d609;" string="\mathsfit{B}"/>
+    <xml2tex:char character="&#x1d609;" string="\mathsfit{{B}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC CAPITAL C-->
-    <xml2tex:char character="&#x1d60a;" string="\mathsfit{C}"/>
+    <xml2tex:char character="&#x1d60a;" string="\mathsfit{{C}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC CAPITAL D-->
-    <xml2tex:char character="&#x1d60b;" string="\mathsfit{D}"/>
+    <xml2tex:char character="&#x1d60b;" string="\mathsfit{{D}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC CAPITAL E-->
-    <xml2tex:char character="&#x1d60c;" string="\mathsfit{E}"/>
+    <xml2tex:char character="&#x1d60c;" string="\mathsfit{{E}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC CAPITAL F-->
-    <xml2tex:char character="&#x1d60d;" string="\mathsfit{F}"/>
+    <xml2tex:char character="&#x1d60d;" string="\mathsfit{{F}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC CAPITAL G-->
-    <xml2tex:char character="&#x1d60e;" string="\mathsfit{G}"/>
+    <xml2tex:char character="&#x1d60e;" string="\mathsfit{{G}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC CAPITAL H-->
-    <xml2tex:char character="&#x1d60f;" string="\mathsfit{H}"/>
+    <xml2tex:char character="&#x1d60f;" string="\mathsfit{{H}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC CAPITAL I-->
-    <xml2tex:char character="&#x1d610;" string="\mathsfit{I}"/>
+    <xml2tex:char character="&#x1d610;" string="\mathsfit{{I}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC CAPITAL J-->
-    <xml2tex:char character="&#x1d611;" string="\mathsfit{J}"/>
+    <xml2tex:char character="&#x1d611;" string="\mathsfit{{J}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC CAPITAL K-->
-    <xml2tex:char character="&#x1d612;" string="\mathsfit{K}"/>
+    <xml2tex:char character="&#x1d612;" string="\mathsfit{{K}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC CAPITAL L-->
-    <xml2tex:char character="&#x1d613;" string="\mathsfit{L}"/>
+    <xml2tex:char character="&#x1d613;" string="\mathsfit{{L}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC CAPITAL M-->
-    <xml2tex:char character="&#x1d614;" string="\mathsfit{M}"/>
+    <xml2tex:char character="&#x1d614;" string="\mathsfit{{M}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC CAPITAL N-->
-    <xml2tex:char character="&#x1d615;" string="\mathsfit{N}"/>
+    <xml2tex:char character="&#x1d615;" string="\mathsfit{{N}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC CAPITAL O-->
-    <xml2tex:char character="&#x1d616;" string="\mathsfit{O}"/>
+    <xml2tex:char character="&#x1d616;" string="\mathsfit{{O}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC CAPITAL P-->
-    <xml2tex:char character="&#x1d617;" string="\mathsfit{P}"/>
+    <xml2tex:char character="&#x1d617;" string="\mathsfit{{P}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC CAPITAL Q-->
-    <xml2tex:char character="&#x1d618;" string="\mathsfit{Q}"/>
+    <xml2tex:char character="&#x1d618;" string="\mathsfit{{Q}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC CAPITAL R-->
-    <xml2tex:char character="&#x1d619;" string="\mathsfit{R}"/>
+    <xml2tex:char character="&#x1d619;" string="\mathsfit{{R}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC CAPITAL S-->
-    <xml2tex:char character="&#x1d61a;" string="\mathsfit{S}"/>
+    <xml2tex:char character="&#x1d61a;" string="\mathsfit{{S}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC CAPITAL T-->
-    <xml2tex:char character="&#x1d61b;" string="\mathsfit{T}"/>
+    <xml2tex:char character="&#x1d61b;" string="\mathsfit{{T}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC CAPITAL U-->
-    <xml2tex:char character="&#x1d61c;" string="\mathsfit{U}"/>
+    <xml2tex:char character="&#x1d61c;" string="\mathsfit{{U}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC CAPITAL V-->
-    <xml2tex:char character="&#x1d61d;" string="\mathsfit{V}"/>
+    <xml2tex:char character="&#x1d61d;" string="\mathsfit{{V}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC CAPITAL W-->
-    <xml2tex:char character="&#x1d61e;" string="\mathsfit{W}"/>
+    <xml2tex:char character="&#x1d61e;" string="\mathsfit{{W}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC CAPITAL X-->
-    <xml2tex:char character="&#x1d61f;" string="\mathsfit{X}"/>
+    <xml2tex:char character="&#x1d61f;" string="\mathsfit{{X}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC CAPITAL Y-->
-    <xml2tex:char character="&#x1d620;" string="\mathsfit{Y}"/>
+    <xml2tex:char character="&#x1d620;" string="\mathsfit{{Y}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC CAPITAL Z-->
-    <xml2tex:char character="&#x1d621;" string="\mathsfit{Z}"/>
+    <xml2tex:char character="&#x1d621;" string="\mathsfit{{Z}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC SMALL A-->
-    <xml2tex:char character="&#x1d622;" string="\mathsfit{a}"/>
+    <xml2tex:char character="&#x1d622;" string="\mathsfit{{a}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC SMALL B-->
-    <xml2tex:char character="&#x1d623;" string="\mathsfit{b}"/>
+    <xml2tex:char character="&#x1d623;" string="\mathsfit{{b}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC SMALL C-->
-    <xml2tex:char character="&#x1d624;" string="\mathsfit{c}"/>
+    <xml2tex:char character="&#x1d624;" string="\mathsfit{{c}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC SMALL D-->
-    <xml2tex:char character="&#x1d625;" string="\mathsfit{d}"/>
+    <xml2tex:char character="&#x1d625;" string="\mathsfit{{d}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC SMALL E-->
-    <xml2tex:char character="&#x1d626;" string="\mathsfit{e}"/>
+    <xml2tex:char character="&#x1d626;" string="\mathsfit{{e}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC SMALL F-->
-    <xml2tex:char character="&#x1d627;" string="\mathsfit{f}"/>
+    <xml2tex:char character="&#x1d627;" string="\mathsfit{{f}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC SMALL G-->
-    <xml2tex:char character="&#x1d628;" string="\mathsfit{g}"/>
+    <xml2tex:char character="&#x1d628;" string="\mathsfit{{g}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC SMALL H-->
-    <xml2tex:char character="&#x1d629;" string="\mathsfit{h}"/>
+    <xml2tex:char character="&#x1d629;" string="\mathsfit{{h}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC SMALL I-->
-    <xml2tex:char character="&#x1d62a;" string="\mathsfit{i}"/>
+    <xml2tex:char character="&#x1d62a;" string="\mathsfit{{i}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC SMALL J-->
-    <xml2tex:char character="&#x1d62b;" string="\mathsfit{j}"/>
+    <xml2tex:char character="&#x1d62b;" string="\mathsfit{{j}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC SMALL K-->
-    <xml2tex:char character="&#x1d62c;" string="\mathsfit{k}"/>
+    <xml2tex:char character="&#x1d62c;" string="\mathsfit{{k}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC SMALL L-->
-    <xml2tex:char character="&#x1d62d;" string="\mathsfit{l}"/>
+    <xml2tex:char character="&#x1d62d;" string="\mathsfit{{l}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC SMALL M-->
-    <xml2tex:char character="&#x1d62e;" string="\mathsfit{m}"/>
+    <xml2tex:char character="&#x1d62e;" string="\mathsfit{{m}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC SMALL N-->
-    <xml2tex:char character="&#x1d62f;" string="\mathsfit{n}"/>
+    <xml2tex:char character="&#x1d62f;" string="\mathsfit{{n}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC SMALL O-->
-    <xml2tex:char character="&#x1d630;" string="\mathsfit{o}"/>
+    <xml2tex:char character="&#x1d630;" string="\mathsfit{{o}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC SMALL P-->
-    <xml2tex:char character="&#x1d631;" string="\mathsfit{p}"/>
+    <xml2tex:char character="&#x1d631;" string="\mathsfit{{p}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC SMALL Q-->
-    <xml2tex:char character="&#x1d632;" string="\mathsfit{q}"/>
+    <xml2tex:char character="&#x1d632;" string="\mathsfit{{q}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC SMALL R-->
-    <xml2tex:char character="&#x1d633;" string="\mathsfit{r}"/>
+    <xml2tex:char character="&#x1d633;" string="\mathsfit{{r}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC SMALL S-->
-    <xml2tex:char character="&#x1d634;" string="\mathsfit{s}"/>
+    <xml2tex:char character="&#x1d634;" string="\mathsfit{{s}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC SMALL T-->
-    <xml2tex:char character="&#x1d635;" string="\mathsfit{t}"/>
+    <xml2tex:char character="&#x1d635;" string="\mathsfit{{t}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC SMALL U-->
-    <xml2tex:char character="&#x1d636;" string="\mathsfit{u}"/>
+    <xml2tex:char character="&#x1d636;" string="\mathsfit{{u}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC SMALL V-->
-    <xml2tex:char character="&#x1d637;" string="\mathsfit{v}"/>
+    <xml2tex:char character="&#x1d637;" string="\mathsfit{{v}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC SMALL W-->
-    <xml2tex:char character="&#x1d638;" string="\mathsfit{w}"/>
+    <xml2tex:char character="&#x1d638;" string="\mathsfit{{w}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC SMALL X-->
-    <xml2tex:char character="&#x1d639;" string="\mathsfit{x}"/>
+    <xml2tex:char character="&#x1d639;" string="\mathsfit{{x}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC SMALL Y-->
-    <xml2tex:char character="&#x1d63a;" string="\mathsfit{y}"/>
+    <xml2tex:char character="&#x1d63a;" string="\mathsfit{{y}}"/>
     <!--MATHEMATICAL SANS-SERIF ITALIC SMALL Z-->
-    <xml2tex:char character="&#x1d63b;" string="\mathsfit{z}"/>
+    <xml2tex:char character="&#x1d63b;" string="\mathsfit{{z}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL A-->
-    <xml2tex:char character="&#x1d63c;" string="\mathsfbfit{A}"/>
+    <xml2tex:char character="&#x1d63c;" string="\mathsfbfit{{A}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL B-->
-    <xml2tex:char character="&#x1d63d;" string="\mathsfbfit{B}"/>
+    <xml2tex:char character="&#x1d63d;" string="\mathsfbfit{{B}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL C-->
-    <xml2tex:char character="&#x1d63e;" string="\mathsfbfit{C}"/>
+    <xml2tex:char character="&#x1d63e;" string="\mathsfbfit{{C}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL D-->
-    <xml2tex:char character="&#x1d63f;" string="\mathsfbfit{D}"/>
+    <xml2tex:char character="&#x1d63f;" string="\mathsfbfit{{D}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL E-->
-    <xml2tex:char character="&#x1d640;" string="\mathsfbfit{E}"/>
+    <xml2tex:char character="&#x1d640;" string="\mathsfbfit{{E}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL F-->
-    <xml2tex:char character="&#x1d641;" string="\mathsfbfit{F}"/>
+    <xml2tex:char character="&#x1d641;" string="\mathsfbfit{{F}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL G-->
-    <xml2tex:char character="&#x1d642;" string="\mathsfbfit{G}"/>
+    <xml2tex:char character="&#x1d642;" string="\mathsfbfit{{G}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL H-->
-    <xml2tex:char character="&#x1d643;" string="\mathsfbfit{H}"/>
+    <xml2tex:char character="&#x1d643;" string="\mathsfbfit{{H}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL I-->
-    <xml2tex:char character="&#x1d644;" string="\mathsfbfit{I}"/>
+    <xml2tex:char character="&#x1d644;" string="\mathsfbfit{{I}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL J-->
-    <xml2tex:char character="&#x1d645;" string="\mathsfbfit{J}"/>
+    <xml2tex:char character="&#x1d645;" string="\mathsfbfit{{J}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL K-->
-    <xml2tex:char character="&#x1d646;" string="\mathsfbfit{K}"/>
+    <xml2tex:char character="&#x1d646;" string="\mathsfbfit{{K}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL L-->
-    <xml2tex:char character="&#x1d647;" string="\mathsfbfit{L}"/>
+    <xml2tex:char character="&#x1d647;" string="\mathsfbfit{{L}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL M-->
-    <xml2tex:char character="&#x1d648;" string="\mathsfbfit{M}"/>
+    <xml2tex:char character="&#x1d648;" string="\mathsfbfit{{M}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL N-->
-    <xml2tex:char character="&#x1d649;" string="\mathsfbfit{N}"/>
+    <xml2tex:char character="&#x1d649;" string="\mathsfbfit{{N}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL O-->
-    <xml2tex:char character="&#x1d64a;" string="\mathsfbfit{O}"/>
+    <xml2tex:char character="&#x1d64a;" string="\mathsfbfit{{O}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL P-->
-    <xml2tex:char character="&#x1d64b;" string="\mathsfbfit{P}"/>
+    <xml2tex:char character="&#x1d64b;" string="\mathsfbfit{{P}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL Q-->
-    <xml2tex:char character="&#x1d64c;" string="\mathsfbfit{Q}"/>
+    <xml2tex:char character="&#x1d64c;" string="\mathsfbfit{{Q}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL R-->
-    <xml2tex:char character="&#x1d64d;" string="\mathsfbfit{R}"/>
+    <xml2tex:char character="&#x1d64d;" string="\mathsfbfit{{R}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL S-->
-    <xml2tex:char character="&#x1d64e;" string="\mathsfbfit{S}"/>
+    <xml2tex:char character="&#x1d64e;" string="\mathsfbfit{{S}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL T-->
-    <xml2tex:char character="&#x1d64f;" string="\mathsfbfit{T}"/>
+    <xml2tex:char character="&#x1d64f;" string="\mathsfbfit{{T}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL U-->
-    <xml2tex:char character="&#x1d650;" string="\mathsfbfit{U}"/>
+    <xml2tex:char character="&#x1d650;" string="\mathsfbfit{{U}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL V-->
-    <xml2tex:char character="&#x1d651;" string="\mathsfbfit{V}"/>
+    <xml2tex:char character="&#x1d651;" string="\mathsfbfit{{V}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL W-->
-    <xml2tex:char character="&#x1d652;" string="\mathsfbfit{W}"/>
+    <xml2tex:char character="&#x1d652;" string="\mathsfbfit{{W}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL X-->
-    <xml2tex:char character="&#x1d653;" string="\mathsfbfit{X}"/>
+    <xml2tex:char character="&#x1d653;" string="\mathsfbfit{{X}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL Y-->
-    <xml2tex:char character="&#x1d654;" string="\mathsfbfit{Y}"/>
+    <xml2tex:char character="&#x1d654;" string="\mathsfbfit{{Y}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL Z-->
-    <xml2tex:char character="&#x1d655;" string="\mathsfbfit{Z}"/>
+    <xml2tex:char character="&#x1d655;" string="\mathsfbfit{{Z}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL A-->
-    <xml2tex:char character="&#x1d656;" string="\mathsfbfit{a}"/>
+    <xml2tex:char character="&#x1d656;" string="\mathsfbfit{{a}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL B-->
-    <xml2tex:char character="&#x1d657;" string="\mathsfbfit{b}"/>
+    <xml2tex:char character="&#x1d657;" string="\mathsfbfit{{b}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL C-->
-    <xml2tex:char character="&#x1d658;" string="\mathsfbfit{c}"/>
+    <xml2tex:char character="&#x1d658;" string="\mathsfbfit{{c}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL D-->
-    <xml2tex:char character="&#x1d659;" string="\mathsfbfit{d}"/>
+    <xml2tex:char character="&#x1d659;" string="\mathsfbfit{{d}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL E-->
-    <xml2tex:char character="&#x1d65a;" string="\mathsfbfit{e}"/>
+    <xml2tex:char character="&#x1d65a;" string="\mathsfbfit{{e}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL F-->
-    <xml2tex:char character="&#x1d65b;" string="\mathsfbfit{f}"/>
+    <xml2tex:char character="&#x1d65b;" string="\mathsfbfit{{f}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL G-->
-    <xml2tex:char character="&#x1d65c;" string="\mathsfbfit{g}"/>
+    <xml2tex:char character="&#x1d65c;" string="\mathsfbfit{{g}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL H-->
-    <xml2tex:char character="&#x1d65d;" string="\mathsfbfit{h}"/>
+    <xml2tex:char character="&#x1d65d;" string="\mathsfbfit{{h}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL I-->
-    <xml2tex:char character="&#x1d65e;" string="\mathsfbfit{i}"/>
+    <xml2tex:char character="&#x1d65e;" string="\mathsfbfit{{i}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL J-->
-    <xml2tex:char character="&#x1d65f;" string="\mathsfbfit{j}"/>
+    <xml2tex:char character="&#x1d65f;" string="\mathsfbfit{{j}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL K-->
-    <xml2tex:char character="&#x1d660;" string="\mathsfbfit{k}"/>
+    <xml2tex:char character="&#x1d660;" string="\mathsfbfit{{k}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL L-->
-    <xml2tex:char character="&#x1d661;" string="\mathsfbfit{l}"/>
+    <xml2tex:char character="&#x1d661;" string="\mathsfbfit{{l}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL M-->
-    <xml2tex:char character="&#x1d662;" string="\mathsfbfit{m}"/>
+    <xml2tex:char character="&#x1d662;" string="\mathsfbfit{{m}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL N-->
-    <xml2tex:char character="&#x1d663;" string="\mathsfbfit{n}"/>
+    <xml2tex:char character="&#x1d663;" string="\mathsfbfit{{n}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL O-->
-    <xml2tex:char character="&#x1d664;" string="\mathsfbfit{o}"/>
+    <xml2tex:char character="&#x1d664;" string="\mathsfbfit{{o}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL P-->
-    <xml2tex:char character="&#x1d665;" string="\mathsfbfit{p}"/>
+    <xml2tex:char character="&#x1d665;" string="\mathsfbfit{{p}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL Q-->
-    <xml2tex:char character="&#x1d666;" string="\mathsfbfit{q}"/>
+    <xml2tex:char character="&#x1d666;" string="\mathsfbfit{{q}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL R-->
-    <xml2tex:char character="&#x1d667;" string="\mathsfbfit{r}"/>
+    <xml2tex:char character="&#x1d667;" string="\mathsfbfit{{r}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL S-->
-    <xml2tex:char character="&#x1d668;" string="\mathsfbfit{s}"/>
+    <xml2tex:char character="&#x1d668;" string="\mathsfbfit{{s}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL T-->
-    <xml2tex:char character="&#x1d669;" string="\mathsfbfit{t}"/>
+    <xml2tex:char character="&#x1d669;" string="\mathsfbfit{{t}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL U-->
-    <xml2tex:char character="&#x1d66a;" string="\mathsfbfit{u}"/>
+    <xml2tex:char character="&#x1d66a;" string="\mathsfbfit{{u}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL V-->
-    <xml2tex:char character="&#x1d66b;" string="\mathsfbfit{v}"/>
+    <xml2tex:char character="&#x1d66b;" string="\mathsfbfit{{v}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL W-->
-    <xml2tex:char character="&#x1d66c;" string="\mathsfbfit{w}"/>
+    <xml2tex:char character="&#x1d66c;" string="\mathsfbfit{{w}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL X-->
-    <xml2tex:char character="&#x1d66d;" string="\mathsfbfit{x}"/>
+    <xml2tex:char character="&#x1d66d;" string="\mathsfbfit{{x}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL Y-->
-    <xml2tex:char character="&#x1d66e;" string="\mathsfbfit{y}"/>
+    <xml2tex:char character="&#x1d66e;" string="\mathsfbfit{{y}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL Z-->
-    <xml2tex:char character="&#x1d66f;" string="\mathsfbfit{z}"/>
+    <xml2tex:char character="&#x1d66f;" string="\mathsfbfit{{z}}"/>
     <!--MATHEMATICAL MONOSPACE CAPITAL A-->
-    <xml2tex:char character="&#x1d670;" string="\mathtt{A}"/>
+    <xml2tex:char character="&#x1d670;" string="\mathtt{{A}}"/>
     <!--MATHEMATICAL MONOSPACE CAPITAL B-->
-    <xml2tex:char character="&#x1d671;" string="\mathtt{B}"/>
+    <xml2tex:char character="&#x1d671;" string="\mathtt{{B}}"/>
     <!--MATHEMATICAL MONOSPACE CAPITAL C-->
-    <xml2tex:char character="&#x1d672;" string="\mathtt{C}"/>
+    <xml2tex:char character="&#x1d672;" string="\mathtt{{C}}"/>
     <!--MATHEMATICAL MONOSPACE CAPITAL D-->
-    <xml2tex:char character="&#x1d673;" string="\mathtt{D}"/>
+    <xml2tex:char character="&#x1d673;" string="\mathtt{{D}}"/>
     <!--MATHEMATICAL MONOSPACE CAPITAL E-->
-    <xml2tex:char character="&#x1d674;" string="\mathtt{E}"/>
+    <xml2tex:char character="&#x1d674;" string="\mathtt{{E}}"/>
     <!--MATHEMATICAL MONOSPACE CAPITAL F-->
-    <xml2tex:char character="&#x1d675;" string="\mathtt{F}"/>
+    <xml2tex:char character="&#x1d675;" string="\mathtt{{F}}"/>
     <!--MATHEMATICAL MONOSPACE CAPITAL G-->
-    <xml2tex:char character="&#x1d676;" string="\mathtt{G}"/>
+    <xml2tex:char character="&#x1d676;" string="\mathtt{{G}}"/>
     <!--MATHEMATICAL MONOSPACE CAPITAL H-->
-    <xml2tex:char character="&#x1d677;" string="\mathtt{H}"/>
+    <xml2tex:char character="&#x1d677;" string="\mathtt{{H}}"/>
     <!--MATHEMATICAL MONOSPACE CAPITAL I-->
-    <xml2tex:char character="&#x1d678;" string="\mathtt{I}"/>
+    <xml2tex:char character="&#x1d678;" string="\mathtt{{I}}"/>
     <!--MATHEMATICAL MONOSPACE CAPITAL J-->
-    <xml2tex:char character="&#x1d679;" string="\mathtt{J}"/>
+    <xml2tex:char character="&#x1d679;" string="\mathtt{{J}}"/>
     <!--MATHEMATICAL MONOSPACE CAPITAL K-->
-    <xml2tex:char character="&#x1d67a;" string="\mathtt{K}"/>
+    <xml2tex:char character="&#x1d67a;" string="\mathtt{{K}}"/>
     <!--MATHEMATICAL MONOSPACE CAPITAL L-->
-    <xml2tex:char character="&#x1d67b;" string="\mathtt{L}"/>
+    <xml2tex:char character="&#x1d67b;" string="\mathtt{{L}}"/>
     <!--MATHEMATICAL MONOSPACE CAPITAL M-->
-    <xml2tex:char character="&#x1d67c;" string="\mathtt{M}"/>
+    <xml2tex:char character="&#x1d67c;" string="\mathtt{{M}}"/>
     <!--MATHEMATICAL MONOSPACE CAPITAL N-->
-    <xml2tex:char character="&#x1d67d;" string="\mathtt{N}"/>
+    <xml2tex:char character="&#x1d67d;" string="\mathtt{{N}}"/>
     <!--MATHEMATICAL MONOSPACE CAPITAL O-->
-    <xml2tex:char character="&#x1d67e;" string="\mathtt{O}"/>
+    <xml2tex:char character="&#x1d67e;" string="\mathtt{{O}}"/>
     <!--MATHEMATICAL MONOSPACE CAPITAL P-->
-    <xml2tex:char character="&#x1d67f;" string="\mathtt{P}"/>
+    <xml2tex:char character="&#x1d67f;" string="\mathtt{{P}}"/>
     <!--MATHEMATICAL MONOSPACE CAPITAL Q-->
-    <xml2tex:char character="&#x1d680;" string="\mathtt{Q}"/>
+    <xml2tex:char character="&#x1d680;" string="\mathtt{{Q}}"/>
     <!--MATHEMATICAL MONOSPACE CAPITAL R-->
-    <xml2tex:char character="&#x1d681;" string="\mathtt{R}"/>
+    <xml2tex:char character="&#x1d681;" string="\mathtt{{R}}"/>
     <!--MATHEMATICAL MONOSPACE CAPITAL S-->
-    <xml2tex:char character="&#x1d682;" string="\mathtt{S}"/>
+    <xml2tex:char character="&#x1d682;" string="\mathtt{{S}}"/>
     <!--MATHEMATICAL MONOSPACE CAPITAL T-->
-    <xml2tex:char character="&#x1d683;" string="\mathtt{T}"/>
+    <xml2tex:char character="&#x1d683;" string="\mathtt{{T}}"/>
     <!--MATHEMATICAL MONOSPACE CAPITAL U-->
-    <xml2tex:char character="&#x1d684;" string="\mathtt{U}"/>
+    <xml2tex:char character="&#x1d684;" string="\mathtt{{U}}"/>
     <!--MATHEMATICAL MONOSPACE CAPITAL V-->
-    <xml2tex:char character="&#x1d685;" string="\mathtt{V}"/>
+    <xml2tex:char character="&#x1d685;" string="\mathtt{{V}}"/>
     <!--MATHEMATICAL MONOSPACE CAPITAL W-->
-    <xml2tex:char character="&#x1d686;" string="\mathtt{W}"/>
+    <xml2tex:char character="&#x1d686;" string="\mathtt{{W}}"/>
     <!--MATHEMATICAL MONOSPACE CAPITAL X-->
-    <xml2tex:char character="&#x1d687;" string="\mathtt{X}"/>
+    <xml2tex:char character="&#x1d687;" string="\mathtt{{X}}"/>
     <!--MATHEMATICAL MONOSPACE CAPITAL Y-->
-    <xml2tex:char character="&#x1d688;" string="\mathtt{Y}"/>
+    <xml2tex:char character="&#x1d688;" string="\mathtt{{Y}}"/>
     <!--MATHEMATICAL MONOSPACE CAPITAL Z-->
-    <xml2tex:char character="&#x1d689;" string="\mathtt{Z}"/>
+    <xml2tex:char character="&#x1d689;" string="\mathtt{{Z}}"/>
     <!--MATHEMATICAL MONOSPACE SMALL A-->
-    <xml2tex:char character="&#x1d68a;" string="\mathtt{a}"/>
+    <xml2tex:char character="&#x1d68a;" string="\mathtt{{a}}"/>
     <!--MATHEMATICAL MONOSPACE SMALL B-->
-    <xml2tex:char character="&#x1d68b;" string="\mathtt{b}"/>
+    <xml2tex:char character="&#x1d68b;" string="\mathtt{{b}}"/>
     <!--MATHEMATICAL MONOSPACE SMALL C-->
-    <xml2tex:char character="&#x1d68c;" string="\mathtt{c}"/>
+    <xml2tex:char character="&#x1d68c;" string="\mathtt{{c}}"/>
     <!--MATHEMATICAL MONOSPACE SMALL D-->
-    <xml2tex:char character="&#x1d68d;" string="\mathtt{d}"/>
+    <xml2tex:char character="&#x1d68d;" string="\mathtt{{d}}"/>
     <!--MATHEMATICAL MONOSPACE SMALL E-->
-    <xml2tex:char character="&#x1d68e;" string="\mathtt{e}"/>
+    <xml2tex:char character="&#x1d68e;" string="\mathtt{{e}}"/>
     <!--MATHEMATICAL MONOSPACE SMALL F-->
-    <xml2tex:char character="&#x1d68f;" string="\mathtt{f}"/>
+    <xml2tex:char character="&#x1d68f;" string="\mathtt{{f}}"/>
     <!--MATHEMATICAL MONOSPACE SMALL G-->
-    <xml2tex:char character="&#x1d690;" string="\mathtt{g}"/>
+    <xml2tex:char character="&#x1d690;" string="\mathtt{{g}}"/>
     <!--MATHEMATICAL MONOSPACE SMALL H-->
-    <xml2tex:char character="&#x1d691;" string="\mathtt{h}"/>
+    <xml2tex:char character="&#x1d691;" string="\mathtt{{h}}"/>
     <!--MATHEMATICAL MONOSPACE SMALL I-->
-    <xml2tex:char character="&#x1d692;" string="\mathtt{i}"/>
+    <xml2tex:char character="&#x1d692;" string="\mathtt{{i}}"/>
     <!--MATHEMATICAL MONOSPACE SMALL J-->
-    <xml2tex:char character="&#x1d693;" string="\mathtt{j}"/>
+    <xml2tex:char character="&#x1d693;" string="\mathtt{{j}}"/>
     <!--MATHEMATICAL MONOSPACE SMALL K-->
-    <xml2tex:char character="&#x1d694;" string="\mathtt{k}"/>
+    <xml2tex:char character="&#x1d694;" string="\mathtt{{k}}"/>
     <!--MATHEMATICAL MONOSPACE SMALL L-->
-    <xml2tex:char character="&#x1d695;" string="\mathtt{l}"/>
+    <xml2tex:char character="&#x1d695;" string="\mathtt{{l}}"/>
     <!--MATHEMATICAL MONOSPACE SMALL M-->
-    <xml2tex:char character="&#x1d696;" string="\mathtt{m}"/>
+    <xml2tex:char character="&#x1d696;" string="\mathtt{{m}}"/>
     <!--MATHEMATICAL MONOSPACE SMALL N-->
-    <xml2tex:char character="&#x1d697;" string="\mathtt{n}"/>
+    <xml2tex:char character="&#x1d697;" string="\mathtt{{n}}"/>
     <!--MATHEMATICAL MONOSPACE SMALL O-->
-    <xml2tex:char character="&#x1d698;" string="\mathtt{o}"/>
+    <xml2tex:char character="&#x1d698;" string="\mathtt{{o}}"/>
     <!--MATHEMATICAL MONOSPACE SMALL P-->
-    <xml2tex:char character="&#x1d699;" string="\mathtt{p}"/>
+    <xml2tex:char character="&#x1d699;" string="\mathtt{{p}}"/>
     <!--MATHEMATICAL MONOSPACE SMALL Q-->
-    <xml2tex:char character="&#x1d69a;" string="\mathtt{q}"/>
+    <xml2tex:char character="&#x1d69a;" string="\mathtt{{q}}"/>
     <!--MATHEMATICAL MONOSPACE SMALL R-->
-    <xml2tex:char character="&#x1d69b;" string="\mathtt{r}"/>
+    <xml2tex:char character="&#x1d69b;" string="\mathtt{{r}}"/>
     <!--MATHEMATICAL MONOSPACE SMALL S-->
-    <xml2tex:char character="&#x1d69c;" string="\mathtt{s}"/>
+    <xml2tex:char character="&#x1d69c;" string="\mathtt{{s}}"/>
     <!--MATHEMATICAL MONOSPACE SMALL T-->
-    <xml2tex:char character="&#x1d69d;" string="\mathtt{t}"/>
+    <xml2tex:char character="&#x1d69d;" string="\mathtt{{t}}"/>
     <!--MATHEMATICAL MONOSPACE SMALL U-->
-    <xml2tex:char character="&#x1d69e;" string="\mathtt{u}"/>
+    <xml2tex:char character="&#x1d69e;" string="\mathtt{{u}}"/>
     <!--MATHEMATICAL MONOSPACE SMALL V-->
-    <xml2tex:char character="&#x1d69f;" string="\mathtt{v}"/>
+    <xml2tex:char character="&#x1d69f;" string="\mathtt{{v}}"/>
     <!--MATHEMATICAL MONOSPACE SMALL W-->
-    <xml2tex:char character="&#x1d6a0;" string="\mathtt{w}"/>
+    <xml2tex:char character="&#x1d6a0;" string="\mathtt{{w}}"/>
     <!--MATHEMATICAL MONOSPACE SMALL X-->
-    <xml2tex:char character="&#x1d6a1;" string="\mathtt{x}"/>
+    <xml2tex:char character="&#x1d6a1;" string="\mathtt{{x}}"/>
     <!--MATHEMATICAL MONOSPACE SMALL Y-->
-    <xml2tex:char character="&#x1d6a2;" string="\mathtt{y}"/>
+    <xml2tex:char character="&#x1d6a2;" string="\mathtt{{y}}"/>
     <!--MATHEMATICAL MONOSPACE SMALL Z-->
-    <xml2tex:char character="&#x1d6a3;" string="\mathtt{z}"/>
+    <xml2tex:char character="&#x1d6a3;" string="\mathtt{{z}}"/>
     <!--MATHEMATICAL ITALIC SMALL DOTLESS I-->
     <xml2tex:char character="&#x1d6a4;" string="\imath"/>
     <!--MATHEMATICAL ITALIC SMALL DOTLESS J-->
     <xml2tex:char character="&#x1d6a5;" string="\jmath"/>
     <!--MATHEMATICAL BOLD CAPITAL GAMMA-->
-    <xml2tex:char character="&#x1d6aa;" string="\mathbf{\Gamma}"/>
+    <xml2tex:char character="&#x1d6aa;" string="\mathbf{{\Gamma}}"/>
     <!--MATHEMATICAL BOLD CAPITAL DELTA-->
-    <xml2tex:char character="&#x1d6ab;" string="\mathbf{\Delta}"/>
+    <xml2tex:char character="&#x1d6ab;" string="\mathbf{{\Delta}}"/>
     <!--MATHEMATICAL BOLD CAPITAL THETA-->
-    <xml2tex:char character="&#x1d6af;" string="\mathbf{\Theta}"/>
+    <xml2tex:char character="&#x1d6af;" string="\mathbf{{\Theta}}"/>
     <!--mathematical bold capital lambda-->
-    <xml2tex:char character="&#x1d6b2;" string="\mathbf{\Lambda}"/>
+    <xml2tex:char character="&#x1d6b2;" string="\mathbf{{\Lambda}}"/>
     <!--MATHEMATICAL BOLD CAPITAL XI-->
-    <xml2tex:char character="&#x1d6b5;" string="\mathbf{\Xi}"/>
+    <xml2tex:char character="&#x1d6b5;" string="\mathbf{{\Xi}}"/>
     <!--MATHEMATICAL BOLD CAPITAL PI-->
-    <xml2tex:char character="&#x1d6b7;" string="\mathbf{\Pi}"/>
+    <xml2tex:char character="&#x1d6b7;" string="\mathbf{{\Pi}}"/>
     <!--MATHEMATICAL BOLD CAPITAL SIGMA-->
-    <xml2tex:char character="&#x1d6ba;" string="\mathbf{\Sigma}"/>
+    <xml2tex:char character="&#x1d6ba;" string="\mathbf{{\Sigma}}"/>
     <!--MATHEMATICAL BOLD CAPITAL UPSILON-->
-    <xml2tex:char character="&#x1d6bc;" string="\mathbf{\Upsilon}"/>
+    <xml2tex:char character="&#x1d6bc;" string="\mathbf{{\Upsilon}}"/>
     <!--MATHEMATICAL BOLD CAPITAL PHI-->
-    <xml2tex:char character="&#x1d6bd;" string="\mathbf{\Phi}"/>
+    <xml2tex:char character="&#x1d6bd;" string="\mathbf{{\Phi}}"/>
     <!--MATHEMATICAL BOLD CAPITAL PSI-->
-    <xml2tex:char character="&#x1d6bf;" string="\mathbf{\Psi}"/>
+    <xml2tex:char character="&#x1d6bf;" string="\mathbf{{\Psi}}"/>
     <!--MATHEMATICAL BOLD CAPITAL OMEGA-->
-    <xml2tex:char character="&#x1d6c0;" string="\mathbf{\Omega}"/>
+    <xml2tex:char character="&#x1d6c0;" string="\mathbf{{\Omega}}"/>
     <!--MATHEMATICAL BOLD SMALL ALPHA-->
-    <xml2tex:char character="&#x1d6c2;" string="\mathbf{\alpha}"/>
+    <xml2tex:char character="&#x1d6c2;" string="\mathbf{{\alpha}}"/>
     <!--MATHEMATICAL BOLD SMALL BETA-->
-    <xml2tex:char character="&#x1d6c3;" string="\mathbf{\beta}"/>
+    <xml2tex:char character="&#x1d6c3;" string="\mathbf{{\beta}}"/>
     <!--MATHEMATICAL BOLD SMALL GAMMA-->
-    <xml2tex:char character="&#x1d6c4;" string="\mathbf{\gamma}"/>
+    <xml2tex:char character="&#x1d6c4;" string="\mathbf{{\gamma}}"/>
     <!--MATHEMATICAL BOLD SMALL DELTA-->
-    <xml2tex:char character="&#x1d6c5;" string="\mathbf{\delta}"/>
+    <xml2tex:char character="&#x1d6c5;" string="\mathbf{{\delta}}"/>
     <!--MATHEMATICAL BOLD SMALL EPSILON-->
-    <xml2tex:char character="&#x1d6c6;" string="\mathbf{\varepsilon}"/>
+    <xml2tex:char character="&#x1d6c6;" string="\mathbf{{\varepsilon}}"/>
     <!--MATHEMATICAL BOLD SMALL ZETA-->
-    <xml2tex:char character="&#x1d6c7;" string="\mathbf{\zeta}"/>
+    <xml2tex:char character="&#x1d6c7;" string="\mathbf{{\zeta}}"/>
     <!--MATHEMATICAL BOLD SMALL ETA-->
-    <xml2tex:char character="&#x1d6c8;" string="\mathbf{\eta}"/>
+    <xml2tex:char character="&#x1d6c8;" string="\mathbf{{\eta}}"/>
     <!--MATHEMATICAL BOLD SMALL THETA-->
-    <xml2tex:char character="&#x1d6c9;" string="\mathbf{\theta}"/>
+    <xml2tex:char character="&#x1d6c9;" string="\mathbf{{\theta}}"/>
     <!--MATHEMATICAL BOLD SMALL IOTA-->
-    <xml2tex:char character="&#x1d6ca;" string="\mathbf{\iota}"/>
+    <xml2tex:char character="&#x1d6ca;" string="\mathbf{{\iota}}"/>
     <!--MATHEMATICAL BOLD SMALL KAPPA-->
-    <xml2tex:char character="&#x1d6cb;" string="\mathbf{\kappa}"/>
+    <xml2tex:char character="&#x1d6cb;" string="\mathbf{{\kappa}}"/>
     <!--mathematical bold small lambda-->
-    <xml2tex:char character="&#x1d6cc;" string="\mathbf{\lambda}"/>
+    <xml2tex:char character="&#x1d6cc;" string="\mathbf{{\lambda}}"/>
     <!--MATHEMATICAL BOLD SMALL MU-->
-    <xml2tex:char character="&#x1d6cd;" string="\mathbf{\mu}"/>
+    <xml2tex:char character="&#x1d6cd;" string="\mathbf{{\mu}}"/>
     <!--MATHEMATICAL BOLD SMALL NU-->
-    <xml2tex:char character="&#x1d6ce;" string="\mathbf{\nu}"/>
+    <xml2tex:char character="&#x1d6ce;" string="\mathbf{{\nu}}"/>
     <!--MATHEMATICAL BOLD SMALL XI-->
-    <xml2tex:char character="&#x1d6cf;" string="\mathbf{\xi}"/>
+    <xml2tex:char character="&#x1d6cf;" string="\mathbf{{\xi}}"/>
     <!--MATHEMATICAL BOLD SMALL PI-->
-    <xml2tex:char character="&#x1d6d1;" string="\mathbf{\pi}"/>
+    <xml2tex:char character="&#x1d6d1;" string="\mathbf{{\pi}}"/>
     <!--MATHEMATICAL BOLD SMALL RHO-->
-    <xml2tex:char character="&#x1d6d2;" string="\mathbf{\rho}"/>
+    <xml2tex:char character="&#x1d6d2;" string="\mathbf{{\rho}}"/>
     <!--MATHEMATICAL BOLD SMALL FINAL SIGMA-->
-    <xml2tex:char character="&#x1d6d3;" string="\mathbf{\varsigma}"/>
+    <xml2tex:char character="&#x1d6d3;" string="\mathbf{{\varsigma}}"/>
     <!--MATHEMATICAL BOLD SMALL SIGMA-->
-    <xml2tex:char character="&#x1d6d4;" string="\mathbf{\sigma}"/>
+    <xml2tex:char character="&#x1d6d4;" string="\mathbf{{\sigma}}"/>
     <!--MATHEMATICAL BOLD SMALL TAU-->
-    <xml2tex:char character="&#x1d6d5;" string="\mathbf{\tau}"/>
+    <xml2tex:char character="&#x1d6d5;" string="\mathbf{{\tau}}"/>
     <!--MATHEMATICAL BOLD SMALL UPSILON-->
-    <xml2tex:char character="&#x1d6d6;" string="\mathbf{\upsilon}"/>
+    <xml2tex:char character="&#x1d6d6;" string="\mathbf{{\upsilon}}"/>
     <!--MATHEMATICAL BOLD SMALL PHI-->
-    <xml2tex:char character="&#x1d6d7;" string="\mathbf{\varphi}"/>
+    <xml2tex:char character="&#x1d6d7;" string="\mathbf{{\varphi}}"/>
     <!--MATHEMATICAL BOLD SMALL CHI-->
-    <xml2tex:char character="&#x1d6d8;" string="\mathbf{\chi}"/>
+    <xml2tex:char character="&#x1d6d8;" string="\mathbf{{\chi}}"/>
     <!--MATHEMATICAL BOLD SMALL PSI-->
-    <xml2tex:char character="&#x1d6d9;" string="\mathbf{\psi}"/>
+    <xml2tex:char character="&#x1d6d9;" string="\mathbf{{\psi}}"/>
     <!--MATHEMATICAL BOLD SMALL OMEGA-->
-    <xml2tex:char character="&#x1d6da;" string="\mathbf{\omega}"/>
+    <xml2tex:char character="&#x1d6da;" string="\mathbf{{\omega}}"/>
     <!--MATHEMATICAL BOLD EPSILON SYMBOL-->
-    <xml2tex:char character="&#x1d6dc;" string="\mathbf{\epsilon}"/>
+    <xml2tex:char character="&#x1d6dc;" string="\mathbf{{\epsilon}}"/>
     <!--MATHEMATICAL BOLD THETA SYMBOL-->
-    <xml2tex:char character="&#x1d6dd;" string="\mathbf{\vartheta}"/>
+    <xml2tex:char character="&#x1d6dd;" string="\mathbf{{\vartheta}}"/>
     <!--MATHEMATICAL BOLD PHI SYMBOL-->
-    <xml2tex:char character="&#x1d6df;" string="\mathbf{\phi}"/>
+    <xml2tex:char character="&#x1d6df;" string="\mathbf{{\phi}}"/>
     <!--MATHEMATICAL BOLD RHO SYMBOL-->
-    <xml2tex:char character="&#x1d6e0;" string="\mathbf{\varrho}"/>
+    <xml2tex:char character="&#x1d6e0;" string="\mathbf{{\varrho}}"/>
     <!--MATHEMATICAL BOLD PI SYMBOL-->
-    <xml2tex:char character="&#x1d6e1;" string="\mathbf{\varpi}"/>
-    <!--= \mathit{\Gamma} (-fourier), = \varGamma (amsmath fourier), MATHEMATICAL ITALIC CAPITAL GAMMA-->
+    <xml2tex:char character="&#x1d6e1;" string="\mathbf{{\varpi}}"/>
+    <!--= \mathit{{\Gamma}} (-fourier), = \varGamma (amsmath fourier), MATHEMATICAL ITALIC CAPITAL GAMMA-->
     <xml2tex:char character="&#x1d6e4;" string="\Gamma"/>
-    <!--= \mathit{\Delta} (-fourier), = \varDelta (amsmath fourier), MATHEMATICAL ITALIC CAPITAL DELTA-->
+    <!--= \mathit{{\Delta}} (-fourier), = \varDelta (amsmath fourier), MATHEMATICAL ITALIC CAPITAL DELTA-->
     <xml2tex:char character="&#x1d6e5;" string="\Delta"/>
-    <!--= \mathit{\Theta} (-fourier), = \varTheta (amsmath fourier), MATHEMATICAL ITALIC CAPITAL THETA-->
+    <!--= \mathit{{\Theta}} (-fourier), = \varTheta (amsmath fourier), MATHEMATICAL ITALIC CAPITAL THETA-->
     <xml2tex:char character="&#x1d6e9;" string="\Theta"/>
-    <!--= \mathit{\Lambda} (-fourier), = \varLambda (amsmath fourier), mathematical italic capital lambda-->
+    <!--= \mathit{{\Lambda}} (-fourier), = \varLambda (amsmath fourier), mathematical italic capital lambda-->
     <xml2tex:char character="&#x1d6ec;" string="\Lambda"/>
-    <!--= \mathit{\Xi} (-fourier), = \varXi (amsmath fourier), MATHEMATICAL ITALIC CAPITAL XI-->
+    <!--= \mathit{{\Xi}} (-fourier), = \varXi (amsmath fourier), MATHEMATICAL ITALIC CAPITAL XI-->
     <xml2tex:char character="&#x1d6ef;" string="\Xi"/>
-    <!--= \mathit{\Pi} (-fourier), = \varPi (amsmath fourier), MATHEMATICAL ITALIC CAPITAL PI-->
+    <!--= \mathit{{\Pi}} (-fourier), = \varPi (amsmath fourier), MATHEMATICAL ITALIC CAPITAL PI-->
     <xml2tex:char character="&#x1d6f1;" string="\Pi"/>
-    <!--= \mathit{\Sigma} (-fourier), = \varSigma (amsmath fourier), MATHEMATICAL ITALIC CAPITAL SIGMA-->
+    <!--= \mathit{{\Sigma}} (-fourier), = \varSigma (amsmath fourier), MATHEMATICAL ITALIC CAPITAL SIGMA-->
     <xml2tex:char character="&#x1d6f4;" string="\Sigma"/>
-    <!--= \mathit{\Upsilon} (-fourier), = \varUpsilon (amsmath fourier), MATHEMATICAL ITALIC CAPITAL UPSILON-->
+    <!--= \mathit{{\Upsilon}} (-fourier), = \varUpsilon (amsmath fourier), MATHEMATICAL ITALIC CAPITAL UPSILON-->
     <xml2tex:char character="&#x1d6f6;" string="\Upsilon"/>
-    <!--= \mathit{\Phi} (-fourier), = \varPhi (amsmath fourier), MATHEMATICAL ITALIC CAPITAL PHI-->
+    <!--= \mathit{{\Phi}} (-fourier), = \varPhi (amsmath fourier), MATHEMATICAL ITALIC CAPITAL PHI-->
     <xml2tex:char character="&#x1d6f7;" string="\Phi"/>
-    <!--= \mathit{\Psi} (-fourier), = \varPsi (amsmath fourier), MATHEMATICAL ITALIC CAPITAL PSI-->
+    <!--= \mathit{{\Psi}} (-fourier), = \varPsi (amsmath fourier), MATHEMATICAL ITALIC CAPITAL PSI-->
     <xml2tex:char character="&#x1d6f9;" string="\Psi"/>
-    <!--= \mathit{\Omega} (-fourier), = \varOmega (amsmath fourier), MATHEMATICAL ITALIC CAPITAL OMEGA-->
+    <!--= \mathit{{\Omega}} (-fourier), = \varOmega (amsmath fourier), MATHEMATICAL ITALIC CAPITAL OMEGA-->
     <xml2tex:char character="&#x1d6fa;" string="\Omega"/>
-    <!--= \mathit{\alpha} (omlmathit), MATHEMATICAL ITALIC SMALL ALPHA-->
+    <!--= \mathit{{\alpha}} (omlmathit), MATHEMATICAL ITALIC SMALL ALPHA-->
     <xml2tex:char character="&#x1d6fc;" string="\alpha"/>
-    <!--= \mathit{\beta} (omlmathit), MATHEMATICAL ITALIC SMALL BETA-->
+    <!--= \mathit{{\beta}} (omlmathit), MATHEMATICAL ITALIC SMALL BETA-->
     <xml2tex:char character="&#x1d6fd;" string="\beta"/>
-    <!--= \mathit{\gamma} (omlmathit), MATHEMATICAL ITALIC SMALL GAMMA-->
+    <!--= \mathit{{\gamma}} (omlmathit), MATHEMATICAL ITALIC SMALL GAMMA-->
     <xml2tex:char character="&#x1d6fe;" string="\gamma"/>
-    <!--= \mathit{\delta} (omlmathit), MATHEMATICAL ITALIC SMALL DELTA-->
+    <!--= \mathit{{\delta}} (omlmathit), MATHEMATICAL ITALIC SMALL DELTA-->
     <xml2tex:char character="&#x1d6ff;" string="\delta"/>
-    <!--= \mathit{\varepsilon} (omlmathit), MATHEMATICAL ITALIC SMALL EPSILON-->
+    <!--= \mathit{{\varepsilon}} (omlmathit), MATHEMATICAL ITALIC SMALL EPSILON-->
     <xml2tex:char character="&#x1d700;" string="\varepsilon"/>
-    <!--= \mathit{\zeta} (omlmathit), MATHEMATICAL ITALIC SMALL ZETA-->
+    <!--= \mathit{{\zeta}} (omlmathit), MATHEMATICAL ITALIC SMALL ZETA-->
     <xml2tex:char character="&#x1d701;" string="\zeta"/>
-    <!--= \mathit{\eta} (omlmathit), MATHEMATICAL ITALIC SMALL ETA-->
+    <!--= \mathit{{\eta}} (omlmathit), MATHEMATICAL ITALIC SMALL ETA-->
     <xml2tex:char character="&#x1d702;" string="\eta"/>
-    <!--= \mathit{\theta} (omlmathit), MATHEMATICAL ITALIC SMALL THETA-->
+    <!--= \mathit{{\theta}} (omlmathit), MATHEMATICAL ITALIC SMALL THETA-->
     <xml2tex:char character="&#x1d703;" string="\theta"/>
-    <!--= \mathit{\iota} (omlmathit), MATHEMATICAL ITALIC SMALL IOTA-->
+    <!--= \mathit{{\iota}} (omlmathit), MATHEMATICAL ITALIC SMALL IOTA-->
     <xml2tex:char character="&#x1d704;" string="\iota"/>
-    <!--= \mathit{\kappa} (omlmathit), MATHEMATICAL ITALIC SMALL KAPPA-->
+    <!--= \mathit{{\kappa}} (omlmathit), MATHEMATICAL ITALIC SMALL KAPPA-->
     <xml2tex:char character="&#x1d705;" string="\kappa"/>
-    <!--= \mathit{\lambda} (omlmathit), mathematical italic small lambda-->
+    <!--= \mathit{{\lambda}} (omlmathit), mathematical italic small lambda-->
     <xml2tex:char character="&#x1d706;" string="\lambda"/>
-    <!--= \mathit{\mu} (omlmathit), MATHEMATICAL ITALIC SMALL MU-->
+    <!--= \mathit{{\mu}} (omlmathit), MATHEMATICAL ITALIC SMALL MU-->
     <xml2tex:char character="&#x1d707;" string="\mu"/>
-    <!--= \mathit{\nu} (omlmathit), MATHEMATICAL ITALIC SMALL NU-->
+    <!--= \mathit{{\nu}} (omlmathit), MATHEMATICAL ITALIC SMALL NU-->
     <xml2tex:char character="&#x1d708;" string="\nu"/>
-    <!--= \mathit{\xi} (omlmathit), MATHEMATICAL ITALIC SMALL XI-->
+    <!--= \mathit{{\xi}} (omlmathit), MATHEMATICAL ITALIC SMALL XI-->
     <xml2tex:char character="&#x1d709;" string="\xi"/>
-    <!--= \mathit{\pi} (omlmathit), MATHEMATICAL ITALIC SMALL PI-->
+    <!--= \mathit{{\pi}} (omlmathit), MATHEMATICAL ITALIC SMALL PI-->
     <xml2tex:char character="&#x1d70b;" string="\pi"/>
-    <!--= \mathit{\rho} (omlmathit), MATHEMATICAL ITALIC SMALL RHO-->
+    <!--= \mathit{{\rho}} (omlmathit), MATHEMATICAL ITALIC SMALL RHO-->
     <xml2tex:char character="&#x1d70c;" string="\rho"/>
-    <!--= \mathit{\varsigma} (omlmathit), MATHEMATICAL ITALIC SMALL FINAL SIGMA-->
+    <!--= \mathit{{\varsigma}} (omlmathit), MATHEMATICAL ITALIC SMALL FINAL SIGMA-->
     <xml2tex:char character="&#x1d70d;" string="\varsigma"/>
-    <!--= \mathit{\sigma} (omlmathit), MATHEMATICAL ITALIC SMALL SIGMA-->
+    <!--= \mathit{{\sigma}} (omlmathit), MATHEMATICAL ITALIC SMALL SIGMA-->
     <xml2tex:char character="&#x1d70e;" string="\sigma"/>
-    <!--= \mathit{\tau} (omlmathit), MATHEMATICAL ITALIC SMALL TAU-->
+    <!--= \mathit{{\tau}} (omlmathit), MATHEMATICAL ITALIC SMALL TAU-->
     <xml2tex:char character="&#x1d70f;" string="\tau"/>
-    <!--= \mathit{\upsilon} (omlmathit), MATHEMATICAL ITALIC SMALL UPSILON-->
+    <!--= \mathit{{\upsilon}} (omlmathit), MATHEMATICAL ITALIC SMALL UPSILON-->
     <xml2tex:char character="&#x1d710;" string="\upsilon"/>
-    <!--= \mathit{\varphi} (omlmathit), MATHEMATICAL ITALIC SMALL PHI-->
+    <!--= \mathit{{\varphi}} (omlmathit), MATHEMATICAL ITALIC SMALL PHI-->
     <xml2tex:char character="&#x1d711;" string="\varphi"/>
-    <!--= \mathit{\chi} (omlmathit), MATHEMATICAL ITALIC SMALL CHI-->
+    <!--= \mathit{{\chi}} (omlmathit), MATHEMATICAL ITALIC SMALL CHI-->
     <xml2tex:char character="&#x1d712;" string="\chi"/>
-    <!--= \mathit{\psi} (omlmathit), MATHEMATICAL ITALIC SMALL PSI-->
+    <!--= \mathit{{\psi}} (omlmathit), MATHEMATICAL ITALIC SMALL PSI-->
     <xml2tex:char character="&#x1d713;" string="\psi"/>
-    <!--= \mathit{\omega} (omlmathit), MATHEMATICAL ITALIC SMALL OMEGA-->
+    <!--= \mathit{{\omega}} (omlmathit), MATHEMATICAL ITALIC SMALL OMEGA-->
     <xml2tex:char character="&#x1d714;" string="\omega"/>
-    <!--= \mathit{\partial} (omlmathit), MATHEMATICAL ITALIC PARTIAL DIFFERENTIAL-->
+    <!--= \mathit{{\partial}} (omlmathit), MATHEMATICAL ITALIC PARTIAL DIFFERENTIAL-->
     <xml2tex:char character="&#x1d715;" string="\partial"/>
-    <!--= \mathit{\epsilon} (omlmathit), MATHEMATICAL ITALIC EPSILON SYMBOL-->
+    <!--= \mathit{{\epsilon}} (omlmathit), MATHEMATICAL ITALIC EPSILON SYMBOL-->
     <xml2tex:char character="&#x1d716;" string="\epsilon"/>
-    <!--= \mathit{\vartheta} (omlmathit), MATHEMATICAL ITALIC THETA SYMBOL-->
+    <!--= \mathit{{\vartheta}} (omlmathit), MATHEMATICAL ITALIC THETA SYMBOL-->
     <xml2tex:char character="&#x1d717;" string="\vartheta"/>
     <!--MATHEMATICAL ITALIC KAPPA SYMBOL-->
     <xml2tex:char character="&#x1d718;" string="\varkappa"/>
-    <!--= \mathit{\phi} (omlmathit), MATHEMATICAL ITALIC PHI SYMBOL-->
+    <!--= \mathit{{\phi}} (omlmathit), MATHEMATICAL ITALIC PHI SYMBOL-->
     <xml2tex:char character="&#x1d719;" string="\phi"/>
-    <!--= \mathit{\varrho} (omlmathit), MATHEMATICAL ITALIC RHO SYMBOL-->
+    <!--= \mathit{{\varrho}} (omlmathit), MATHEMATICAL ITALIC RHO SYMBOL-->
     <xml2tex:char character="&#x1d71a;" string="\varrho"/>
-    <!--= \mathit{\varpi} (omlmathit), MATHEMATICAL ITALIC PI SYMBOL-->
+    <!--= \mathit{{\varpi}} (omlmathit), MATHEMATICAL ITALIC PI SYMBOL-->
     <xml2tex:char character="&#x1d71b;" string="\varpi"/>
-    <!--= \mathbold{\Gamma} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL GAMMA-->
-    <xml2tex:char character="&#x1d71e;" string="\mathbfit{\Gamma}"/>
-    <!--= \mathbold{\Delta} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL DELTA-->
-    <xml2tex:char character="&#x1d71f;" string="\mathbfit{\Delta}"/>
-    <!--= \mathbold{\Theta} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL THETA-->
-    <xml2tex:char character="&#x1d723;" string="\mathbfit{\Theta}"/>
-    <!--= \mathbold{\Lambda} (fixmath), mathematical bold italic capital lambda-->
-    <xml2tex:char character="&#x1d726;" string="\mathbfit{\Lambda}"/>
-    <!--= \mathbold{\Xi} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL XI-->
-    <xml2tex:char character="&#x1d729;" string="\mathbfit{\Xi}"/>
-    <!--= \mathbold{\Pi} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL PI-->
-    <xml2tex:char character="&#x1d72b;" string="\mathbfit{\Pi}"/>
-    <!--= \mathbold{\Sigma} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL SIGMA-->
-    <xml2tex:char character="&#x1d72e;" string="\mathbfit{\Sigma}"/>
-    <!--= \mathbold{\Upsilon} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL UPSILON-->
-    <xml2tex:char character="&#x1d730;" string="\mathbfit{\Upsilon}"/>
-    <!--= \mathbold{\Phi} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL PHI-->
-    <xml2tex:char character="&#x1d731;" string="\mathbfit{\Phi}"/>
-    <!--= \mathbold{\Psi} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL PSI-->
-    <xml2tex:char character="&#x1d733;" string="\mathbfit{\Psi}"/>
-    <!--= \mathbold{\Omega} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL OMEGA-->
-    <xml2tex:char character="&#x1d734;" string="\mathbfit{\Omega}"/>
-    <!--= \mathbold{\alpha} (fixmath), MATHEMATICAL BOLD ITALIC SMALL ALPHA-->
-    <xml2tex:char character="&#x1d736;" string="\mathbfit{\alpha}"/>
-    <!--= \mathbold{\beta} (fixmath), MATHEMATICAL BOLD ITALIC SMALL BETA-->
-    <xml2tex:char character="&#x1d737;" string="\mathbfit{\beta}"/>
-    <!--= \mathbold{\gamma} (fixmath), MATHEMATICAL BOLD ITALIC SMALL GAMMA-->
-    <xml2tex:char character="&#x1d738;" string="\mathbfit{\gamma}"/>
-    <!--= \mathbold{\delta} (fixmath), MATHEMATICAL BOLD ITALIC SMALL DELTA-->
-    <xml2tex:char character="&#x1d739;" string="\mathbfit{\delta}"/>
-    <!--= \mathbold{\varepsilon} (fixmath), MATHEMATICAL BOLD ITALIC SMALL EPSILON-->
-    <xml2tex:char character="&#x1d73a;" string="\mathbfit{\varepsilon}"/>
-    <!--= \mathbold{\zeta} (fixmath), MATHEMATICAL BOLD ITALIC SMALL ZETA-->
-    <xml2tex:char character="&#x1d73b;" string="\mathbfit{\zeta}"/>
-    <!--= \mathbold{\eta} (fixmath), MATHEMATICAL BOLD ITALIC SMALL ETA-->
-    <xml2tex:char character="&#x1d73c;" string="\mathbfit{\eta}"/>
-    <!--= \mathbold{\theta} (fixmath), MATHEMATICAL BOLD ITALIC SMALL THETA-->
-    <xml2tex:char character="&#x1d73d;" string="\mathbfit{\theta}"/>
-    <!--= \mathbold{\iota} (fixmath), MATHEMATICAL BOLD ITALIC SMALL IOTA-->
-    <xml2tex:char character="&#x1d73e;" string="\mathbfit{\iota}"/>
-    <!--= \mathbold{\kappa} (fixmath), MATHEMATICAL BOLD ITALIC SMALL KAPPA-->
-    <xml2tex:char character="&#x1d73f;" string="\mathbfit{\kappa}"/>
-    <!--= \mathbold{\lambda} (fixmath), mathematical bold italic small lambda-->
-    <xml2tex:char character="&#x1d740;" string="\mathbfit{\lambda}"/>
-    <!--= \mathbold{\mu} (fixmath), MATHEMATICAL BOLD ITALIC SMALL MU-->
-    <xml2tex:char character="&#x1d741;" string="\mathbfit{\mu}"/>
-    <!--= \mathbold{\nu} (fixmath), MATHEMATICAL BOLD ITALIC SMALL NU-->
-    <xml2tex:char character="&#x1d742;" string="\mathbfit{\nu}"/>
-    <!--= \mathbold{\xi} (fixmath), MATHEMATICAL BOLD ITALIC SMALL XI-->
-    <xml2tex:char character="&#x1d743;" string="\mathbfit{\xi}"/>
-    <!--= \mathbold{\pi} (fixmath), MATHEMATICAL BOLD ITALIC SMALL PI-->
-    <xml2tex:char character="&#x1d745;" string="\mathbfit{\pi}"/>
-    <!--= \mathbold{\rho} (fixmath), MATHEMATICAL BOLD ITALIC SMALL RHO-->
-    <xml2tex:char character="&#x1d746;" string="\mathbfit{\rho}"/>
-    <!--= \mathbold{\varsigma} (fixmath), MATHEMATICAL BOLD ITALIC SMALL FINAL SIGMA-->
-    <xml2tex:char character="&#x1d747;" string="\mathbfit{\varsigma}"/>
-    <!--= \mathbold{\sigma} (fixmath), MATHEMATICAL BOLD ITALIC SMALL SIGMA-->
-    <xml2tex:char character="&#x1d748;" string="\mathbfit{\sigma}"/>
-    <!--= \mathbold{\tau} (fixmath), MATHEMATICAL BOLD ITALIC SMALL TAU-->
-    <xml2tex:char character="&#x1d749;" string="\mathbfit{\tau}"/>
-    <!--= \mathbold{\upsilon} (fixmath), MATHEMATICAL BOLD ITALIC SMALL UPSILON-->
-    <xml2tex:char character="&#x1d74a;" string="\mathbfit{\upsilon}"/>
-    <!--= \mathbold{\varphi} (fixmath), MATHEMATICAL BOLD ITALIC SMALL PHI-->
-    <xml2tex:char character="&#x1d74b;" string="\mathbfit{\varphi}"/>
-    <!--= \mathbold{\chi} (fixmath), MATHEMATICAL BOLD ITALIC SMALL CHI-->
-    <xml2tex:char character="&#x1d74c;" string="\mathbfit{\chi}"/>
-    <!--= \mathbold{\psi} (fixmath), MATHEMATICAL BOLD ITALIC SMALL PSI-->
-    <xml2tex:char character="&#x1d74d;" string="\mathbfit{\psi}"/>
-    <!--= \mathbold{\omega} (fixmath), MATHEMATICAL BOLD ITALIC SMALL OMEGA-->
-    <xml2tex:char character="&#x1d74e;" string="\mathbfit{\omega}"/>
-    <!--= \mathbold{\epsilon} (fixmath), MATHEMATICAL BOLD ITALIC EPSILON SYMBOL-->
-    <xml2tex:char character="&#x1d750;" string="\mathbfit{\epsilon}"/>
-    <!--= \mathbold{\vartheta} (fixmath), MATHEMATICAL BOLD ITALIC THETA SYMBOL-->
-    <xml2tex:char character="&#x1d751;" string="\mathbfit{\vartheta}"/>
-    <!--= \mathbold{\phi} (fixmath), MATHEMATICAL BOLD ITALIC PHI SYMBOL-->
-    <xml2tex:char character="&#x1d753;" string="\mathbfit{\phi}"/>
-    <!--= \mathbold{\varrho} (fixmath), MATHEMATICAL BOLD ITALIC RHO SYMBOL-->
-    <xml2tex:char character="&#x1d754;" string="\mathbfit{\varrho}"/>
-    <!--= \mathbold{\varpi} (fixmath), MATHEMATICAL BOLD ITALIC PI SYMBOL-->
-    <xml2tex:char character="&#x1d755;" string="\mathbfit{\varpi}"/>
+    <!--= \mathbold{{\Gamma}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL GAMMA-->
+    <xml2tex:char character="&#x1d71e;" string="\mathbfit{{\Gamma}}"/>
+    <!--= \mathbold{{\Delta}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL DELTA-->
+    <xml2tex:char character="&#x1d71f;" string="\mathbfit{{\Delta}}"/>
+    <!--= \mathbold{{\Theta}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL THETA-->
+    <xml2tex:char character="&#x1d723;" string="\mathbfit{{\Theta}}"/>
+    <!--= \mathbold{{\Lambda}} (fixmath), mathematical bold italic capital lambda-->
+    <xml2tex:char character="&#x1d726;" string="\mathbfit{{\Lambda}}"/>
+    <!--= \mathbold{{\Xi}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL XI-->
+    <xml2tex:char character="&#x1d729;" string="\mathbfit{{\Xi}}"/>
+    <!--= \mathbold{{\Pi}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL PI-->
+    <xml2tex:char character="&#x1d72b;" string="\mathbfit{{\Pi}}"/>
+    <!--= \mathbold{{\Sigma}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL SIGMA-->
+    <xml2tex:char character="&#x1d72e;" string="\mathbfit{{\Sigma}}"/>
+    <!--= \mathbold{{\Upsilon}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL UPSILON-->
+    <xml2tex:char character="&#x1d730;" string="\mathbfit{{\Upsilon}}"/>
+    <!--= \mathbold{{\Phi}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL PHI-->
+    <xml2tex:char character="&#x1d731;" string="\mathbfit{{\Phi}}"/>
+    <!--= \mathbold{{\Psi}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL PSI-->
+    <xml2tex:char character="&#x1d733;" string="\mathbfit{{\Psi}}"/>
+    <!--= \mathbold{{\Omega}} (fixmath), MATHEMATICAL BOLD ITALIC CAPITAL OMEGA-->
+    <xml2tex:char character="&#x1d734;" string="\mathbfit{{\Omega}}"/>
+    <!--= \mathbold{{\alpha}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL ALPHA-->
+    <xml2tex:char character="&#x1d736;" string="\mathbfit{{\alpha}}"/>
+    <!--= \mathbold{{\beta}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL BETA-->
+    <xml2tex:char character="&#x1d737;" string="\mathbfit{{\beta}}"/>
+    <!--= \mathbold{{\gamma}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL GAMMA-->
+    <xml2tex:char character="&#x1d738;" string="\mathbfit{{\gamma}}"/>
+    <!--= \mathbold{{\delta}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL DELTA-->
+    <xml2tex:char character="&#x1d739;" string="\mathbfit{{\delta}}"/>
+    <!--= \mathbold{{\varepsilon}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL EPSILON-->
+    <xml2tex:char character="&#x1d73a;" string="\mathbfit{{\varepsilon}}"/>
+    <!--= \mathbold{{\zeta}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL ZETA-->
+    <xml2tex:char character="&#x1d73b;" string="\mathbfit{{\zeta}}"/>
+    <!--= \mathbold{{\eta}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL ETA-->
+    <xml2tex:char character="&#x1d73c;" string="\mathbfit{{\eta}}"/>
+    <!--= \mathbold{{\theta}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL THETA-->
+    <xml2tex:char character="&#x1d73d;" string="\mathbfit{{\theta}}"/>
+    <!--= \mathbold{{\iota}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL IOTA-->
+    <xml2tex:char character="&#x1d73e;" string="\mathbfit{{\iota}}"/>
+    <!--= \mathbold{{\kappa}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL KAPPA-->
+    <xml2tex:char character="&#x1d73f;" string="\mathbfit{{\kappa}}"/>
+    <!--= \mathbold{{\lambda}} (fixmath), mathematical bold italic small lambda-->
+    <xml2tex:char character="&#x1d740;" string="\mathbfit{{\lambda}}"/>
+    <!--= \mathbold{{\mu}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL MU-->
+    <xml2tex:char character="&#x1d741;" string="\mathbfit{{\mu}}"/>
+    <!--= \mathbold{{\nu}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL NU-->
+    <xml2tex:char character="&#x1d742;" string="\mathbfit{{\nu}}"/>
+    <!--= \mathbold{{\xi}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL XI-->
+    <xml2tex:char character="&#x1d743;" string="\mathbfit{{\xi}}"/>
+    <!--= \mathbold{{\pi}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL PI-->
+    <xml2tex:char character="&#x1d745;" string="\mathbfit{{\pi}}"/>
+    <!--= \mathbold{{\rho}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL RHO-->
+    <xml2tex:char character="&#x1d746;" string="\mathbfit{{\rho}}"/>
+    <!--= \mathbold{{\varsigma}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL FINAL SIGMA-->
+    <xml2tex:char character="&#x1d747;" string="\mathbfit{{\varsigma}}"/>
+    <!--= \mathbold{{\sigma}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL SIGMA-->
+    <xml2tex:char character="&#x1d748;" string="\mathbfit{{\sigma}}"/>
+    <!--= \mathbold{{\tau}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL TAU-->
+    <xml2tex:char character="&#x1d749;" string="\mathbfit{{\tau}}"/>
+    <!--= \mathbold{{\upsilon}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL UPSILON-->
+    <xml2tex:char character="&#x1d74a;" string="\mathbfit{{\upsilon}}"/>
+    <!--= \mathbold{{\varphi}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL PHI-->
+    <xml2tex:char character="&#x1d74b;" string="\mathbfit{{\varphi}}"/>
+    <!--= \mathbold{{\chi}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL CHI-->
+    <xml2tex:char character="&#x1d74c;" string="\mathbfit{{\chi}}"/>
+    <!--= \mathbold{{\psi}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL PSI-->
+    <xml2tex:char character="&#x1d74d;" string="\mathbfit{{\psi}}"/>
+    <!--= \mathbold{{\omega}} (fixmath), MATHEMATICAL BOLD ITALIC SMALL OMEGA-->
+    <xml2tex:char character="&#x1d74e;" string="\mathbfit{{\omega}}"/>
+    <!--= \mathbold{{\epsilon}} (fixmath), MATHEMATICAL BOLD ITALIC EPSILON SYMBOL-->
+    <xml2tex:char character="&#x1d750;" string="\mathbfit{{\epsilon}}"/>
+    <!--= \mathbold{{\vartheta}} (fixmath), MATHEMATICAL BOLD ITALIC THETA SYMBOL-->
+    <xml2tex:char character="&#x1d751;" string="\mathbfit{{\vartheta}}"/>
+    <!--= \mathbold{{\phi}} (fixmath), MATHEMATICAL BOLD ITALIC PHI SYMBOL-->
+    <xml2tex:char character="&#x1d753;" string="\mathbfit{{\phi}}"/>
+    <!--= \mathbold{{\varrho}} (fixmath), MATHEMATICAL BOLD ITALIC RHO SYMBOL-->
+    <xml2tex:char character="&#x1d754;" string="\mathbfit{{\varrho}}"/>
+    <!--= \mathbold{{\varpi}} (fixmath), MATHEMATICAL BOLD ITALIC PI SYMBOL-->
+    <xml2tex:char character="&#x1d755;" string="\mathbfit{{\varpi}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL GAMMA-->
-    <xml2tex:char character="&#x1d758;" string="\mathsfbf{\Gamma}"/>
+    <xml2tex:char character="&#x1d758;" string="\mathsfbf{{\Gamma}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL DELTA-->
-    <xml2tex:char character="&#x1d759;" string="\mathsfbf{\Delta}"/>
+    <xml2tex:char character="&#x1d759;" string="\mathsfbf{{\Delta}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL THETA-->
-    <xml2tex:char character="&#x1d75d;" string="\mathsfbf{\Theta}"/>
+    <xml2tex:char character="&#x1d75d;" string="\mathsfbf{{\Theta}}"/>
     <!--mathematical sans-serif bold capital lambda-->
-    <xml2tex:char character="&#x1d760;" string="\mathsfbf{\Lambda}"/>
+    <xml2tex:char character="&#x1d760;" string="\mathsfbf{{\Lambda}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL XI-->
-    <xml2tex:char character="&#x1d763;" string="\mathsfbf{\Xi}"/>
+    <xml2tex:char character="&#x1d763;" string="\mathsfbf{{\Xi}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL PI-->
-    <xml2tex:char character="&#x1d765;" string="\mathsfbf{\Pi}"/>
+    <xml2tex:char character="&#x1d765;" string="\mathsfbf{{\Pi}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL SIGMA-->
-    <xml2tex:char character="&#x1d768;" string="\mathsfbf{\Sigma}"/>
+    <xml2tex:char character="&#x1d768;" string="\mathsfbf{{\Sigma}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL UPSILON-->
-    <xml2tex:char character="&#x1d76a;" string="\mathsfbf{\Upsilon}"/>
+    <xml2tex:char character="&#x1d76a;" string="\mathsfbf{{\Upsilon}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL PHI-->
-    <xml2tex:char character="&#x1d76b;" string="\mathsfbf{\Phi}"/>
+    <xml2tex:char character="&#x1d76b;" string="\mathsfbf{{\Phi}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL PSI-->
-    <xml2tex:char character="&#x1d76d;" string="\mathsfbf{\Psi}"/>
+    <xml2tex:char character="&#x1d76d;" string="\mathsfbf{{\Psi}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD CAPITAL OMEGA-->
-    <xml2tex:char character="&#x1d76e;" string="\mathsfbf{\Omega}"/>
+    <xml2tex:char character="&#x1d76e;" string="\mathsfbf{{\Omega}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL ALPHA-->
-    <xml2tex:char character="&#x1d770;" string="\mathsfbf{\alpha}"/>
+    <xml2tex:char character="&#x1d770;" string="\mathsfbf{{\alpha}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL BETA-->
-    <xml2tex:char character="&#x1d771;" string="\mathsfbf{\beta}"/>
+    <xml2tex:char character="&#x1d771;" string="\mathsfbf{{\beta}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL GAMMA-->
-    <xml2tex:char character="&#x1d772;" string="\mathsfbf{\gamma}"/>
+    <xml2tex:char character="&#x1d772;" string="\mathsfbf{{\gamma}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL DELTA-->
-    <xml2tex:char character="&#x1d773;" string="\mathsfbf{\delta}"/>
+    <xml2tex:char character="&#x1d773;" string="\mathsfbf{{\delta}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL EPSILON-->
-    <xml2tex:char character="&#x1d774;" string="\mathsfbf{\varepsilon}"/>
+    <xml2tex:char character="&#x1d774;" string="\mathsfbf{{\varepsilon}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL ZETA-->
-    <xml2tex:char character="&#x1d775;" string="\mathsfbf{\zeta}"/>
+    <xml2tex:char character="&#x1d775;" string="\mathsfbf{{\zeta}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL ETA-->
-    <xml2tex:char character="&#x1d776;" string="\mathsfbf{\eta}"/>
+    <xml2tex:char character="&#x1d776;" string="\mathsfbf{{\eta}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL THETA-->
-    <xml2tex:char character="&#x1d777;" string="\mathsfbf{\theta}"/>
+    <xml2tex:char character="&#x1d777;" string="\mathsfbf{{\theta}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL IOTA-->
-    <xml2tex:char character="&#x1d778;" string="\mathsfbf{\iota}"/>
+    <xml2tex:char character="&#x1d778;" string="\mathsfbf{{\iota}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL KAPPA-->
-    <xml2tex:char character="&#x1d779;" string="\mathsfbf{\kappa}"/>
+    <xml2tex:char character="&#x1d779;" string="\mathsfbf{{\kappa}}"/>
     <!--mathematical sans-serif bold small lambda-->
-    <xml2tex:char character="&#x1d77a;" string="\mathsfbf{\lambda}"/>
+    <xml2tex:char character="&#x1d77a;" string="\mathsfbf{{\lambda}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL MU-->
-    <xml2tex:char character="&#x1d77b;" string="\mathsfbf{\mu}"/>
+    <xml2tex:char character="&#x1d77b;" string="\mathsfbf{{\mu}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL NU-->
-    <xml2tex:char character="&#x1d77c;" string="\mathsfbf{\nu}"/>
+    <xml2tex:char character="&#x1d77c;" string="\mathsfbf{{\nu}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL XI-->
-    <xml2tex:char character="&#x1d77d;" string="\mathsfbf{\xi}"/>
+    <xml2tex:char character="&#x1d77d;" string="\mathsfbf{{\xi}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL PI-->
-    <xml2tex:char character="&#x1d77f;" string="\mathsfbf{\pi}"/>
+    <xml2tex:char character="&#x1d77f;" string="\mathsfbf{{\pi}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL RHO-->
-    <xml2tex:char character="&#x1d780;" string="\mathsfbf{\rho}"/>
+    <xml2tex:char character="&#x1d780;" string="\mathsfbf{{\rho}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL FINAL SIGMA-->
-    <xml2tex:char character="&#x1d781;" string="\mathsfbf{\varsigma}"/>
+    <xml2tex:char character="&#x1d781;" string="\mathsfbf{{\varsigma}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL SIGMA-->
-    <xml2tex:char character="&#x1d782;" string="\mathsfbf{\sigma}"/>
+    <xml2tex:char character="&#x1d782;" string="\mathsfbf{{\sigma}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL TAU-->
-    <xml2tex:char character="&#x1d783;" string="\mathsfbf{\tau}"/>
+    <xml2tex:char character="&#x1d783;" string="\mathsfbf{{\tau}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL UPSILON-->
-    <xml2tex:char character="&#x1d784;" string="\mathsfbf{\upsilon}"/>
+    <xml2tex:char character="&#x1d784;" string="\mathsfbf{{\upsilon}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL PHI-->
-    <xml2tex:char character="&#x1d785;" string="\mathsfbf{\varphi}"/>
+    <xml2tex:char character="&#x1d785;" string="\mathsfbf{{\varphi}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL CHI-->
-    <xml2tex:char character="&#x1d786;" string="\mathsfbf{\chi}"/>
+    <xml2tex:char character="&#x1d786;" string="\mathsfbf{{\chi}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL PSI-->
-    <xml2tex:char character="&#x1d787;" string="\mathsfbf{\psi}"/>
+    <xml2tex:char character="&#x1d787;" string="\mathsfbf{{\psi}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD SMALL OMEGA-->
-    <xml2tex:char character="&#x1d788;" string="\mathsfbf{\omega}"/>
+    <xml2tex:char character="&#x1d788;" string="\mathsfbf{{\omega}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD EPSILON SYMBOL-->
-    <xml2tex:char character="&#x1d78a;" string="\mathsfbf{\epsilon}"/>
+    <xml2tex:char character="&#x1d78a;" string="\mathsfbf{{\epsilon}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD THETA SYMBOL-->
-    <xml2tex:char character="&#x1d78b;" string="\mathsfbf{\vartheta}"/>
+    <xml2tex:char character="&#x1d78b;" string="\mathsfbf{{\vartheta}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD PHI SYMBOL-->
-    <xml2tex:char character="&#x1d78d;" string="\mathsfbf{\phi}"/>
+    <xml2tex:char character="&#x1d78d;" string="\mathsfbf{{\phi}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD RHO SYMBOL-->
-    <xml2tex:char character="&#x1d78e;" string="\mathsfbf{\varrho}"/>
+    <xml2tex:char character="&#x1d78e;" string="\mathsfbf{{\varrho}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD PI SYMBOL-->
-    <xml2tex:char character="&#x1d78f;" string="\mathsfbf{\varpi}"/>
+    <xml2tex:char character="&#x1d78f;" string="\mathsfbf{{\varpi}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL GAMMA-->
-    <xml2tex:char character="&#x1d792;" string="\mathsfbfit{\Gamma}"/>
+    <xml2tex:char character="&#x1d792;" string="\mathsfbfit{{\Gamma}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL DELTA-->
-    <xml2tex:char character="&#x1d793;" string="\mathsfbfit{\Delta}"/>
+    <xml2tex:char character="&#x1d793;" string="\mathsfbfit{{\Delta}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL THETA-->
-    <xml2tex:char character="&#x1d797;" string="\mathsfbfit{\Theta}"/>
+    <xml2tex:char character="&#x1d797;" string="\mathsfbfit{{\Theta}}"/>
     <!--mathematical sans-serif bold italic capital lambda-->
-    <xml2tex:char character="&#x1d79a;" string="\mathsfbfit{\Lambda}"/>
+    <xml2tex:char character="&#x1d79a;" string="\mathsfbfit{{\Lambda}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL XI-->
-    <xml2tex:char character="&#x1d79d;" string="\mathsfbfit{\Xi}"/>
+    <xml2tex:char character="&#x1d79d;" string="\mathsfbfit{{\Xi}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL PI-->
-    <xml2tex:char character="&#x1d79f;" string="\mathsfbfit{\Pi}"/>
+    <xml2tex:char character="&#x1d79f;" string="\mathsfbfit{{\Pi}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL SIGMA-->
-    <xml2tex:char character="&#x1d7a2;" string="\mathsfbfit{\Sigma}"/>
+    <xml2tex:char character="&#x1d7a2;" string="\mathsfbfit{{\Sigma}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL UPSILON-->
-    <xml2tex:char character="&#x1d7a4;" string="\mathsfbfit{\Upsilon}"/>
+    <xml2tex:char character="&#x1d7a4;" string="\mathsfbfit{{\Upsilon}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL PHI-->
-    <xml2tex:char character="&#x1d7a5;" string="\mathsfbfit{\Phi}"/>
+    <xml2tex:char character="&#x1d7a5;" string="\mathsfbfit{{\Phi}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL PSI-->
-    <xml2tex:char character="&#x1d7a7;" string="\mathsfbfit{\Psi}"/>
+    <xml2tex:char character="&#x1d7a7;" string="\mathsfbfit{{\Psi}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC CAPITAL OMEGA-->
-    <xml2tex:char character="&#x1d7a8;" string="\mathsfbfit{\Omega}"/>
+    <xml2tex:char character="&#x1d7a8;" string="\mathsfbfit{{\Omega}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL ALPHA-->
-    <xml2tex:char character="&#x1d7aa;" string="\mathsfbfit{\alpha}"/>
+    <xml2tex:char character="&#x1d7aa;" string="\mathsfbfit{{\alpha}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL BETA-->
-    <xml2tex:char character="&#x1d7ab;" string="\mathsfbfit{\beta}"/>
+    <xml2tex:char character="&#x1d7ab;" string="\mathsfbfit{{\beta}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL GAMMA-->
-    <xml2tex:char character="&#x1d7ac;" string="\mathsfbfit{\gamma}"/>
+    <xml2tex:char character="&#x1d7ac;" string="\mathsfbfit{{\gamma}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL DELTA-->
-    <xml2tex:char character="&#x1d7ad;" string="\mathsfbfit{\delta}"/>
+    <xml2tex:char character="&#x1d7ad;" string="\mathsfbfit{{\delta}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL EPSILON-->
-    <xml2tex:char character="&#x1d7ae;" string="\mathsfbfit{\varepsilon}"/>
+    <xml2tex:char character="&#x1d7ae;" string="\mathsfbfit{{\varepsilon}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL ZETA-->
-    <xml2tex:char character="&#x1d7af;" string="\mathsfbfit{\zeta}"/>
+    <xml2tex:char character="&#x1d7af;" string="\mathsfbfit{{\zeta}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL ETA-->
-    <xml2tex:char character="&#x1d7b0;" string="\mathsfbfit{\eta}"/>
+    <xml2tex:char character="&#x1d7b0;" string="\mathsfbfit{{\eta}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL THETA-->
-    <xml2tex:char character="&#x1d7b1;" string="\mathsfbfit{\theta}"/>
+    <xml2tex:char character="&#x1d7b1;" string="\mathsfbfit{{\theta}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL IOTA-->
-    <xml2tex:char character="&#x1d7b2;" string="\mathsfbfit{\iota}"/>
+    <xml2tex:char character="&#x1d7b2;" string="\mathsfbfit{{\iota}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL KAPPA-->
-    <xml2tex:char character="&#x1d7b3;" string="\mathsfbfit{\kappa}"/>
+    <xml2tex:char character="&#x1d7b3;" string="\mathsfbfit{{\kappa}}"/>
     <!--mathematical sans-serif bold italic small lambda-->
-    <xml2tex:char character="&#x1d7b4;" string="\mathsfbfit{\lambda}"/>
+    <xml2tex:char character="&#x1d7b4;" string="\mathsfbfit{{\lambda}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL MU-->
-    <xml2tex:char character="&#x1d7b5;" string="\mathsfbfit{\mu}"/>
+    <xml2tex:char character="&#x1d7b5;" string="\mathsfbfit{{\mu}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL NU-->
-    <xml2tex:char character="&#x1d7b6;" string="\mathsfbfit{\nu}"/>
+    <xml2tex:char character="&#x1d7b6;" string="\mathsfbfit{{\nu}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL XI-->
-    <xml2tex:char character="&#x1d7b7;" string="\mathsfbfit{\xi}"/>
+    <xml2tex:char character="&#x1d7b7;" string="\mathsfbfit{{\xi}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL PI-->
-    <xml2tex:char character="&#x1d7b9;" string="\mathsfbfit{\pi}"/>
+    <xml2tex:char character="&#x1d7b9;" string="\mathsfbfit{{\pi}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL RHO-->
-    <xml2tex:char character="&#x1d7ba;" string="\mathsfbfit{\rho}"/>
+    <xml2tex:char character="&#x1d7ba;" string="\mathsfbfit{{\rho}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL FINAL SIGMA-->
-    <xml2tex:char character="&#x1d7bb;" string="\mathsfbfit{\varsigma}"/>
+    <xml2tex:char character="&#x1d7bb;" string="\mathsfbfit{{\varsigma}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL SIGMA-->
-    <xml2tex:char character="&#x1d7bc;" string="\mathsfbfit{\sigma}"/>
+    <xml2tex:char character="&#x1d7bc;" string="\mathsfbfit{{\sigma}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL TAU-->
-    <xml2tex:char character="&#x1d7bd;" string="\mathsfbfit{\tau}"/>
+    <xml2tex:char character="&#x1d7bd;" string="\mathsfbfit{{\tau}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL UPSILON-->
-    <xml2tex:char character="&#x1d7be;" string="\mathsfbfit{\upsilon}"/>
+    <xml2tex:char character="&#x1d7be;" string="\mathsfbfit{{\upsilon}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL PHI-->
-    <xml2tex:char character="&#x1d7bf;" string="\mathsfbfit{\varphi}"/>
+    <xml2tex:char character="&#x1d7bf;" string="\mathsfbfit{{\varphi}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL CHI-->
-    <xml2tex:char character="&#x1d7c0;" string="\mathsfbfit{\chi}"/>
+    <xml2tex:char character="&#x1d7c0;" string="\mathsfbfit{{\chi}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL PSI-->
-    <xml2tex:char character="&#x1d7c1;" string="\mathsfbfit{\psi}"/>
+    <xml2tex:char character="&#x1d7c1;" string="\mathsfbfit{{\psi}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC SMALL OMEGA-->
-    <xml2tex:char character="&#x1d7c2;" string="\mathsfbfit{\omega}"/>
+    <xml2tex:char character="&#x1d7c2;" string="\mathsfbfit{{\omega}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC EPSILON SYMBOL-->
-    <xml2tex:char character="&#x1d7c4;" string="\mathsfbfit{\epsilon}"/>
+    <xml2tex:char character="&#x1d7c4;" string="\mathsfbfit{{\epsilon}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC THETA SYMBOL-->
-    <xml2tex:char character="&#x1d7c5;" string="\mathsfbfit{\vartheta}"/>
+    <xml2tex:char character="&#x1d7c5;" string="\mathsfbfit{{\vartheta}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC PHI SYMBOL-->
-    <xml2tex:char character="&#x1d7c7;" string="\mathsfbfit{\phi}"/>
+    <xml2tex:char character="&#x1d7c7;" string="\mathsfbfit{{\phi}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC RHO SYMBOL-->
-    <xml2tex:char character="&#x1d7c8;" string="\mathsfbfit{\varrho}"/>
+    <xml2tex:char character="&#x1d7c8;" string="\mathsfbfit{{\varrho}}"/>
     <!--MATHEMATICAL SANS-SERIF BOLD ITALIC PI SYMBOL-->
-    <xml2tex:char character="&#x1d7c9;" string="\mathsfbfit{\varpi}"/>
+    <xml2tex:char character="&#x1d7c9;" string="\mathsfbfit{{\varpi}}"/>
     <!--mathematical bold digit 0-->
-    <xml2tex:char character="&#x1d7ce;" string="\mathbf{0}"/>
+    <xml2tex:char character="&#x1d7ce;" string="\mathbf{{0}}"/>
     <!--mathematical bold digit 1-->
-    <xml2tex:char character="&#x1d7cf;" string="\mathbf{1}"/>
+    <xml2tex:char character="&#x1d7cf;" string="\mathbf{{1}}"/>
     <!--mathematical bold digit 2-->
-    <xml2tex:char character="&#x1d7d0;" string="\mathbf{2}"/>
+    <xml2tex:char character="&#x1d7d0;" string="\mathbf{{2}}"/>
     <!--mathematical bold digit 3-->
-    <xml2tex:char character="&#x1d7d1;" string="\mathbf{3}"/>
+    <xml2tex:char character="&#x1d7d1;" string="\mathbf{{3}}"/>
     <!--mathematical bold digit 4-->
-    <xml2tex:char character="&#x1d7d2;" string="\mathbf{4}"/>
+    <xml2tex:char character="&#x1d7d2;" string="\mathbf{{4}}"/>
     <!--mathematical bold digit 5-->
-    <xml2tex:char character="&#x1d7d3;" string="\mathbf{5}"/>
+    <xml2tex:char character="&#x1d7d3;" string="\mathbf{{5}}"/>
     <!--mathematical bold digit 6-->
-    <xml2tex:char character="&#x1d7d4;" string="\mathbf{6}"/>
+    <xml2tex:char character="&#x1d7d4;" string="\mathbf{{6}}"/>
     <!--mathematical bold digit 7-->
-    <xml2tex:char character="&#x1d7d5;" string="\mathbf{7}"/>
+    <xml2tex:char character="&#x1d7d5;" string="\mathbf{{7}}"/>
     <!--mathematical bold digit 8-->
-    <xml2tex:char character="&#x1d7d6;" string="\mathbf{8}"/>
+    <xml2tex:char character="&#x1d7d6;" string="\mathbf{{8}}"/>
     <!--mathematical bold digit 9-->
-    <xml2tex:char character="&#x1d7d7;" string="\mathbf{9}"/>
+    <xml2tex:char character="&#x1d7d7;" string="\mathbf{{9}}"/>
     <!--mathematical double-struck digit 0-->
-    <xml2tex:char character="&#x1d7d8;" string="\mathbb{0}"/>
-    <!--= \mathds{1} (dsfont), mathematical double-struck digit 1-->
-    <xml2tex:char character="&#x1d7d9;" string="\mathbb{1}"/>
+    <xml2tex:char character="&#x1d7d8;" string="\mathbb{{0}}"/>
+    <!--= \mathds{{1}} (dsfont), mathematical double-struck digit 1-->
+    <xml2tex:char character="&#x1d7d9;" string="\mathbb{{1}}"/>
     <!--mathematical double-struck digit 2-->
-    <xml2tex:char character="&#x1d7da;" string="\mathbb{2}"/>
+    <xml2tex:char character="&#x1d7da;" string="\mathbb{{2}}"/>
     <!--mathematical double-struck digit 3-->
-    <xml2tex:char character="&#x1d7db;" string="\mathbb{3}"/>
+    <xml2tex:char character="&#x1d7db;" string="\mathbb{{3}}"/>
     <!--mathematical double-struck digit 4-->
-    <xml2tex:char character="&#x1d7dc;" string="\mathbb{4}"/>
+    <xml2tex:char character="&#x1d7dc;" string="\mathbb{{4}}"/>
     <!--mathematical double-struck digit 5-->
-    <xml2tex:char character="&#x1d7dd;" string="\mathbb{5}"/>
+    <xml2tex:char character="&#x1d7dd;" string="\mathbb{{5}}"/>
     <!--mathematical double-struck digit 6-->
-    <xml2tex:char character="&#x1d7de;" string="\mathbb{6}"/>
+    <xml2tex:char character="&#x1d7de;" string="\mathbb{{6}}"/>
     <!--mathematical double-struck digit 7-->
-    <xml2tex:char character="&#x1d7df;" string="\mathbb{7}"/>
+    <xml2tex:char character="&#x1d7df;" string="\mathbb{{7}}"/>
     <!--mathematical double-struck digit 8-->
-    <xml2tex:char character="&#x1d7e0;" string="\mathbb{8}"/>
+    <xml2tex:char character="&#x1d7e0;" string="\mathbb{{8}}"/>
     <!--mathematical double-struck digit 9-->
-    <xml2tex:char character="&#x1d7e1;" string="\mathbb{9}"/>
+    <xml2tex:char character="&#x1d7e1;" string="\mathbb{{9}}"/>
     <!--mathematical sans-serif digit 0-->
-    <xml2tex:char character="&#x1d7e2;" string="\mathsf{0}"/>
+    <xml2tex:char character="&#x1d7e2;" string="\mathsf{{0}}"/>
     <!--mathematical sans-serif digit 1-->
-    <xml2tex:char character="&#x1d7e3;" string="\mathsf{1}"/>
+    <xml2tex:char character="&#x1d7e3;" string="\mathsf{{1}}"/>
     <!--mathematical sans-serif digit 2-->
-    <xml2tex:char character="&#x1d7e4;" string="\mathsf{2}"/>
+    <xml2tex:char character="&#x1d7e4;" string="\mathsf{{2}}"/>
     <!--mathematical sans-serif digit 3-->
-    <xml2tex:char character="&#x1d7e5;" string="\mathsf{3}"/>
+    <xml2tex:char character="&#x1d7e5;" string="\mathsf{{3}}"/>
     <!--mathematical sans-serif digit 4-->
-    <xml2tex:char character="&#x1d7e6;" string="\mathsf{4}"/>
+    <xml2tex:char character="&#x1d7e6;" string="\mathsf{{4}}"/>
     <!--mathematical sans-serif digit 5-->
-    <xml2tex:char character="&#x1d7e7;" string="\mathsf{5}"/>
+    <xml2tex:char character="&#x1d7e7;" string="\mathsf{{5}}"/>
     <!--mathematical sans-serif digit 6-->
-    <xml2tex:char character="&#x1d7e8;" string="\mathsf{6}"/>
+    <xml2tex:char character="&#x1d7e8;" string="\mathsf{{6}}"/>
     <!--mathematical sans-serif digit 7-->
-    <xml2tex:char character="&#x1d7e9;" string="\mathsf{7}"/>
+    <xml2tex:char character="&#x1d7e9;" string="\mathsf{{7}}"/>
     <!--mathematical sans-serif digit 8-->
-    <xml2tex:char character="&#x1d7ea;" string="\mathsf{8}"/>
+    <xml2tex:char character="&#x1d7ea;" string="\mathsf{{8}}"/>
     <!--mathematical sans-serif digit 9-->
-    <xml2tex:char character="&#x1d7eb;" string="\mathsf{9}"/>
+    <xml2tex:char character="&#x1d7eb;" string="\mathsf{{9}}"/>
     <!--mathematical sans-serif bold digit 0-->
-    <xml2tex:char character="&#x1d7ec;" string="\mathsfbf{0}"/>
+    <xml2tex:char character="&#x1d7ec;" string="\mathsfbf{{0}}"/>
     <!--mathematical sans-serif bold digit 1-->
-    <xml2tex:char character="&#x1d7ed;" string="\mathsfbf{1}"/>
+    <xml2tex:char character="&#x1d7ed;" string="\mathsfbf{{1}}"/>
     <!--mathematical sans-serif bold digit 2-->
-    <xml2tex:char character="&#x1d7ee;" string="\mathsfbf{2}"/>
+    <xml2tex:char character="&#x1d7ee;" string="\mathsfbf{{2}}"/>
     <!--mathematical sans-serif bold digit 3-->
-    <xml2tex:char character="&#x1d7ef;" string="\mathsfbf{3}"/>
+    <xml2tex:char character="&#x1d7ef;" string="\mathsfbf{{3}}"/>
     <!--mathematical sans-serif bold digit 4-->
-    <xml2tex:char character="&#x1d7f0;" string="\mathsfbf{4}"/>
+    <xml2tex:char character="&#x1d7f0;" string="\mathsfbf{{4}}"/>
     <!--mathematical sans-serif bold digit 5-->
-    <xml2tex:char character="&#x1d7f1;" string="\mathsfbf{5}"/>
+    <xml2tex:char character="&#x1d7f1;" string="\mathsfbf{{5}}"/>
     <!--mathematical sans-serif bold digit 6-->
-    <xml2tex:char character="&#x1d7f2;" string="\mathsfbf{6}"/>
+    <xml2tex:char character="&#x1d7f2;" string="\mathsfbf{{6}}"/>
     <!--mathematical sans-serif bold digit 7-->
-    <xml2tex:char character="&#x1d7f3;" string="\mathsfbf{7}"/>
+    <xml2tex:char character="&#x1d7f3;" string="\mathsfbf{{7}}"/>
     <!--mathematical sans-serif bold digit 8-->
-    <xml2tex:char character="&#x1d7f4;" string="\mathsfbf{8}"/>
+    <xml2tex:char character="&#x1d7f4;" string="\mathsfbf{{8}}"/>
     <!--mathematical sans-serif bold digit 9-->
-    <xml2tex:char character="&#x1d7f5;" string="\mathsfbf{9}"/>
+    <xml2tex:char character="&#x1d7f5;" string="\mathsfbf{{9}}"/>
     <!--mathematical monospace digit 0-->
-    <xml2tex:char character="&#x1d7f6;" string="\mathtt{0}"/>
+    <xml2tex:char character="&#x1d7f6;" string="\mathtt{{0}}"/>
     <!--mathematical monospace digit 1-->
-    <xml2tex:char character="&#x1d7f7;" string="\mathtt{1}"/>
+    <xml2tex:char character="&#x1d7f7;" string="\mathtt{{1}}"/>
     <!--mathematical monospace digit 2-->
-    <xml2tex:char character="&#x1d7f8;" string="\mathtt{2}"/>
+    <xml2tex:char character="&#x1d7f8;" string="\mathtt{{2}}"/>
     <!--mathematical monospace digit 3-->
-    <xml2tex:char character="&#x1d7f9;" string="\mathtt{3}"/>
+    <xml2tex:char character="&#x1d7f9;" string="\mathtt{{3}}"/>
     <!--mathematical monospace digit 4-->
-    <xml2tex:char character="&#x1d7fa;" string="\mathtt{4}"/>
+    <xml2tex:char character="&#x1d7fa;" string="\mathtt{{4}}"/>
     <!--mathematical monospace digit 5-->
-    <xml2tex:char character="&#x1d7fb;" string="\mathtt{5}"/>
+    <xml2tex:char character="&#x1d7fb;" string="\mathtt{{5}}"/>
     <!--mathematical monospace digit 6-->
-    <xml2tex:char character="&#x1d7fc;" string="\mathtt{6}"/>
+    <xml2tex:char character="&#x1d7fc;" string="\mathtt{{6}}"/>
     <!--mathematical monospace digit 7-->
-    <xml2tex:char character="&#x1d7fd;" string="\mathtt{7}"/>
+    <xml2tex:char character="&#x1d7fd;" string="\mathtt{{7}}"/>
     <!--mathematical monospace digit 8-->
-    <xml2tex:char character="&#x1d7fe;" string="\mathtt{8}"/>
+    <xml2tex:char character="&#x1d7fe;" string="\mathtt{{8}}"/>
     <!--mathematical monospace digit 9-->
-    <xml2tex:char character="&#x1d7ff;" string="\mathtt{9}"/>
+    <xml2tex:char character="&#x1d7ff;" string="\mathtt{{9}}"/>
     <!--BELL -->
     <xml2tex:char character="&#x1f514;" string="\bell"/>
-  </xml2tex:charmap>  
+  <!-- </xml2tex:charmap>  
 </xml2tex:set>
-  <xsl:variable name="texmap" select="document('')/*/xml2tex:set/xml2tex:charmap/xml2tex:char" as="element(xml2tex:char)+"/>    
-  <xml2tex:textmapgreek xmlns="http://transpect.io/xml2tex">
-  <xml2tex:charmap>
+   -->
+   <!-- <xsl:variable name="texmap" select="document('')/*/xml2tex:set/xml2tex:charmap/xml2tex:char" as="element(xml2tex:char)+"/> -->    
+   </xsl:variable>
+  <xsl:variable name="texmap-upgreek" as="element(xml2tex:char)+">
+  
+  <!-- <xml2tex:textmapgreek xmlns="http://transpect.io/xml2tex">
+  <xml2tex:charmap> -->
       
     <!-- *
          * Upgreek definitions
          * -->
-  
+  	<xml2tex:char character="&#x1d7d7;" string="\mathbf{9}"/>
     <!--= \Gamma (-slantedGreek), = \mathrm{\Gamma}, capital gamma, greek-->   
     <xml2tex:char character="&#x393;" string="\Upgamma"/>
     <!--= \Delta (-slantedGreek), = \mathrm{\Delta}, capital delta, greek-->
@@ -3646,10 +3651,10 @@
     <xml2tex:char character="&#x3f5;" string="\upepsilon"/>
     <!-- APL FUNCTIONAL SYMBOL ALPHA -->
     <xml2tex:char character="&#x237a;" string="\upalpha"/>
-  </xml2tex:charmap>
-</xml2tex:textmapgreek>
-  
-  <xsl:variable name="texmap-upgreek" select="document('')/*/xml2tex:textmapgreek/xml2tex:charmap/xml2tex:char" as="element(xml2tex:char)+"/>
+  <!-- </xml2tex:charmap>
+</xml2tex:textmapgreek> -->
+  </xsl:variable>
+  <!-- <xsl:variable name="texmap-upgreek" select="document('')/*/xml2tex:textmapgreek/xml2tex:charmap/xml2tex:char" as="element(xml2tex:char)+"/> -->
   
   <xsl:variable name="texregex" select="concat('[', string-join(for $i in $texmap/@character return functx:escape-for-regex($i), ''), ']')" as="xs:string"/>
 
