@@ -56,7 +56,13 @@
     <xsl:param name="mtable" as="element(mtable)"/>
     <xsl:value-of select="max(for $i in $mtable/mtr return count(($i/mtd, $i//malignmark)))"/>
   </xsl:function>
-
+  <xsl:function name="mml2tex:utf2texrec" as="xs:string*">
+    <xsl:param name="string" as="xs:string"/>
+    <!-- In order to avoid infinite recursion when mapping % → \% -->
+    <xsl:param name="seen" as="xs:string*"/>
+    <xsl:param name="texmap" as="element(xml2tex:char)+"/>
+    <xsl:value-of select="string-join(mml2tex:utf2tex($result, $seen, $texmap), '')"/>
+  </xsl:function>
   <xsl:function name="mml2tex:utf2tex" as="xs:string*">
     <xsl:param name="string" as="xs:string"/>
     <!-- In order to avoid infinite recursion when mapping % → \% -->
@@ -81,7 +87,7 @@
         <xsl:choose>
           <xsl:when test="matches($result, $texregex)
                           and not(($pattern = $seen) or matches($result, '^[-,\.\^a-z0-9A-Z\$\\%_&amp;\{{\}}\[\]#\|\s~&quot;]+$'))">
-            <xsl:value-of select="string-join(mml2tex:utf2tex($result, ($seen, $pattern), $texmap), '')"/>
+            <xsl:value-of select="string-join(mml2tex:utf2texrec($result, ($seen, $pattern), $texmap), '')"/>
           </xsl:when>
           <xsl:otherwise>
             <xsl:value-of select="$result"/>
