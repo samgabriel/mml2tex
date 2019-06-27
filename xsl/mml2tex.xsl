@@ -7,7 +7,7 @@
   xmlns:mml2tex="http://transpect.io/mml2tex"
   xmlns:xml2tex="http://transpect.io/xml2tex"
   xmlns:functx="http://www.functx.com"
-  exclude-result-prefixes="tr mml xs mml2tex" 
+  exclude-result-prefixes="tr mml xs" 
   xpath-default-namespace="http://www.w3.org/1998/Math/MathML" 
   version="2.0">
 
