@@ -37,8 +37,68 @@
   <xsl:variable name="diacritics-regex" select="'^[&#x300;-&#x338;&#x20d0;-&#x20ef;]$'" as="xs:string"/>
   
   <xsl:variable name="parenthesis-regex" select="'[\[\]\(\){}&#x2308;&#x2309;&#x230a;&#x230b;&#x2329;&#x232a;&#x27e8;&#x27e9;&#x3008;&#x3009;]'" as="xs:string"/>
-
+  
   <xsl:variable name="whitespace-regex" select="'\p{Zs}&#x200b;-&#x200f;'" as="xs:string"/>
+    <xsl:function name="tr:menclose-to-latex" as="xs:string+">
+    <xsl:param name="notation" as="attribute(notation)"/>
+    <xsl:sequence select="if($notation = ('box', 'roundedbox'))  then ('\boxed{',      '}')
+                      else if($notation eq 'updiagonalstrike')   then ('\cancel{',     '}')
+                      else if($notation eq 'downdiagonalstrike') then ('\bcancel{',    '}')
+                      else if($notation eq 'updiagonalarrow')    then ('\cancelto{}',  '}')
+                      else if($notation eq 'top')                then ('\overline{',   '}')
+                      else if($notation eq 'underline')          then ('\underline{',  '}')
+                      else if($notation eq 'left')               then ('\left|',       '\right.')
+                      else if($notation eq 'right')              then ('\left.',       '\right|')
+                      else if($notation eq 'radical')            then ('\sqrt{',       '}')
+                      else                                            (concat('\', $notation, '{'), '}')"/>
+  </xsl:function>
+  <xsl:function name="mml2tex:max-col-count" as="xs:integer">
+    <xsl:param name="mtable" as="element(mtable)"/>
+    <xsl:value-of select="max(for $i in $mtable/mtr return count(($i/mtd, $i//malignmark)))"/>
+  </xsl:function>
+
+  <xsl:function name="mml2tex:utf2tex" as="xs:string*">
+    <xsl:param name="string" as="xs:string"/>
+    <!-- In order to avoid infinite recursion when mapping % → \% -->
+    <xsl:param name="seen" as="xs:string*"/>
+    <xsl:param name="texmap" as="element(xml2tex:char)+"/>
+    <xsl:variable name="texregex" select="concat('[', 
+                                                 string-join(for $i in $texmap/@character 
+                                                             return functx:escape-for-regex($i), ''), 
+                                                 ']')" as="xs:string"/>
+    <xsl:analyze-string select="$string" regex="{$texregex}">
+
+      <xsl:matching-substring>
+        <xsl:variable name="pattern" select="functx:escape-for-regex(.)" as="xs:string"/>
+        <xsl:variable name="replacement" select="replace($texmap[matches(@character, $pattern)][1]/@string, '(\$|\\)', '\\$1')" as="xs:string"/>
+        <xsl:variable name="insert-whitespace" select="if(matches($replacement, '[\(\)\[\]\{\},;\.&quot;''\?!]$')) 
+                                                       then ()
+                                                       else '&#x20;'" as="xs:string?"/>
+        <xsl:variable name="result" select="replace(., 
+                                                    $pattern,
+                                                    concat($replacement, $insert-whitespace)
+                                                    )" as="xs:string"/>
+        <xsl:choose>
+          <xsl:when test="matches($result, $texregex)
+                          and not(($pattern = $seen) or matches($result, '^[-,\.\^a-z0-9A-Z\$\\%_&amp;\{{\}}\[\]#\|\s~&quot;]+$'))">
+            <xsl:value-of select="string-join(mml2tex:utf2tex($result, ($seen, $pattern), $texmap), '')"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$result"/>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:matching-substring>
+      <xsl:non-matching-substring>
+        <xsl:value-of select="."/>
+      </xsl:non-matching-substring>
+    </xsl:analyze-string>
+  </xsl:function>
+  
+  <xsl:function name="functx:escape-for-regex" as="xs:string">
+    <xsl:param name="arg" as="xs:string?"/> 
+    <xsl:sequence select="replace($arg,
+                                  '(\.|\[|\]|\\|\||\-|\^|\$|\?|\*|\+|\{|\}|\(|\))','\\$1')"/>
+  </xsl:function>
 
   <xsl:template match="*" mode="mathml2tex" priority="-10">
     <xsl:message terminate="{$fail-on-error}" select="'[ERROR]: unknown element', name()"/>    
@@ -182,19 +242,6 @@
     <xsl:value-of select="tr:menclose-to-latex(@notation)[2]"/>
   </xsl:template>
   
-  <xsl:function name="tr:menclose-to-latex" as="xs:string+">
-    <xsl:param name="notation" as="attribute(notation)"/>
-    <xsl:sequence select="if($notation = ('box', 'roundedbox'))  then ('\boxed{',      '}')
-                      else if($notation eq 'updiagonalstrike')   then ('\cancel{',     '}')
-                      else if($notation eq 'downdiagonalstrike') then ('\bcancel{',    '}')
-                      else if($notation eq 'updiagonalarrow')    then ('\cancelto{}',  '}')
-                      else if($notation eq 'top')                then ('\overline{',   '}')
-                      else if($notation eq 'underline')          then ('\underline{',  '}')
-                      else if($notation eq 'left')               then ('\left|',       '\right.')
-                      else if($notation eq 'right')              then ('\left.',       '\right|')
-                      else if($notation eq 'radical')            then ('\sqrt{',       '}')
-                      else                                            (concat('\', $notation, '{'), '}')"/>
-  </xsl:function>
   
 
   <xsl:template match="mfrac" mode="mathml2tex">
@@ -365,11 +412,7 @@
     <xsl:text>\end{array}</xsl:text>
   </xsl:template>
   
-  <xsl:function name="mml2tex:max-col-count" as="xs:integer">
-    <xsl:param name="mtable" as="element(mtable)"/>
-    <xsl:value-of select="max(for $i in $mtable/mtr return count(($i/mtd, $i//malignmark)))"/>
-  </xsl:function>
-
+  
   <xsl:template match="mtr" mode="mathml2tex">
     <xsl:variable name="position" select="count(preceding-sibling::mtr) + 1" as="xs:integer"/>
     <xsl:variable name="rowlines" select="tokenize(parent::mtable/@rowlines, '\s')" as="xs:string*"/>
@@ -707,47 +750,5 @@
     <xsl:value-of select="."/>
   </xsl:template>
     
-  <xsl:function name="mml2tex:utf2tex" as="xs:string*">
-    <xsl:param name="string" as="xs:string"/>
-    <!-- In order to avoid infinite recursion when mapping % → \% -->
-    <xsl:param name="seen" as="xs:string*"/>
-    <xsl:param name="texmap" as="element(xml2tex:char)+"/>
-    <xsl:variable name="texregex" select="concat('[', 
-                                                 string-join(for $i in $texmap/@character 
-                                                             return functx:escape-for-regex($i), ''), 
-                                                 ']')" as="xs:string"/>
-    <xsl:analyze-string select="$string" regex="{$texregex}">
-
-      <xsl:matching-substring>
-        <xsl:variable name="pattern" select="functx:escape-for-regex(.)" as="xs:string"/>
-        <xsl:variable name="replacement" select="replace($texmap[matches(@character, $pattern)][1]/@string, '(\$|\\)', '\\$1')" as="xs:string"/>
-        <xsl:variable name="insert-whitespace" select="if(matches($replacement, '[\(\)\[\]\{\},;\.&quot;''\?!]$')) 
-                                                       then ()
-                                                       else '&#x20;'" as="xs:string?"/>
-        <xsl:variable name="result" select="replace(., 
-                                                    $pattern,
-                                                    concat($replacement, $insert-whitespace)
-                                                    )" as="xs:string"/>
-        <xsl:choose>
-          <xsl:when test="matches($result, $texregex)
-                          and not(($pattern = $seen) or matches($result, '^[-,\.\^a-z0-9A-Z\$\\%_&amp;\{{\}}\[\]#\|\s~&quot;]+$'))">
-            <xsl:value-of select="string-join(mml2tex:utf2tex($result, ($seen, $pattern), $texmap), '')"/>
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:value-of select="$result"/>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:matching-substring>
-      <xsl:non-matching-substring>
-        <xsl:value-of select="."/>
-      </xsl:non-matching-substring>
-    </xsl:analyze-string>
-  </xsl:function>
   
-  <xsl:function name="functx:escape-for-regex" as="xs:string">
-    <xsl:param name="arg" as="xs:string?"/> 
-    <xsl:sequence select="replace($arg,
-                                  '(\.|\[|\]|\\|\||\-|\^|\$|\?|\*|\+|\{|\}|\(|\))','\\$1')"/>
-  </xsl:function>
-
 </xsl:stylesheet>
