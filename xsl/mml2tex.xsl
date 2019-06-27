@@ -56,13 +56,7 @@
     <xsl:param name="mtable" as="element(mtable)"/>
     <xsl:value-of select="max(for $i in $mtable/mtr return count(($i/mtd, $i//malignmark)))"/>
   </xsl:function>
-  <xsl:function name="mml2tex:utf2texrec" as="xs:string*">
-    <xsl:param name="string" as="xs:string"/>
-    <!-- In order to avoid infinite recursion when mapping % → \% -->
-    <xsl:param name="seen" as="xs:string*"/>
-    <xsl:param name="texmap" as="element(xml2tex:char)+"/>
-    <xsl:value-of select="string-join(mml2tex:utf2tex($string, $seen, $texmap), '')"/>
-  </xsl:function>
+ 
   <xsl:function name="mml2tex:utf2tex" as="xs:string*">
     <xsl:param name="string" as="xs:string"/>
     <!-- In order to avoid infinite recursion when mapping % → \% -->
@@ -98,6 +92,13 @@
         <xsl:value-of select="."/>
       </xsl:non-matching-substring>
     </xsl:analyze-string>
+  </xsl:function>
+  <xsl:function name="mml2tex:utf2texrec" as="xs:string*">
+    <xsl:param name="string" as="xs:string"/>
+    <!-- In order to avoid infinite recursion when mapping % → \% -->
+    <xsl:param name="seen" as="xs:string*"/>
+    <xsl:param name="texmap" as="element(xml2tex:char)+"/>
+    <xsl:value-of select="string-join(mml2tex:utf2tex($string, $seen, $texmap), '')"/>
   </xsl:function>
   
   <xsl:function name="functx:escape-for-regex" as="xs:string">
